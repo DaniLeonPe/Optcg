@@ -1,8 +1,8 @@
-package es.system.jpexposito.springboot.service;
+package es.system.DaniLeonPe.springboot.service;
 
 import java.util.List;
-import es.system.jpexposito.springboot.exception.ResourceNotFoundException;
-import es.system.jpexposito.springboot.model.User;
+import es.system.DaniLeonPe.springboot.exception.ResourceNotFoundException;
+import es.system.DaniLeonPe.springboot.model.User;
 
 public interface UserServiceInterface {
     List<User> getAllUsers();

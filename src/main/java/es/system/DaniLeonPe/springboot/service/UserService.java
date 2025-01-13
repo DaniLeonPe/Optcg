@@ -1,4 +1,4 @@
-package es.system.jpexposito.springboot.service;
+package es.system.DaniLeonPe.springboot.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.web.bind.annotation.RequestBody;
 
-import es.system.jpexposito.springboot.exception.ResourceNotFoundException;
-import es.system.jpexposito.springboot.model.User;
-import es.system.jpexposito.springboot.repository.UserRepository;
+import es.system.DaniLeonPe.springboot.exception.ResourceNotFoundException;
+import es.system.DaniLeonPe.springboot.model.User;
+import es.system.DaniLeonPe.springboot.repository.UserRepository;
 import jakarta.validation.Valid;
 
 @Component

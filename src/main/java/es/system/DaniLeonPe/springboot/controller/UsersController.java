@@ -1,4 +1,4 @@
-package es.system.jpexposito.springboot.controller;
+package es.system.DaniLeonPe.springboot.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,11 +6,11 @@ import java.util.Map;
 
 import jakarta.validation.Valid;
 
-import es.system.jpexposito.springboot.exception.ResourceNotFoundException;
-import es.system.jpexposito.springboot.model.User;
-import es.system.jpexposito.springboot.repository.UserRepository;
-import es.system.jpexposito.springboot.service.UserService;
-import es.system.jpexposito.springboot.service.UserServiceInterface;
+import es.system.DaniLeonPe.springboot.exception.ResourceNotFoundException;
+import es.system.DaniLeonPe.springboot.model.User;
+import es.system.DaniLeonPe.springboot.repository.UserRepository;
+import es.system.DaniLeonPe.springboot.service.UserService;
+import es.system.DaniLeonPe.springboot.service.UserServiceInterface;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

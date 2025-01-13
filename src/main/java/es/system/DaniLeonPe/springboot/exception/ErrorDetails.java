@@ -1,4 +1,4 @@
-package es.system.jpexposito.springboot.exception;
+package es.system.DaniLeonPe.springboot.exception;
 
 import java.util.Date;
 

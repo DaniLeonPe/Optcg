@@ -1,4 +1,4 @@
-package es.system.jpexposito.springboot.model;
+package es.system.DaniLeonPe.springboot.model;
 
 import jakarta.persistence.*;
 

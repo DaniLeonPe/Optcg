@@ -1,0 +1,16 @@
+/home/dam/Escritorio/2ºDAM/Optcg/src/main/java/es/system/DaniLeonPe/springboot/model/User.java
+/home/dam/Escritorio/2ºDAM/Optcg/src/main/java/es/system/DaniLeonPe/springboot/service/RolService.java
+/home/dam/Escritorio/2ºDAM/Optcg/src/main/java/es/system/DaniLeonPe/springboot/Application.java
+/home/dam/Escritorio/2ºDAM/Optcg/src/main/java/es/system/DaniLeonPe/springboot/service/UserService.java
+/home/dam/Escritorio/2ºDAM/Optcg/src/main/java/es/system/DaniLeonPe/springboot/repository/UserRepository.java
+/home/dam/Escritorio/2ºDAM/Optcg/src/main/java/es/system/DaniLeonPe/springboot/repository/RolRepository.java
+/home/dam/Escritorio/2ºDAM/Optcg/src/main/java/es/system/DaniLeonPe/springboot/exception/ErrorDetails.java
+/home/dam/Escritorio/2ºDAM/Optcg/src/main/java/es/system/DaniLeonPe/springboot/controller/RolsController.java
+/home/dam/Escritorio/2ºDAM/Optcg/src/main/java/es/system/DaniLeonPe/springboot/exception/GlobalExceptionHandler.java
+/home/dam/Escritorio/2ºDAM/Optcg/src/main/java/es/system/DaniLeonPe/springboot/service/RolServiceInterface.java
+/home/dam/Escritorio/2ºDAM/Optcg/src/main/java/es/system/DaniLeonPe/springboot/soap/service/UserServiceSoapImpl.java
+/home/dam/Escritorio/2ºDAM/Optcg/src/main/java/es/system/DaniLeonPe/springboot/exception/ResourceNotFoundException.java
+/home/dam/Escritorio/2ºDAM/Optcg/src/main/java/es/system/DaniLeonPe/springboot/model/Rol.java
+/home/dam/Escritorio/2ºDAM/Optcg/src/main/java/es/system/DaniLeonPe/springboot/soap/service/UserServiceSoapInterface.java
+/home/dam/Escritorio/2ºDAM/Optcg/src/main/java/es/system/DaniLeonPe/springboot/service/UserServiceInterface.java
+/home/dam/Escritorio/2ºDAM/Optcg/src/main/java/es/system/DaniLeonPe/springboot/controller/UsersController.java
