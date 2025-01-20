@@ -65,5 +65,5 @@ public class MazoCartaServiceSoap implements MazoCartaServiceSoapInterface {
             throw new WebServiceException("No se encontró la asociación mazo-carta para eliminar", e);
         }
     }
-    
+
 }
