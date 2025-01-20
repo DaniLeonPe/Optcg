@@ -1,4 +1,4 @@
-package es.system.DaniLeonPe.springboot.exception;
+package es.system.danileonpe.springboot.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
