@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import es.system.danileonpe.springboot.exception.ResourceNotFoundException;
-import es.system.danileonpe.springboot.model.User;
+import es.system.danileonpe.springboot.model.Usuario;
 import es.system.danileonpe.springboot.service.UserServiceInterface;
 import jakarta.validation.Valid;
 
@@ -37,7 +37,7 @@ public class UsersController {
 
     @Operation(summary = "Get all users")
     @GetMapping("/users/")
-    public List<User> getAllUsers() {
+    public List<Usuario> getAllUsers() {
         return userService.getAllUsers();
     }
 
@@ -47,8 +47,8 @@ public class UsersController {
             @ApiResponse(responseCode = "404", description = "User not found")
     })
     @GetMapping("/user/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable(value = "id") int userId) throws ResourceNotFoundException {
-        User user = userService.getUserById(userId);
+    public ResponseEntity<Usuario> getUserById(@PathVariable(value = "id") int userId) throws ResourceNotFoundException {
+        Usuario user = userService.getUserById(userId);
         return ResponseEntity.ok().body(user);
     }
 
@@ -58,7 +58,7 @@ public class UsersController {
             @ApiResponse(responseCode = "400", description = "Bad request")
     })
     @PostMapping("/add/user/")
-    public User createUser(@Valid @RequestBody User user) {
+    public Usuario createUser(@Valid @RequestBody Usuario user) {
         return userService.createUser(user);
     }
 
@@ -68,9 +68,9 @@ public class UsersController {
             @ApiResponse(responseCode = "404", description = "User not found")
     })
     @PutMapping("/update/user/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable(value = "id") int userId,
-                                           @Valid @RequestBody User userDetails) throws ResourceNotFoundException {
-        final User updatedUser = userService.updateUser(userId, userDetails);
+    public ResponseEntity<Usuario> updateUser(@PathVariable(value = "id") int userId,
+                                              @Valid @RequestBody Usuario userDetails) throws ResourceNotFoundException {
+        final Usuario updatedUser = userService.updateUser(userId, userDetails);
         return ResponseEntity.ok(updatedUser);
     }
 
