@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import es.system.danileonpe.springboot.exception.ResourceNotFoundException;
 import es.system.danileonpe.springboot.model.Expansion;
 import es.system.danileonpe.springboot.service.ExpansionServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import es.system.danileonpe.springboot.exception.ResourceNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -53,7 +53,7 @@ public class ExpansionesController {
             @ApiResponse(responseCode = "404", description = "BadRequest")
     })
     @GetMapping("/expansion/{id}")
-    public ResponseEntity<Expansion> getExpansionById(@PathVariable(value = "id") int expansionId) throws ResourceNotFoundException{
+    public ResponseEntity<Expansion> getExpansionById(@PathVariable(value = "id") int expansionId) throws ResourceNotFoundException {
         Expansion expansion = expansionService.getExpansionById(expansionId);
         return ResponseEntity.ok().body(expansion);
 

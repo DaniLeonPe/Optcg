@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Mazo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idMazo;
+    private int idMazo;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = false)
@@ -24,11 +24,11 @@ public class Mazo {
     @Column(name = "fecha_creacion", columnDefinition = "TIMESTAMP")
     private LocalDateTime fechaCreacion = LocalDateTime.now();
 
-    public Long getIdMazo() {
+    public int getIdMazo() {
         return idMazo;
     }
 
-    public void setIdMazo(Long idMazo) {
+    public void setIdMazo(int idMazo) {
         this.idMazo = idMazo;
     }
 

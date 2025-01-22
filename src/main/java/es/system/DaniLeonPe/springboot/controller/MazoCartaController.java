@@ -7,11 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 
-import es.system.danileonpe.springboot.model.Mazo;
+import es.system.danileonpe.springboot.service.MazoCartaServiceInterface;
 
 import es.system.danileonpe.springboot.model.MazoCarta;
-import es.system.danileonpe.springboot.service.MazoCartaServiceInterface;
-import es.system.danileonpe.springboot.service.MazoServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

@@ -2,13 +2,13 @@ package es.system.danileonpe.springboot.service;
 
 import java.util.List;
 
+import es.system.danileonpe.springboot.exception.ResourceNotFoundException;
+import es.system.danileonpe.springboot.repository.RolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import es.system.danileonpe.springboot.exception.ResourceNotFoundException;
 import es.system.danileonpe.springboot.model.Rol;
-import es.system.danileonpe.springboot.repository.RolRepository;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.validation.Valid;
 

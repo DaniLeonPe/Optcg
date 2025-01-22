@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RolService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mgs-project</a> &gt; <a href="index.source.html" class="el_package">es.system.danileonpe.springboot.service</a> &gt; <span class="el_source">RolService.java</span></div><h1>RolService.java</h1><pre class="source lang-java linenums">package es.system.danileonpe.springboot.service;
+
+import java.util.List;
+
+import es.system.danileonpe.springboot.exception.ResourceNotFoundException;
+import es.system.danileonpe.springboot.repository.RolRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import es.system.danileonpe.springboot.model.Rol;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import jakarta.validation.Valid;
+
+/**
+ * Servicio para la gestión de roles.
+ * Proporciona métodos para realizar operaciones CRUD sobre la entidad Rol.
+ */
+@Component
+
+<span class="nc" id="L21">public class RolService implements RolServiceInterface {</span>
+
+    private RolRepository rolRepository;
+
+
+    /**
+     * Inyección del repositorio de roles.
+     *
+     * @param rolRepository Repositorio de roles.
+     */
+    @Autowired
+    public void setRolRepository(RolRepository rolRepository) {
+<span class="nc" id="L33">        this.rolRepository = rolRepository;</span>
+<span class="nc" id="L34">    }</span>
+
+
+    /**
+     * Obtiene todos los roles almacenados.
+     *
+     * @return Lista de roles.
+     */
+    public List&lt;Rol&gt; getAllRols(){
+<span class="nc" id="L43">        return rolRepository.findAll();</span>
+    }
+
+
+    /**
+     * Obtiene un rol por su ID.
+     *
+     * @param rolId Identificador del rol.
+     * @return El rol encontrado.
+     * @throws ResourceNotFoundException Si no se encuentra el rol con el ID proporcionado.
+     */
+    public Rol getRolById(@PathVariable(value = &quot;id&quot;) int rolId) throws ResourceNotFoundException {
+<span class="nc" id="L55">        return rolRepository.findById(rolId)</span>
+<span class="nc" id="L56">               .orElseThrow(() -&gt; new ResourceNotFoundException(&quot;Rol not found for this id :: &quot; + rolId));</span>
+    }
+
+
+    /**
+     * Crea un nuevo rol.
+     *
+     * @param rol Detalles del rol a crear.
+     * @return El rol creado.
+     */
+    public Rol createRol(@Valid @RequestBody Rol rol){
+<span class="nc" id="L67">        return rolRepository.save(rol);</span>
+    }
+
+
+    /**
+     * Actualiza un rol existente.
+     *
+     * @param rolId Identificador del rol a actualizar.
+     * @param rolDetails Detalles actualizados del rol.
+     * @return El rol actualizado.
+     * @throws ResourceNotFoundException Si no se encuentra el rol con el ID proporcionado.
+     */
+    public Rol updateRol(@PathVariable(value = &quot;id&quot;) int rolId,
+     @Valid @RequestBody Rol rolDetails) throws ResourceNotFoundException {
+<span class="nc" id="L81">        Rol rol = rolRepository.findById(rolId)</span>
+<span class="nc" id="L82">               .orElseThrow(() -&gt; new ResourceNotFoundException(&quot;Rol not found for this id :: &quot; + rolId));</span>
+
+<span class="nc" id="L84">        rol.setName(rolDetails.getName());</span>
+<span class="nc" id="L85">        return rolRepository.save(rol);</span>
+    }
+
+
+    /**
+     * Elimina un rol por su ID.
+     *
+     * @param rolId Identificador del rol a eliminar.
+     * @return
+     * @throws ResourceNotFoundException Si no se encuentra el rol con el ID proporcionado.
+     */
+    public boolean deleteRol(@PathVariable(value = &quot;id&quot;) int rolId) throws ResourceNotFoundException {
+<span class="nc" id="L97">        Rol rol = rolRepository.findById(rolId)</span>
+<span class="nc" id="L98">               .orElseThrow(() -&gt; new ResourceNotFoundException(&quot;Rol not found for this id :: &quot; + rolId));</span>
+<span class="nc" id="L99">        rolRepository.delete(rol);</span>
+<span class="nc" id="L100">        return false;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

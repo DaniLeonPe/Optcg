@@ -4,9 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import es.system.danileonpe.springboot.model.Carta;
 import es.system.danileonpe.springboot.model.Coleccion;
-import es.system.danileonpe.springboot.service.CartaServiceInterface;
 import es.system.danileonpe.springboot.service.ColeccionServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

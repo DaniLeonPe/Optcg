@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Carta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCarta;
+    private int idCarta;
 
     @Column(nullable = false)
     private String nombre;
@@ -22,19 +22,22 @@ public class Carta {
     private String rareza;
 
     @Column(nullable = false)
-    private Integer costo;
+    private int costo;
 
     private String descripcion;
 
-    private String expansion;
+    @ManyToOne
+    @JoinColumn(name= "id_expansion",referencedColumnName = "idExpansion")
+    private Expansion expansion;
+
 
     private String imagenUrl;
 
-    public Long getIdCarta() {
+    public int getIdCarta() {
         return idCarta;
     }
 
-    public void setIdCarta(Long idCarta) {
+    public void setIdCarta(int idCarta) {
         this.idCarta = idCarta;
     }
 
@@ -62,11 +65,11 @@ public class Carta {
         this.rareza = rareza;
     }
 
-    public Integer getCosto() {
+    public int getCosto() {
         return costo;
     }
 
-    public void setCosto(Integer costo) {
+    public void setCosto(int costo) {
         this.costo = costo;
     }
 
@@ -78,19 +81,30 @@ public class Carta {
         this.descripcion = descripcion;
     }
 
-    public String getExpansion() {
+    public Expansion getExpansion() {
         return expansion;
     }
 
-    public void setExpansion(String expansion) {
+    public void setExpansion(Expansion expansion) {
         this.expansion = expansion;
     }
-
     public String getImagenUrl() {
         return imagenUrl;
     }
 
     public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl;
+    }
+
+
+    public Carta(int idCarta, String nombre, String tipo, String rareza, int costo, String descripcion, Expansion expansion, String imagenUrl) {
+        this.idCarta = idCarta;
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.rareza = rareza;
+        this.costo = costo;
+        this.descripcion = descripcion;
+        this.expansion = expansion;
         this.imagenUrl = imagenUrl;
     }
 

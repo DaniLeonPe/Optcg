@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CartaService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mgs-project</a> &gt; <a href="index.source.html" class="el_package">es.system.danileonpe.springboot.service</a> &gt; <span class="el_source">CartaService.java</span></div><h1>CartaService.java</h1><pre class="source lang-java linenums">package es.system.danileonpe.springboot.service;
+
+
+import java.util.List;
+
+import es.system.danileonpe.springboot.exception.ResourceNotFoundException;
+
+import es.system.danileonpe.springboot.model.Carta;
+import es.system.danileonpe.springboot.repository.CartaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import org.springframework.web.bind.annotation.RequestBody;
+
+import jakarta.validation.Valid;
+
+
+/**
+ * Servicio para la gestión de Cartas.
+ * Proporciona métodos para realizar operaciones CRUD sobre la entidad Carta.
+ */
+@Component
+<span class="nc" id="L24">public class CartaService implements CartaServiceInterface{</span>
+
+    private CartaRepository cartaRepository;
+
+
+    /**
+     * Inyección del repositorio de cartas.
+     *
+     * @param cartaRepository Repositorio de cartas.
+     */
+    @Autowired
+    public void setCartaRepository(CartaRepository cartaRepository) {
+<span class="nc" id="L36">        this.cartaRepository = cartaRepository;</span>
+<span class="nc" id="L37">    }</span>
+
+
+    /**
+     * Obtiene todos las carta almacenados.
+     *
+     * @return Lista de cartas.
+     */
+    public List&lt;Carta&gt; getAllCartas() {
+<span class="nc" id="L46">        return cartaRepository.findAll();</span>
+    }
+
+
+    /**
+     * Obtiene un carta por su ID.
+     *
+     * @param cartaId Identificador del carta.
+     * @return El carta encontrado.
+     * @throws ResourceNotFoundException Si no se encuentra el carta con el ID proporcionado.
+     */
+    public Carta getCartaById(@PathVariable(value = &quot;id&quot;) int cartaId) throws ResourceNotFoundException {
+<span class="nc" id="L58">        return cartaRepository.findById(cartaId)</span>
+<span class="nc" id="L59">                .orElseThrow(() -&gt; new ResourceNotFoundException(&quot;Carta not found for this id :: &quot; + cartaId));</span>
+    }
+
+
+    /**
+     * Crea un nuevo carta.
+     *
+     * @param carta Detalles del carta a crear.
+     * @return El carta creado.
+     */
+    public Carta createCarta(@Valid @RequestBody Carta carta) {
+<span class="nc" id="L70">        return cartaRepository.save(carta);</span>
+    }
+
+
+    /**
+     * Actualiza un carta existente.
+     *
+     * @param cartaId Identificador del carta a actualizar.
+     * @param cartaDetails Detalles actualizados del carta.
+     * @return El carta actualizado.
+     * @throws ResourceNotFoundException Si no se encuentra el carta con el ID proporcionado.
+     */
+    public Carta updateCarta(@PathVariable(value = &quot;id&quot;) int cartaId,
+                              @Valid @RequestBody Carta cartaDetails) throws ResourceNotFoundException {
+<span class="nc" id="L84">        Carta carta = cartaRepository.findById(cartaId)</span>
+<span class="nc" id="L85">                .orElseThrow(() -&gt; new ResourceNotFoundException(&quot;Carta not found for this id :: &quot; + cartaId));</span>
+
+<span class="nc" id="L87">        carta.setNombre(cartaDetails.getNombre());</span>
+<span class="nc" id="L88">        return cartaRepository.save(carta);</span>
+    }
+
+
+    /**
+     * Elimina un carta por su ID.
+     *
+     * @param cartaId Identificador del carta a eliminar.
+     * @return
+     * @throws ResourceNotFoundException Si no se encuentra el carta con el ID proporcionado.
+     */
+    public boolean deleteCarta(@PathVariable(value = &quot;id&quot;) int cartaId) throws ResourceNotFoundException {
+<span class="nc" id="L100">        Carta carta = cartaRepository.findById(cartaId)</span>
+<span class="nc" id="L101">                .orElseThrow(() -&gt; new ResourceNotFoundException(&quot;User not found for this id :: &quot; + cartaId));</span>
+
+<span class="nc" id="L103">        cartaRepository.delete(carta);</span>
+<span class="nc" id="L104">        return false;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

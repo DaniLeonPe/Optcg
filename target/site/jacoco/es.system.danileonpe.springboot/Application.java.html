@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Application.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mgs-project</a> &gt; <a href="index.source.html" class="el_package">es.system.danileonpe.springboot</a> &gt; <span class="el_source">Application.java</span></div><h1>Application.java</h1><pre class="source lang-java linenums">package es.system.danileonpe.springboot;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ImportResource;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+
+import jakarta.annotation.PostConstruct;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Arrays;
+
+@SpringBootApplication
+@ImportResource(&quot;classpath:cxf-service.xml&quot;) 
+<span class="nc" id="L18">public class Application {</span>
+	
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+
+	public static void main(String[] args) {
+<span class="nc" id="L24">		SpringApplication.run(Application.class, args);</span>
+<span class="nc" id="L25">	}</span>
+
+	@PostConstruct
+	private void initDb() {
+<span class="nc" id="L29">		System.out.println(String.format(&quot;****** Creating table: %s, and Inserting test data ******&quot;, &quot;users&quot;));</span>
+
+		// Cambiar &quot;serial&quot; por &quot;auto_increment&quot; para H2
+<span class="nc" id="L32">		String sqlStatements[] = {</span>
+				&quot;drop table if exists users&quot;,
+				&quot;create table users(id int auto_increment, name varchar(255), primary key (id))&quot;,
+				&quot;insert into users(name) values('Manuel')&quot;,
+				&quot;insert into users(name) values('Pedro')&quot;
+		};
+
+<span class="nc" id="L39">		Arrays.asList(sqlStatements).stream().forEach(sql -&gt; {</span>
+<span class="nc" id="L40">			System.out.println(sql);</span>
+<span class="nc" id="L41">			jdbcTemplate.execute(sql);</span>
+<span class="nc" id="L42">		});</span>
+
+<span class="nc" id="L44">		System.out.println(String.format(&quot;****** Fetching from table: %s ******&quot;, &quot;users&quot;));</span>
+<span class="nc" id="L45">		jdbcTemplate.query(&quot;select id, name from users&quot;,</span>
+<span class="nc" id="L46">				new RowMapper&lt;Object&gt;() {</span>
+					@Override
+					public Object mapRow(ResultSet rs, int i) throws SQLException {
+<span class="nc" id="L49">						System.out.println(String.format(&quot;id:%s, name:%s&quot;,</span>
+<span class="nc" id="L50">								rs.getString(&quot;id&quot;),</span>
+<span class="nc" id="L51">								rs.getString(&quot;name&quot;)));</span>
+<span class="nc" id="L52">						return null;</span>
+					}
+				});
+<span class="nc" id="L55">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

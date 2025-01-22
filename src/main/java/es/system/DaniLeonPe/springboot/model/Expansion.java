@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Expansion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idExpansion;
+    private int idExpansion;
 
     @Column(nullable = false)
     private String nombre;
@@ -18,11 +18,11 @@ public class Expansion {
     @Column(name = "fecha_lanzamiento", columnDefinition = "DATE")
     private LocalDateTime fechaLanzamiento;
 
-    public Long getIdExpansion() {
+    public int getIdExpansion() {
         return idExpansion;
     }
 
-    public void setIdExpansion(Long idExpansion) {
+    public void setIdExpansion(int idExpansion) {
         this.idExpansion = idExpansion;
     }
 

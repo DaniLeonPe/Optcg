@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import es.system.danileonpe.springboot.exception.ResourceNotFoundException;
+import es.system.danileonpe.springboot.model.Rol;
+import es.system.danileonpe.springboot.service.RolServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,9 +17,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import es.system.danileonpe.springboot.exception.ResourceNotFoundException;
-import es.system.danileonpe.springboot.model.Rol;
-import es.system.danileonpe.springboot.service.RolServiceInterface;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -52,7 +52,7 @@ public class RolsController {
         @ApiResponse(responseCode = "404", description = "BadRequest")
     })
     @GetMapping("/rol/{id}")
-    public ResponseEntity<Rol> getRolById(@PathVariable(value = "id") int rolId) throws ResourceNotFoundException{
+    public ResponseEntity<Rol> getRolById(@PathVariable(value = "id") int rolId) throws ResourceNotFoundException {
         Rol rol = rolService.getRolById(rolId);
         return ResponseEntity.ok().body(rol);
     

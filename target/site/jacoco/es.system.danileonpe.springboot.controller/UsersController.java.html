@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UsersController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mgs-project</a> &gt; <a href="index.source.html" class="el_package">es.system.danileonpe.springboot.controller</a> &gt; <span class="el_source">UsersController.java</span></div><h1>UsersController.java</h1><pre class="source lang-java linenums">package es.system.danileonpe.springboot.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import es.system.danileonpe.springboot.exception.ResourceNotFoundException;
+import es.system.danileonpe.springboot.model.Usuario;
+import es.system.danileonpe.springboot.service.UserServiceInterface;
+import jakarta.validation.Valid;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping(&quot;/api/v1&quot;)
+<span class="nc" id="L28">public class UsersController {</span>
+
+    private UserServiceInterface userService;
+
+    @Autowired
+    public void setUserRepository(UserServiceInterface userService) {
+<span class="nc" id="L34">        this.userService = userService;</span>
+<span class="nc" id="L35">    }</span>
+
+
+    @Operation(summary = &quot;Get all users&quot;)
+    @GetMapping(&quot;/users/&quot;)
+    public List&lt;Usuario&gt; getAllUsers() {
+<span class="nc" id="L41">        return userService.getAllUsers();</span>
+    }
+
+    @Operation(summary = &quot;Get user by ID&quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;User not found&quot;)
+    })
+    @GetMapping(&quot;/user/{id}&quot;)
+    public ResponseEntity&lt;Usuario&gt; getUserById(@PathVariable(value = &quot;id&quot;) int userId) throws ResourceNotFoundException {
+<span class="nc" id="L51">        Usuario user = userService.getUserById(userId);</span>
+<span class="nc" id="L52">        return ResponseEntity.ok().body(user);</span>
+    }
+
+    @Operation(summary = &quot;Insert user&quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;User created successfully&quot;),
+            @ApiResponse(responseCode = &quot;400&quot;, description = &quot;Bad request&quot;)
+    })
+    @PostMapping(&quot;/add/user/&quot;)
+    public Usuario createUser(@Valid @RequestBody Usuario user) {
+<span class="nc" id="L62">        return userService.createUser(user);</span>
+    }
+
+    @Operation(summary = &quot;Update user&quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;User updated successfully&quot;),
+            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;User not found&quot;)
+    })
+    @PutMapping(&quot;/update/user/{id}&quot;)
+    public ResponseEntity&lt;Usuario&gt; updateUser(@PathVariable(value = &quot;id&quot;) int userId,
+                                              @Valid @RequestBody Usuario userDetails) throws ResourceNotFoundException {
+<span class="nc" id="L73">        final Usuario updatedUser = userService.updateUser(userId, userDetails);</span>
+<span class="nc" id="L74">        return ResponseEntity.ok(updatedUser);</span>
+    }
+
+    @Operation(summary = &quot;Delete user&quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;User deleted successfully&quot;),
+            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;User not found&quot;)
+    })
+    @DeleteMapping(&quot;/delete/user/{id}&quot;)
+    public Map&lt;String, Boolean&gt; deleteUser(@PathVariable(value = &quot;id&quot;) int userId) throws ResourceNotFoundException {
+<span class="nc" id="L84">        userService.deleteUser(userId); </span>
+<span class="nc" id="L85">        Map&lt;String, Boolean&gt; response = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L86">        response.put(&quot;deleted&quot;, Boolean.TRUE);</span>
+<span class="nc" id="L87">        return response;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

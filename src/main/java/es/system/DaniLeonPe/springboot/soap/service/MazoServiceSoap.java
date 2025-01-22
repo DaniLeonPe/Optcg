@@ -1,8 +1,8 @@
 package es.system.danileonpe.springboot.soap.service;
 
 import es.system.danileonpe.springboot.exception.ResourceNotFoundException;
-import es.system.danileonpe.springboot.model.Mazo;
 import es.system.danileonpe.springboot.service.MazoServiceInterface;
+import es.system.danileonpe.springboot.model.Mazo;
 import jakarta.jws.WebService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

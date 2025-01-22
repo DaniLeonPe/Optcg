@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ColeccionesController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mgs-project</a> &gt; <a href="index.source.html" class="el_package">es.system.danileonpe.springboot.controller</a> &gt; <span class="el_source">ColeccionesController.java</span></div><h1>ColeccionesController.java</h1><pre class="source lang-java linenums">package es.system.danileonpe.springboot.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import es.system.danileonpe.springboot.model.Coleccion;
+import es.system.danileonpe.springboot.service.ColeccionServiceInterface;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import es.system.danileonpe.springboot.exception.ResourceNotFoundException;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
+
+
+
+
+@RestController
+@RequestMapping(&quot;/api/v1&quot;)
+
+<span class="nc" id="L32">public class ColeccionesController {</span>
+
+    private ColeccionServiceInterface coleccionService;
+
+    @Autowired
+    public void setColeccionRepository(ColeccionServiceInterface coleccionService){
+<span class="nc" id="L38">        this.coleccionService = coleccionService;</span>
+<span class="nc" id="L39">    }</span>
+
+
+    @Operation(summary = &quot;Get all Coleccion&quot;)
+    @GetMapping(&quot;/coleccion/&quot;)
+    public List&lt;Coleccion&gt; getAllColeccion() {
+<span class="nc" id="L45">        return coleccionService.getAllColeccion();</span>
+    }
+
+
+    @Operation(summary = &quot;Get Coleccion by ID&quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;BadRequest&quot;)
+    })
+    @GetMapping(&quot;/coleccion/{id}&quot;)
+    public ResponseEntity&lt;Coleccion&gt; getColeccionById(@PathVariable(value = &quot;id&quot;) int coleccionId) throws ResourceNotFoundException{
+<span class="nc" id="L56">        Coleccion coleccion = coleccionService.getColeccionById(coleccionId);</span>
+<span class="nc" id="L57">        return ResponseEntity.ok().body(coleccion);</span>
+
+    }
+
+    @Operation(summary = &quot;Insert Coleccion&quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Carta created successfully&quot;),
+            @ApiResponse(responseCode = &quot;400&quot;, description = &quot;Bad request&quot;)
+    })
+    @PostMapping(&quot;/add/coleccion/&quot;)
+    public Coleccion createColeccion(@Valid @RequestBody Coleccion coleccion){
+<span class="nc" id="L68">        return coleccionService.createColeccion(coleccion);</span>
+    }
+
+    @Operation(summary = &quot;Update Coleccion&quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Coleccion updated successfully&quot;),
+            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Coleccion not found&quot;)
+    })
+    @PutMapping(&quot;/update/coleccion/{id}&quot;)
+    public ResponseEntity&lt;Coleccion&gt; updateColeccion(@PathVariable(value = &quot;id&quot;) int coleccionId,
+                                             @Valid @RequestBody Coleccion coleccionDetails) throws ResourceNotFoundException {
+<span class="nc" id="L79">        Coleccion updateColeccion = coleccionService.updateColeccion(coleccionId, coleccionDetails);</span>
+<span class="nc" id="L80">        return ResponseEntity.ok().body(updateColeccion);</span>
+    }
+
+    @Operation(summary = &quot;Delete Coleccion&quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Coleccion deleted successfully&quot;),
+            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Coleccion not found&quot;)
+    })
+    @DeleteMapping(&quot;/delete/coleccion/{id}&quot;)
+    public Map&lt;String, Boolean&gt; deleteColeccion(@PathVariable(value = &quot;id&quot;) int coleccionId) throws ResourceNotFoundException {
+<span class="nc" id="L90">        coleccionService.deleteColeccion(coleccionId);</span>
+<span class="nc" id="L91">        Map&lt;String, Boolean&gt; response = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L92">        response.put(&quot;deleted&quot;, Boolean.TRUE);</span>
+<span class="nc" id="L93">        return response;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

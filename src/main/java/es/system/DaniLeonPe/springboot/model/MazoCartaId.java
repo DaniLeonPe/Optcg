@@ -8,24 +8,24 @@ import java.util.Objects;
 public class MazoCartaId implements Serializable {
 
     @Column(name = "id_mazo")
-    private Long mazo;
+    private long mazo;
 
     @Column(name = "id_carta")
-    private Long carta;
+    private long carta;
 
-    public Long getMazo() {
+    public long getMazo() {
         return mazo;
     }
 
-    public void setMazo(Long mazo) {
+    public void setMazo(long mazo) {
         this.mazo = mazo;
     }
 
-    public Long getCarta() {
+    public long getCarta() {
         return carta;
     }
 
-    public void setCarta(Long carta) {
+    public void setCarta(long carta) {
         this.carta = carta;
     }
 

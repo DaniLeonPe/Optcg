@@ -8,11 +8,36 @@
 
     <!-- Definición del servicio -->
     <jaxws:endpoint id="userServiceEndpoint"
-                    implementor="#userServiceImpl"
-                    address="/users">
-    </jaxws:endpoint>
+                    implementor="#userService"
+                    address="/usuarios" />
+    <jaxws:endpoint id="rolServiceEndpoint"
+                    implementor="#rolService"
+                    address="/rols" />
+    <jaxws:endpoint id="mazoServiceEndpoint"
+                    implementor="#mazoService"
+                    address="/mazos" />
+    <jaxws:endpoint id="mazocartaServiceEndpoint"
+                    implementor="#mazoCartaService"
+                    address="/mazoscartas" />
+    <jaxws:endpoint id="expansionServiceEndpoint"
+                    implementor="#expansionService"
+                    address="/expansiones" />
+    <jaxws:endpoint id="coleccionServiceEndpoint"
+                    implementor="#coleccionService"
+                    address="/colecciones" />
+    <jaxws:endpoint id="cartaServiceEndpoint"
+                    implementor="#cartaService"
+                    address="/cartas" />
+
 
     <!-- Bean del servicio implementado -->
-    <bean id="userServiceImpl" class="es.system.danileonpe.springboot.soap.service.UserServiceSoapImpl"/>
+    <bean id="userServiceImpl" class="es.system.danileonpe.springboot.soap.service.UserServiceSoap"/>
+    <bean id="rolServiceImpl" class="es.system.danileonpe.springboot.soap.service.RolServiceSoap"/>
+    <bean id="mazoServiceImpl" class="es.system.danileonpe.springboot.soap.service.MazoServiceSoap"/>
+    <bean id="mazoCartaServiceImpl" class="es.system.danileonpe.springboot.soap.service.MazoCartaServiceSoap"/>
+    <bean id="expansionServiceImpl" class="es.system.danileonpe.springboot.soap.service.ExpansionServiceSoap"/>
+    <bean id="coleccionServiceImpl" class="es.system.danileonpe.springboot.soap.service.ColeccionServiceSoap"/>
+    <bean id="cartaServiceImpl" class="es.system.danileonpe.springboot.soap.service.CartaServiceSoap"/>
+
 
 </beans>

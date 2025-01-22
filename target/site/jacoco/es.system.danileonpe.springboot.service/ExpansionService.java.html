@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExpansionService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mgs-project</a> &gt; <a href="index.source.html" class="el_package">es.system.danileonpe.springboot.service</a> &gt; <span class="el_source">ExpansionService.java</span></div><h1>ExpansionService.java</h1><pre class="source lang-java linenums">package es.system.danileonpe.springboot.service;
+
+import java.util.List;
+
+import es.system.danileonpe.springboot.exception.ResourceNotFoundException;
+import es.system.danileonpe.springboot.model.Expansion;
+import es.system.danileonpe.springboot.repository.ExpansionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import jakarta.validation.Valid;
+
+
+/**
+ * Servicio para la gestión de expansiones.
+ * Proporciona métodos para realizar operaciones CRUD sobre la entidad Expansion.
+ */
+@Component
+
+<span class="nc" id="L22">public class ExpansionService implements ExpansionServiceInterface {</span>
+
+    private ExpansionRepository expansionRepository;
+
+
+    /**
+     * Inyección del repositorio de expansion.
+     *
+     * @param expansionRepository Repositorio de expansion.
+     */
+    @Autowired
+    public void setExpansionRepository(ExpansionRepository expansionRepository) {
+<span class="nc" id="L34">        this.expansionRepository = expansionRepository;</span>
+<span class="nc" id="L35">    }</span>
+
+
+    /**
+     * Obtiene todos los expansiones almacenados.
+     *
+     * @return Lista de expansiones.
+     */
+    public List&lt;Expansion&gt; getAllExpansion(){
+<span class="nc" id="L44">        return expansionRepository.findAll();</span>
+    }
+
+
+
+    /**
+     * Obtiene un expansion por su ID.
+     *
+     * @param expansionId Identificador del expansion.
+     * @return El expansion encontrado.
+     * @throws ResourceNotFoundException Si no se encuentra el expansion con el ID proporcionado.
+     */
+    public Expansion getExpansionById(@PathVariable(value = &quot;id&quot;) int expansionId) throws ResourceNotFoundException {
+<span class="nc" id="L57">        return expansionRepository.findById(expansionId)</span>
+<span class="nc" id="L58">                .orElseThrow(() -&gt; new ResourceNotFoundException(&quot;Rol not found for this id :: &quot; + expansionId));</span>
+    }
+
+
+    /**
+     * Crea una nueva expansion.
+     *
+     * @param expansion Detalles del expansion a crear.
+     * @return El expansion creado.
+     */
+    public Expansion createExpansion(@Valid @RequestBody Expansion expansion){
+<span class="nc" id="L69">        return expansionRepository.save(expansion);</span>
+    }
+
+
+    /**
+     * Actualiza un expansion existente.
+     *
+     * @param expansionId Identificador del expansion a actualizar.
+     * @param expansionDetails Detalles actualizados del expansion.
+     * @return El expansion actualizado.
+     * @throws ResourceNotFoundException Si no se encuentra el expansion con el ID proporcionado.
+     */
+    public Expansion updateExpansion(@PathVariable(value = &quot;id&quot;) int expansionId,
+                         @Valid @RequestBody Expansion expansionDetails) throws ResourceNotFoundException {
+<span class="nc" id="L83">        Expansion expansion = expansionRepository.findById(expansionId)</span>
+<span class="nc" id="L84">                .orElseThrow(() -&gt; new ResourceNotFoundException(&quot;Expansion not found for this id :: &quot; + expansionId));</span>
+
+<span class="nc" id="L86">        expansion.setNombre(expansionDetails.getNombre());</span>
+<span class="nc" id="L87">        return expansionRepository.save(expansion);</span>
+    }
+
+
+    /**
+     * Elimina un expansion por su ID.
+     *
+     * @param expansionId Identificador del expansion a eliminar.
+     * @return
+     * @throws ResourceNotFoundException Si no se encuentra el expansion con el ID proporcionado.
+     */
+    public boolean deleteExpansion(@PathVariable(value = &quot;id&quot;) int expansionId) throws ResourceNotFoundException {
+<span class="nc" id="L99">        Expansion expansion = expansionRepository.findById(expansionId)</span>
+<span class="nc" id="L100">                .orElseThrow(() -&gt; new ResourceNotFoundException(&quot;Expansion not found for this id :: &quot; + expansionId));</span>
+<span class="nc" id="L101">        expansionRepository.delete(expansion);</span>
+<span class="nc" id="L102">        return false;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

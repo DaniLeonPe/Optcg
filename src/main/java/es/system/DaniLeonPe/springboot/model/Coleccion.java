@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Coleccion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idColeccion;
+    private int idColeccion;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = false)
@@ -20,13 +20,13 @@ public class Coleccion {
     private Carta carta;
 
     @Column(nullable = false, columnDefinition = "INT DEFAULT 1")
-    private Integer cantidad;
+    private int cantidad;
 
-    public Long getIdColeccion() {
+    public int getIdColeccion() {
         return idColeccion;
     }
 
-    public void setIdColeccion(Long idColeccion) {
+    public void setIdColeccion(int idColeccion) {
         this.idColeccion = idColeccion;
     }
 
@@ -46,11 +46,11 @@ public class Coleccion {
         this.carta = carta;
     }
 
-    public Integer getCantidad() {
+    public int getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(Integer cantidad) {
+    public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
 

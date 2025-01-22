@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserServiceSoap.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mgs-project</a> &gt; <a href="index.source.html" class="el_package">es.system.danileonpe.springboot.soap.service</a> &gt; <span class="el_source">UserServiceSoap.java</span></div><h1>UserServiceSoap.java</h1><pre class="source lang-java linenums">package es.system.danileonpe.springboot.soap.service;
+
+import es.system.danileonpe.springboot.model.Usuario;
+import es.system.danileonpe.springboot.service.UserServiceInterface;
+import jakarta.jws.WebMethod;
+import jakarta.jws.WebParam;
+import jakarta.jws.WebResult;
+import jakarta.jws.WebService;
+import jakarta.xml.ws.WebServiceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+/**
+ * Servicio SOAP para la gestión de usuarios.
+ * Proporciona operaciones CRUD para la entidad Usuario.
+ */
+@Component
+@WebService(endpointInterface = &quot;es.system.danileonpe.springboot.soap.service.UserServiceSoapInterface&quot;)
+<span class="nc" id="L23">public class UserServiceSoap implements UserServiceSoapInterface {</span>
+
+<span class="nc" id="L25">    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceSoap.class);</span>
+
+    private UserServiceInterface userService;
+
+    @Autowired
+    public void setUserService(UserServiceInterface userService) {
+<span class="nc" id="L31">        this.userService = userService;</span>
+<span class="nc" id="L32">    }</span>
+
+    @Override
+    @WebMethod
+    @WebResult(name = &quot;usuario&quot;)
+    public Usuario addUser(@WebParam(name = &quot;usuario&quot;) Usuario usuario) {
+        try {
+<span class="nc" id="L39">            LOGGER.info(&quot;Creando un nuevo usuario: {}&quot;, usuario);</span>
+<span class="nc" id="L40">            return userService.createUser(usuario);</span>
+<span class="nc" id="L41">        } catch (Exception e) {</span>
+<span class="nc" id="L42">            LOGGER.error(&quot;Error al crear el usuario: {}&quot;, usuario, e);</span>
+<span class="nc" id="L43">            throw new WebServiceException(&quot;Error creando el usuario&quot;, e);</span>
+        }
+    }
+
+    @Override
+    @WebMethod
+    @WebResult(name = &quot;usuario&quot;)
+    public Usuario updateUser(@WebParam(name = &quot;id&quot;) int id, @WebParam(name = &quot;usuario&quot;) Usuario usuario) {
+        try {
+<span class="nc" id="L52">            LOGGER.info(&quot;Actualizando el usuario con ID {}: {}&quot;, id, usuario);</span>
+<span class="nc" id="L53">            return userService.updateUser(id, usuario);</span>
+<span class="nc" id="L54">        } catch (Exception e) {</span>
+<span class="nc" id="L55">            LOGGER.error(&quot;Error al actualizar el usuario con ID {}: {}&quot;, id, usuario, e);</span>
+<span class="nc" id="L56">            throw new WebServiceException(&quot;Error actualizando el usuario&quot;, e);</span>
+        }
+    }
+
+    @Override
+    @WebMethod
+    @WebResult(name = &quot;usuarios&quot;)
+    public List&lt;Usuario&gt; getAllUsers() {
+        try {
+<span class="nc" id="L65">            LOGGER.info(&quot;Obteniendo todos los usuarios&quot;);</span>
+<span class="nc" id="L66">            return userService.getAllUsers();</span>
+<span class="nc" id="L67">        } catch (Exception e) {</span>
+<span class="nc" id="L68">            LOGGER.error(&quot;Error al obtener todos los usuarios&quot;, e);</span>
+<span class="nc" id="L69">            throw new WebServiceException(&quot;Error obteniendo los usuarios&quot;, e);</span>
+        }
+    }
+
+    @Override
+    @WebMethod
+    @WebResult(name = &quot;usuario&quot;)
+    public Usuario getUserById(@WebParam(name = &quot;id&quot;) int id) {
+        try {
+<span class="nc" id="L78">            LOGGER.info(&quot;Obteniendo usuario con ID: {}&quot;, id);</span>
+<span class="nc" id="L79">            return userService.getUserById(id);</span>
+<span class="nc" id="L80">        } catch (Exception e) {</span>
+<span class="nc" id="L81">            LOGGER.error(&quot;Error al obtener el usuario con ID: {}&quot;, id, e);</span>
+<span class="nc" id="L82">            throw new WebServiceException(&quot;Error obteniendo el usuario&quot;, e);</span>
+        }
+    }
+
+    @Override
+    @WebMethod
+    public boolean deleteUser(@WebParam(name = &quot;id&quot;) int id) {
+        try {
+<span class="nc" id="L90">            LOGGER.info(&quot;Eliminando usuario con ID: {}&quot;, id);</span>
+<span class="nc" id="L91">            userService.deleteUser(id);</span>
+<span class="nc" id="L92">            return true;</span>
+<span class="nc" id="L93">        } catch (Exception e) {</span>
+<span class="nc" id="L94">            LOGGER.error(&quot;Error al eliminar el usuario con ID: {}&quot;, id, e);</span>
+<span class="nc" id="L95">            throw new WebServiceException(&quot;Error eliminando el usuario&quot;, e);</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

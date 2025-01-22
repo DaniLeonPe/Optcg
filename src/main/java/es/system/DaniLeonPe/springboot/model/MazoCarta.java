@@ -11,7 +11,7 @@ public class MazoCarta {
     private MazoCartaId id;
 
     @Column(nullable = false, columnDefinition = "INT DEFAULT 1")
-    private Integer cantidad;
+    private int cantidad;
 
     public MazoCartaId getId() {
         return id;
@@ -21,11 +21,11 @@ public class MazoCarta {
         this.id = id;
     }
 
-    public Integer getCantidad() {
+    public int getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(Integer cantidad) {
+    public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
 

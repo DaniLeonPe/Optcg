@@ -1,7 +1,6 @@
 package es.system.danileonpe.springboot.service;
 
 import es.system.danileonpe.springboot.exception.ResourceNotFoundException;
-
 import es.system.danileonpe.springboot.model.Expansion;
 
 import java.util.List;
