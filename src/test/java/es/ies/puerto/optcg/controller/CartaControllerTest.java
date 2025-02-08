@@ -4,8 +4,9 @@ import es.ies.puerto.optcg.utilities.TestUtilities;
 import es.system.danileonpe.springboot.controller.CartasController;
 import es.system.danileonpe.springboot.exception.ResourceNotFoundException;
 import es.system.danileonpe.springboot.model.Carta;
-import es.system.danileonpe.springboot.service.CartaService;
-import es.system.danileonpe.springboot.service.CartaServiceInterface;
+import es.system.danileonpe.springboot.service.rest.CartaService;
+import es.system.danileonpe.springboot.service.rest.CartaServiceInterface;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

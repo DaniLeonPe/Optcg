@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "cartas")
 public class Carta {
@@ -26,8 +28,13 @@ public class Carta {
 
     private String descripcion;
 
-    @ManyToOne
-    @JoinColumn(name= "id_expansion",referencedColumnName = "idExpansion")
+    @ManyToMany
+    @JsonIgnore
+    @JoinTable(
+            name = "carta_mazo",
+            joinColumns = @JoinColumn(name = "carta_id"),
+            inverseJoinColumns = @JoinColumn(name = "mazo_id")
+    )
     private Expansion expansion;
 
 

@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "mazos")
 public class Mazo {
@@ -24,6 +26,11 @@ public class Mazo {
     @Column(name = "fecha_creacion", columnDefinition = "TIMESTAMP")
     private LocalDateTime fechaCreacion = LocalDateTime.now();
 
+
+    @ManyToOne
+    @JoinColumn(name = "id_mazo_carta", nullable = false)
+    @JsonIgnore
+    private MazoCarta mazoCarta;
     public int getIdMazo() {
         return idMazo;
     }
