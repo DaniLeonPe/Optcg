@@ -13,12 +13,12 @@ public class MazoCarta {
 
     
     @ManyToOne
-    @JoinColumn(name = "id_mazo", nullable = false)
+    @JoinColumn(name = "idMazo", nullable = false)
     private Mazo mazo;
 
     
     @ManyToOne
-    @JoinColumn(name = "id_carta", nullable = false)
+    @JoinColumn(name = "idCarta", nullable = false)
     private Carta carta;
 
     @Column(nullable = false)
@@ -35,6 +35,14 @@ public class MazoCarta {
     }
 
     // Getters y Setters
+    public int getId(){
+        return id;
+    }
+    public void setId(int id){
+        this.id = id;
+    }
+
+
     public Mazo getMazo() {
         return mazo;
     }

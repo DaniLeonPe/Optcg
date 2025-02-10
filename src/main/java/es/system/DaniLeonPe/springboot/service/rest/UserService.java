@@ -2,19 +2,14 @@ package es.system.danileonpe.springboot.service.rest;
 
 import java.util.List;
 
-import es.system.danileonpe.springboot.exception.ResourceNotFoundException;
-import es.system.danileonpe.springboot.model.Rol;
+
 import es.system.danileonpe.springboot.model.Usuario;
 import es.system.danileonpe.springboot.repository.UsuarioRepository;
 import es.system.danileonpe.springboot.service.interfaces.IService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import org.springframework.web.bind.annotation.RequestBody;
-
-import jakarta.validation.Valid;
 
 /**
  * Servicio para la gestión de usuarios.
@@ -103,6 +98,17 @@ public class UserService implements IService<Usuario>{
         }else{
             return false;
         }
+    }
+
+
+    
+    public Usuario getByName(String name) {
+        return repository.findByNombreUsuario(name);
+    }
+
+
+    public Usuario getByEmail(String email) {
+        return repository.findByEmail(email);
     }
 
     

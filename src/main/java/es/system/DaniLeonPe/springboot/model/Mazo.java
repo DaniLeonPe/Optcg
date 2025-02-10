@@ -2,7 +2,8 @@ package es.system.danileonpe.springboot.model;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
+
+import java.util.Date;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,7 +16,7 @@ public class Mazo {
     private int idMazo;
 
     @ManyToOne
-    @JoinColumn(name = "id_usuario", nullable = false)
+    @JoinColumn(name = "idUsuario", nullable = false)
     private Usuario usuario;
 
     @Column(nullable = false)
@@ -23,8 +24,8 @@ public class Mazo {
 
     private String descripcion;
 
-    @Column(name = "fecha_creacion", columnDefinition = "TIMESTAMP")
-    private LocalDateTime fechaCreacion = LocalDateTime.now();
+    @Column(name = "fechaCreacion", columnDefinition = "TIMESTAMP")
+    private Date fechaCreacion = new Date();
 
 
     @ManyToOne
@@ -63,11 +64,11 @@ public class Mazo {
         this.descripcion = descripcion;
     }
 
-    public LocalDateTime getFechaCreacion() {
+    public Date getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(LocalDateTime fechaCreacion) {
+    public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 

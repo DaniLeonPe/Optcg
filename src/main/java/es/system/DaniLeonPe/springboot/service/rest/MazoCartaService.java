@@ -1,110 +1,73 @@
 package es.system.danileonpe.springboot.service.rest;
 
-import java.util.List;
 
-import es.system.danileonpe.springboot.exception.ResourceNotFoundException;
-import es.system.danileonpe.springboot.model.MazoCarta;
-import es.system.danileonpe.springboot.model.MazoCartaId;
-import es.system.danileonpe.springboot.repository.MazoCartaRepository;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import es.system.danileonpe.springboot.model.Carta;
+import es.system.danileonpe.springboot.model.Mazo;
+import es.system.danileonpe.springboot.model.MazoCarta;
+import es.system.danileonpe.springboot.repository.CartaRepository;
+import es.system.danileonpe.springboot.repository.MazoCartaRepository;
+import es.system.danileonpe.springboot.repository.MazoRepository;
 
 /**
  * Servicio para la gestión de mazosCartas.
  * Proporciona métodos para realizar operaciones CRUD sobre la entidad MazoCarta.
  */
 @Component
-public class MazoCartaService implements MazoCartaServiceInterface {
+public class MazoCartaService   {
 
-    private MazoCartaRepository mazoCartaRepository;
-
-    /**
-     * Inyección del repositorio de mazosCartas.
-     *
-     * @param mazoCartaRepository Repositorio de mazosCartas.
-     */
     @Autowired
-    public void setMazoCartaRepository(MazoCartaRepository mazoCartaRepository) {
-        this.mazoCartaRepository = mazoCartaRepository;
+    public
+    CartaRepository cartaRepository;
+
+    @Autowired
+    public
+    MazoRepository mazoRepository;
+
+    @Autowired
+    MazoCartaRepository repository;
+
+
+    // Obtener cartas de un mazo específico
+    public List<Carta> getCartasByMazo(int mazoId) {
+        Mazo mazo = mazoRepository.findById(mazoId).orElse(null);
+        List<MazoCarta> mazoCartas = repository.findByMazo(mazo);
+        return mazoCartas.stream()
+                .map(MazoCarta::getCarta)
+                .collect(Collectors.toList());
     }
 
-    /**
-     * Obtiene todos los MazoCarta almacenados.
-     *
-     * @return Lista de MazoCarta.
-     */
-    @Override
-    public List<MazoCarta> getAllMazoCarta() {
-        return mazoCartaRepository.findAll();
+
+    // Obtener mazos que contienen una carta especifica
+    public List<Mazo> getMazosByCarta(int cartaId) {
+        Carta carta = cartaRepository.findById(cartaId).orElse(null);
+        return repository.findByCarta(carta);
     }
 
-    /**
-     * Obtiene un MazoCarta por su clave compuesta.
-     *
-     * @param mazoId  Identificador del mazo.
-     * @param cartaId Identificador de la carta.
-     * @return El MazoCarta encontrado.
-     * @throws ResourceNotFoundException Si no se encuentra el MazoCarta con la clave compuesta proporcionada.
-     */
-    @Override
-    public MazoCarta getMazoCartaById(long mazoId, long cartaId) throws ResourceNotFoundException {
-        MazoCartaId mazoCartaId = new MazoCartaId();
-        mazoCartaId.setMazo(mazoId);
-        mazoCartaId.setCarta(cartaId);
 
-        return mazoCartaRepository.findById(mazoCartaId)
-                .orElseThrow(() -> new ResourceNotFoundException("MazoCarta not found for this id :: " + mazoId + ", " + cartaId));
+
+    //Agregar carta al mazo
+    public MazoCarta addCartaToMazo(Mazo mazo, Carta carta, int cantidad){
+        MazoCarta mazoCarta = new MazoCarta();
+        mazoCarta.setMazo(mazo);
+        mazoCarta.setCarta(carta);
+        mazoCarta.setCantidad(cantidad);
+        return repository.save(mazoCarta);
     }
 
-    /**
-     * Crea un nuevo MazoCarta.
-     *
-     * @param mazoCarta Detalles del MazoCarta a crear.
-     * @return El MazoCarta creado.
-     */
-    @Override
-    public MazoCarta createMazoCarta(MazoCarta mazoCarta) {
-        return mazoCartaRepository.save(mazoCarta);
+    //Eliminar carta del mazo
+    public boolean deleteCartaFromMazo(Mazo mazo, Carta carta){
+        MazoCarta mazoCarta = repository.findByCartaAndMazo(carta, mazo);
+        if(mazoCarta != null){
+            repository.delete(mazoCarta);
+            return true;
+        }
+        return false;
     }
-
-    /**
-     * Actualiza un MazoCarta existente.
-     *
-     * @param mazoId         Identificador del mazo.
-     * @param cartaId        Identificador de la carta.
-     * @param mazoCartaDetails Detalles actualizados del MazoCarta.
-     * @return El MazoCarta actualizado.
-     * @throws ResourceNotFoundException Si no se encuentra el MazoCarta con la clave compuesta proporcionada.
-     */
-
-    public MazoCarta updateMazoCarta(long mazoId, long cartaId, MazoCarta mazoCartaDetails) throws ResourceNotFoundException {
-        MazoCartaId mazoCartaId = new MazoCartaId();
-        mazoCartaId.setMazo(mazoId);
-        mazoCartaId.setCarta(cartaId);
-
-        MazoCarta mazoCarta = mazoCartaRepository.findById(mazoCartaId)
-                .orElseThrow(() -> new ResourceNotFoundException("MazoCarta not found for this id :: " + mazoId + ", " + cartaId));
-
-        mazoCarta.setCantidad(mazoCartaDetails.getCantidad());
-        return mazoCartaRepository.save(mazoCarta);
-    }
-
-    /**
-     * Elimina un MazoCarta por su clave compuesta.
-     *
-     * @param mazoId  Identificador del mazo.
-     * @param cartaId Identificador de la carta.
-     * @throws ResourceNotFoundException Si no se encuentra el MazoCarta con la clave compuesta proporcionada.
-     */
-
-    public void deleteMazoCarta(long mazoId, long cartaId) throws ResourceNotFoundException {
-        MazoCartaId mazoCartaId = new MazoCartaId();
-        mazoCartaId.setMazo(mazoId);
-        mazoCartaId.setCarta(cartaId);
-
-        MazoCarta mazoCarta = mazoCartaRepository.findById(mazoCartaId)
-                .orElseThrow(() -> new ResourceNotFoundException("MazoCarta not found for this id :: " + mazoId + ", " + cartaId));
-
-        mazoCartaRepository.delete(mazoCarta);
-    }
+   
 }

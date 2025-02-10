@@ -12,11 +12,11 @@ public class Coleccion {
     private int idColeccion;
 
     @ManyToOne
-    @JoinColumn(name = "id_usuario", nullable = false)
+    @JoinColumn(name = "idUsuario", nullable = false)
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name = "id_carta", nullable = false)
+    @JoinColumn(name = "idCarta", nullable = false)
     private Carta carta;
 
     @Column(nullable = false, columnDefinition = "INT DEFAULT 1")

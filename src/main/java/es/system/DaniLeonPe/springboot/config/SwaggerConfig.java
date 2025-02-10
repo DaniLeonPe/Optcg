@@ -14,7 +14,7 @@ import io.swagger.v3.oas.models.security.SecurityRequirement;
  * @author Daniel de León Pérez
  */
 @Configuration
-@OpenAPIDefinition(info = @Info(title = "Metal Gear Solid Wiki - API", version = "v1"))
+@OpenAPIDefinition(info = @Info(title = "Optcg - API", version = "v1"))
 public class SwaggerConfig{
 
     @Bean

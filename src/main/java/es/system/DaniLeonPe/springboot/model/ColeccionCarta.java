@@ -44,6 +44,13 @@ public class ColeccionCarta {
     }
 
     // Getters y Setters
+    public int getId(){
+        return id;
+    }
+    public void setId(int id){
+        this.id = id;
+    }
+
     public Coleccion getColeccion() {
         return coleccion;
     }

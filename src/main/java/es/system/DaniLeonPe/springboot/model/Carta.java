@@ -28,17 +28,21 @@ public class Carta {
 
     private String descripcion;
 
-    @ManyToMany
+    @ManyToOne
     @JsonIgnore
-    @JoinTable(
-            name = "carta_mazo",
-            joinColumns = @JoinColumn(name = "carta_id"),
-            inverseJoinColumns = @JoinColumn(name = "mazo_id")
-    )
+    @JoinColumn(
+            name = "idExpansion", nullable = false)
     private Expansion expansion;
 
 
     private String imagenUrl;
+
+    public Carta() {}
+
+    public Carta(int idCarta){
+        this.idCarta = idCarta;
+    }
+  
 
     public int getIdCarta() {
         return idCarta;
