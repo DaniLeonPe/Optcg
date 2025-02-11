@@ -7,18 +7,56 @@ import java.util.Objects;
 @Table(name = "mazos_cartas")
 public class MazoCarta {
 
-    @EmbeddedId
-    private MazoCartaId id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    @Column(nullable = false, columnDefinition = "INT DEFAULT 1")
+    
+    @ManyToOne
+    @JoinColumn(name = "idMazo", nullable = false)
+    private Mazo mazo;
+
+    
+    @ManyToOne
+    @JoinColumn(name = "idCarta", nullable = false)
+    private Carta carta;
+
+    @Column(nullable = false)
     private int cantidad;
 
-    public MazoCartaId getId() {
-        return id;
+    // Constructor vacío
+    public MazoCarta() {}
+
+    // Constructor con parámetros
+    public MazoCarta(Mazo mazo, Carta carta, int cantidad) {
+        this.mazo = mazo;
+        this.carta = carta;
+        this.cantidad = cantidad;
     }
 
-    public void setId(MazoCartaId id) {
+    // Getters y Setters
+    public int getId(){
+        return id;
+    }
+    public void setId(int id){
         this.id = id;
+    }
+
+
+    public Mazo getMazo() {
+        return mazo;
+    }
+
+    public void setMazo(Mazo mazo) {
+        this.mazo = mazo;
+    }
+
+    public Carta getCarta() {
+        return carta;
+    }
+
+    public void setCarta(Carta carta) {
+        this.carta = carta;
     }
 
     public int getCantidad() {
@@ -33,17 +71,17 @@ public class MazoCarta {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MazoCarta that = (MazoCarta) o;
-        return Objects.equals(id, that.id);
+        MazoCarta mazoCarta = (MazoCarta) o;
+        return Objects.equals(mazo, mazoCarta.mazo) && Objects.equals(carta, mazoCarta.carta);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(mazo, carta);
     }
 
     @Override
     public String toString() {
-        return "MazoCarta [id=" + id + ", cantidad=" + cantidad + "]";
+        return "MazoCarta [mazo=" + mazo + ", carta=" + carta + ", cantidad=" + cantidad + "]";
     }
 }

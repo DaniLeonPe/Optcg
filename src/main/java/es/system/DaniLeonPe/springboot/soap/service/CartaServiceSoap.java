@@ -1,43 +1,54 @@
 package es.system.danileonpe.springboot.soap.service;
 
-import es.system.danileonpe.springboot.exception.ResourceNotFoundException;
+import es.system.danileonpe.springboot.DTO.CartaDTO;
+import es.system.danileonpe.springboot.mapper.CartaMapper;
 import es.system.danileonpe.springboot.model.Carta;
-import es.system.danileonpe.springboot.service.CartaServiceInterface;
+import es.system.danileonpe.springboot.service.interfaces.IService;
+import es.system.danileonpe.springboot.service.interfaces.IServiceSoap;
 import jakarta.jws.WebService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
-@WebService(endpointInterface = "es.system.danileonpe.springboot.soap.service.CartaServiceSoapInterface")
-public class CartaServiceSoap implements CartaServiceSoapInterface {
+@WebService(endpointInterface = "es.system.danileonpe.springboot.service.interfaces.IServiceSoap")
+public class CartaServiceSoap implements IServiceSoap<CartaDTO> {
+
+
+
+    private final IService<Carta> service;
 
     @Autowired
-    private CartaServiceInterface cartaService;
-
+    public CartaServiceSoap(IService<Carta> service) {
+        this.service = service;
+    }
     @Override
-    public List<Carta> getAllCartas() {
-        return cartaService.getAllCartas();
+    public boolean add(CartaDTO t) {
+        return service.add(CartaMapper.INSTANCE.toEntity(t));
     }
 
     @Override
-    public Carta getCartaById(int cartaId) throws ResourceNotFoundException {
-        return cartaService.getCartaById(cartaId);
+    public boolean update(CartaDTO t) throws Exception {
+       return service.update(t.idCarta(), CartaMapper.INSTANCE.toEntity(t));
     }
 
     @Override
-    public Carta addCarta(Carta carta) {
-        return cartaService.createCarta(carta);
+    public List<CartaDTO> getAll() {
+        return service.getAll().stream()
+                .map(CartaMapper.INSTANCE::toDTO).collect(Collectors.toList());
     }
 
     @Override
-    public Carta updateCarta(int cartaId, Carta carta) throws ResourceNotFoundException {
-        return cartaService.updateCarta(cartaId, carta);
+    public CartaDTO getById(int id) {
+        return CartaMapper.INSTANCE.toDTO(service.getById(id));
     }
 
     @Override
-    public boolean deleteCarta(int cartaId) throws ResourceNotFoundException {
-        return cartaService.deleteCarta(cartaId);
+    public boolean delete(int id) {
+        return service.delete(id);
     }
+
+   
 }

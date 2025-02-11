@@ -1,44 +1,52 @@
 package es.system.danileonpe.springboot.soap.service;
 
-import es.system.danileonpe.springboot.exception.ResourceNotFoundException;
+import es.system.danileonpe.springboot.DTO.ExpansionDTO;
+import es.system.danileonpe.springboot.mapper.ExpansionMapper;
 import es.system.danileonpe.springboot.model.Expansion;
-import es.system.danileonpe.springboot.service.ExpansionServiceInterface;
+import es.system.danileonpe.springboot.service.interfaces.IService;
+import es.system.danileonpe.springboot.service.interfaces.IServiceSoap;
 import jakarta.jws.WebService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
-@WebService(endpointInterface = "es.system.danileonpe.springboot.soap.service.ExpansionServiceSoapInterface")
-public class ExpansionServiceSoap implements ExpansionServiceSoapInterface {
+@WebService(endpointInterface = "es.system.danileonpe.springboot.service.interfaces.IServiceSoap")
+public class ExpansionServiceSoap implements IServiceSoap<ExpansionDTO> {
+
+    private final IService<Expansion> service;
 
     @Autowired
-    private ExpansionServiceInterface expansionService;
-
-    @Override
-    public List<Expansion> getAllExpansions() {
-        return expansionService.getAllExpansion();
+    public ExpansionServiceSoap(IService<Expansion> service) {
+        this.service = service;
     }
 
     @Override
-    public Expansion getExpansionById(int expansionId) throws ResourceNotFoundException {
-        return expansionService.getExpansionById(expansionId);
+    public boolean add(ExpansionDTO t) {
+        return service.add(ExpansionMapper.INSTANCE.toEntity(t));
     }
 
     @Override
-    public Expansion addExpansion(Expansion expansion) {
-        return expansionService.createExpansion(expansion);
+    public boolean update(ExpansionDTO t) throws Exception {
+       return service.update(t.idExpansion(), ExpansionMapper.INSTANCE.toEntity(t));
     }
 
     @Override
-    public Expansion updateExpansion(int expansionId, Expansion expansion) throws ResourceNotFoundException {
-        return expansionService.updateExpansion(expansionId, expansion);
+    public List<ExpansionDTO> getAll() {
+        return service.getAll().stream()
+                .map(ExpansionMapper.INSTANCE::toDTO).collect(Collectors.toList());
     }
 
     @Override
-    public boolean deleteExpansion(int expansionId) throws ResourceNotFoundException {
-        return expansionService.deleteExpansion(expansionId);
+    public ExpansionDTO getById(int id) {
+        return ExpansionMapper.INSTANCE.toDTO(service.getById(id));
+    }
+
+    @Override
+    public boolean delete(int id) {
+        return service.delete(id);
     }
 }
 

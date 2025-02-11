@@ -2,7 +2,7 @@ package es.system.danileonpe.springboot.model;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -15,8 +15,8 @@ public class Expansion {
     @Column(nullable = false)
     private String nombre;
 
-    @Column(name = "fecha_lanzamiento", columnDefinition = "DATE")
-    private LocalDateTime fechaLanzamiento;
+    @Column(name = "fechaLanzamiento", columnDefinition = "DATE")
+    private Date fechaLanzamiento;
 
     public int getIdExpansion() {
         return idExpansion;
@@ -34,11 +34,11 @@ public class Expansion {
         this.nombre = nombre;
     }
 
-    public LocalDateTime getFechaLanzamiento() {
+    public Date getFechaLanzamiento() {
         return fechaLanzamiento;
     }
 
-    public void setFechaLanzamiento(LocalDateTime fechaLanzamiento) {
+    public void setFechaLanzamiento(Date fechaLanzamiento) {
         this.fechaLanzamiento = fechaLanzamiento;
     }
 

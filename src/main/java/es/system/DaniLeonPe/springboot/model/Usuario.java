@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idUsuario;
+	private Integer idUsuario;
 
 	@Column(nullable = false, unique = true)
 	private String nombreUsuario;
@@ -20,15 +20,21 @@ public class Usuario {
 	@Column(nullable = false)
 	private String contraseña;
 
-	@Column(name = "fecha_registro", columnDefinition = "TIMESTAMP")
+	@Column(name = "fechaRegistro", columnDefinition = "TIMESTAMP")
 	private LocalDateTime fechaRegistro = LocalDateTime.now();
 
 	@ManyToOne
-	@JoinColumn(name = "id_rol", nullable = false)
+	@JoinColumn(name = "idRol", nullable = false)
 	private Rol rol;
 
+	public Usuario() {
+	}
 
-	public int getIdUsuario() {
+	public Usuario(Integer idUsuario){
+		this.idUsuario = idUsuario;
+	}
+
+	public Integer getIdUsuario() {
 		return idUsuario;
 	}
 
@@ -97,5 +103,10 @@ public class Usuario {
 				", fechaRegistro=" + fechaRegistro +
 				", rol=" + (rol != null ? rol.getName() : "Sin rol") +
 				'}';
+	}
+
+	public Usuario orElseThrow(Object object) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'orElseThrow'");
 	}
 }

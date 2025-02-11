@@ -1,46 +1,56 @@
 package es.system.danileonpe.springboot.soap.service;
 
-import es.system.danileonpe.springboot.exception.ResourceNotFoundException;
+import es.system.danileonpe.springboot.DTO.RolDTO;
+
+import es.system.danileonpe.springboot.mapper.RolMapper;
 import es.system.danileonpe.springboot.model.Rol;
-import es.system.danileonpe.springboot.service.RolServiceInterface;
+import es.system.danileonpe.springboot.service.interfaces.IService;
+import es.system.danileonpe.springboot.service.interfaces.IServiceSoap;
 import jakarta.jws.WebService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Implementación SOAP para la gestión de roles.
  */
 @Component
-@WebService(endpointInterface = "es.system.danileonpe.springboot.soap.service.RolServiceSoapInterface")
-public class RolServiceSoap implements RolServiceSoapInterface {
+@WebService(endpointInterface = "es.system.danileonpe.springboot.service.interfaces.IServiceSoap")
+public class RolServiceSoap implements IServiceSoap<RolDTO> {
 
+    private final IService<Rol> service;
     @Autowired
-    private RolServiceInterface rolService;
-
-    @Override
-    public List<Rol> getAllRoles() {
-        return rolService.getAllRols();
+    public RolServiceSoap(IService<Rol> service) {
+        this.service = service;
+    }
+    
+      @Override
+    public boolean add(RolDTO t) {
+        return service.add(RolMapper.INSTANCE.toEntity(t));
     }
 
     @Override
-    public Rol getRolById(int rolId) throws ResourceNotFoundException {
-        return rolService.getRolById(rolId);
+    public boolean update(RolDTO t) throws Exception {
+       return service.update(t.id(), RolMapper.INSTANCE.toEntity(t));
     }
 
     @Override
-    public Rol addRol(Rol rol) {
-        return rolService.createRol(rol);
+    public List<RolDTO> getAll() {
+        return service.getAll().stream()
+                .map(RolMapper.INSTANCE::toDTO).collect(Collectors.toList());
     }
 
     @Override
-    public Rol updateRol(int rolId, Rol rol) throws ResourceNotFoundException {
-        return rolService.updateRol(rolId, rol);
+    public RolDTO getById(int id) {
+        return RolMapper.INSTANCE.toDTO(service.getById(id));
     }
 
     @Override
-    public boolean deleteRol(int rolId) throws ResourceNotFoundException {
-        return rolService.deleteRol(rolId);
+    public boolean delete(int id) {
+        return service.delete(id);
     }
+
+    
 }
