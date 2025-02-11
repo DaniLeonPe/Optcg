@@ -10,8 +10,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-10T11:03:30+0000",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.14 (Oracle Corporation)"
+    date = "2025-02-11T17:04:07+0000",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 21.0.2 (Private Build)"
 )
 public class MazoCartaMapperImpl implements MazoCartaMapper {
 
