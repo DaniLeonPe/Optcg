@@ -1,7 +1,7 @@
 package es.system.danileonpe.springboot.mapper;
 
 import es.system.danileonpe.springboot.DTO.UsuarioDTO;
-import es.system.danileonpe.springboot.model.Rol;
+import es.system.danileonpe.springboot.model.Role;
 import es.system.danileonpe.springboot.model.Usuario;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +9,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-11T17:04:07+0000",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 21.0.2 (Private Build)"
+    date = "2025-02-12T13:24:04+0000",
+    comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
 )
 public class UsuarioMapperImpl implements UsuarioMapper {
 
@@ -20,19 +20,16 @@ public class UsuarioMapperImpl implements UsuarioMapper {
             return null;
         }
 
-        int rol = 0;
-        int idUsuario = 0;
-        String nombreUsuario = null;
+        int role = 0;
         String email = null;
 
-        rol = usuarioRolId( usuario );
-        if ( usuario.getIdUsuario() != null ) {
-            idUsuario = usuario.getIdUsuario();
-        }
-        nombreUsuario = usuario.getNombreUsuario();
+        role = usuarioRoleId( usuario );
         email = usuario.getEmail();
 
-        UsuarioDTO usuarioDTO = new UsuarioDTO( idUsuario, nombreUsuario, email, rol );
+        int idUsuario = 0;
+        String nombreUsuario = null;
+
+        UsuarioDTO usuarioDTO = new UsuarioDTO( idUsuario, nombreUsuario, email, role );
 
         return usuarioDTO;
     }
@@ -45,9 +42,7 @@ public class UsuarioMapperImpl implements UsuarioMapper {
 
         Usuario usuario = new Usuario();
 
-        usuario.setRol( usuarioDTOToRol( usuarioDTO ) );
-        usuario.setIdUsuario( usuarioDTO.idUsuario() );
-        usuario.setNombreUsuario( usuarioDTO.nombreUsuario() );
+        usuario.setRole( usuarioDTOToRole( usuarioDTO ) );
         usuario.setEmail( usuarioDTO.email() );
 
         return usuario;
@@ -81,27 +76,27 @@ public class UsuarioMapperImpl implements UsuarioMapper {
         return list;
     }
 
-    private int usuarioRolId(Usuario usuario) {
+    private int usuarioRoleId(Usuario usuario) {
         if ( usuario == null ) {
             return 0;
         }
-        Rol rol = usuario.getRol();
-        if ( rol == null ) {
+        Role role = usuario.getRole();
+        if ( role == null ) {
             return 0;
         }
-        int id = rol.getId();
+        int id = role.getId();
         return id;
     }
 
-    protected Rol usuarioDTOToRol(UsuarioDTO usuarioDTO) {
+    protected Role usuarioDTOToRole(UsuarioDTO usuarioDTO) {
         if ( usuarioDTO == null ) {
             return null;
         }
 
-        Rol rol = new Rol();
+        Role role = new Role();
 
-        rol.setId( usuarioDTO.rol() );
+        role.setId( usuarioDTO.role() );
 
-        return rol;
+        return role;
     }
 }

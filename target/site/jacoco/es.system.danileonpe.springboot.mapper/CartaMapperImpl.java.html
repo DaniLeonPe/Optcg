@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CartaMapperImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">optcg-main</a> &gt; <a href="index.source.html" class="el_package">es.system.danileonpe.springboot.mapper</a> &gt; <span class="el_source">CartaMapperImpl.java</span></div><h1>CartaMapperImpl.java</h1><pre class="source lang-java linenums">package es.system.danileonpe.springboot.mapper;
+
+import es.system.danileonpe.springboot.DTO.CartaDTO;
+import es.system.danileonpe.springboot.model.Carta;
+import es.system.danileonpe.springboot.model.Expansion;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.processing.Generated;
+
+@Generated(
+    value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
+    date = &quot;2025-02-12T12:17:43+0000&quot;,
+    comments = &quot;version: 1.5.3.Final, compiler: javac, environment: Java 17.0.14 (Oracle Corporation)&quot;
+)
+<span class="nc" id="L15">public class CartaMapperImpl implements CartaMapper {</span>
+
+    @Override
+    public CartaDTO toDTO(Carta carta) {
+<span class="nc bnc" id="L19" title="All 2 branches missed.">        if ( carta == null ) {</span>
+<span class="nc" id="L20">            return null;</span>
+        }
+
+<span class="nc" id="L23">        int expansion = 0;</span>
+<span class="nc" id="L24">        int idCarta = 0;</span>
+<span class="nc" id="L25">        String nombre = null;</span>
+<span class="nc" id="L26">        String tipo = null;</span>
+<span class="nc" id="L27">        String rareza = null;</span>
+<span class="nc" id="L28">        int costo = 0;</span>
+<span class="nc" id="L29">        String descripcion = null;</span>
+<span class="nc" id="L30">        String imagenUrl = null;</span>
+
+<span class="nc" id="L32">        expansion = cartaExpansionIdExpansion( carta );</span>
+<span class="nc" id="L33">        idCarta = carta.getIdCarta();</span>
+<span class="nc" id="L34">        nombre = carta.getNombre();</span>
+<span class="nc" id="L35">        tipo = carta.getTipo();</span>
+<span class="nc" id="L36">        rareza = carta.getRareza();</span>
+<span class="nc" id="L37">        costo = carta.getCosto();</span>
+<span class="nc" id="L38">        descripcion = carta.getDescripcion();</span>
+<span class="nc" id="L39">        imagenUrl = carta.getImagenUrl();</span>
+
+<span class="nc" id="L41">        CartaDTO cartaDTO = new CartaDTO( idCarta, nombre, tipo, rareza, costo, descripcion, expansion, imagenUrl );</span>
+
+<span class="nc" id="L43">        return cartaDTO;</span>
+    }
+
+    @Override
+    public Carta toEntity(CartaDTO cartaDTO) {
+<span class="nc bnc" id="L48" title="All 2 branches missed.">        if ( cartaDTO == null ) {</span>
+<span class="nc" id="L49">            return null;</span>
+        }
+
+<span class="nc" id="L52">        Carta carta = new Carta();</span>
+
+<span class="nc" id="L54">        carta.setExpansion( cartaDTOToExpansion( cartaDTO ) );</span>
+<span class="nc" id="L55">        carta.setIdCarta( cartaDTO.idCarta() );</span>
+<span class="nc" id="L56">        carta.setNombre( cartaDTO.nombre() );</span>
+<span class="nc" id="L57">        carta.setTipo( cartaDTO.tipo() );</span>
+<span class="nc" id="L58">        carta.setRareza( cartaDTO.rareza() );</span>
+<span class="nc" id="L59">        carta.setCosto( cartaDTO.costo() );</span>
+<span class="nc" id="L60">        carta.setDescripcion( cartaDTO.descripcion() );</span>
+<span class="nc" id="L61">        carta.setImagenUrl( cartaDTO.imagenUrl() );</span>
+
+<span class="nc" id="L63">        return carta;</span>
+    }
+
+    @Override
+    public List&lt;CartaDTO&gt; toDTOList(List&lt;Carta&gt; cartas) {
+<span class="nc bnc" id="L68" title="All 2 branches missed.">        if ( cartas == null ) {</span>
+<span class="nc" id="L69">            return null;</span>
+        }
+
+<span class="nc" id="L72">        List&lt;CartaDTO&gt; list = new ArrayList&lt;CartaDTO&gt;( cartas.size() );</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">        for ( Carta carta : cartas ) {</span>
+<span class="nc" id="L74">            list.add( toDTO( carta ) );</span>
+<span class="nc" id="L75">        }</span>
+
+<span class="nc" id="L77">        return list;</span>
+    }
+
+    @Override
+    public List&lt;Carta&gt; toEntityList(List&lt;CartaDTO&gt; cartaDTOs) {
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        if ( cartaDTOs == null ) {</span>
+<span class="nc" id="L83">            return null;</span>
+        }
+
+<span class="nc" id="L86">        List&lt;Carta&gt; list = new ArrayList&lt;Carta&gt;( cartaDTOs.size() );</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        for ( CartaDTO cartaDTO : cartaDTOs ) {</span>
+<span class="nc" id="L88">            list.add( toEntity( cartaDTO ) );</span>
+<span class="nc" id="L89">        }</span>
+
+<span class="nc" id="L91">        return list;</span>
+    }
+
+    private int cartaExpansionIdExpansion(Carta carta) {
+<span class="nc bnc" id="L95" title="All 2 branches missed.">        if ( carta == null ) {</span>
+<span class="nc" id="L96">            return 0;</span>
+        }
+<span class="nc" id="L98">        Expansion expansion = carta.getExpansion();</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        if ( expansion == null ) {</span>
+<span class="nc" id="L100">            return 0;</span>
+        }
+<span class="nc" id="L102">        int idExpansion = expansion.getIdExpansion();</span>
+<span class="nc" id="L103">        return idExpansion;</span>
+    }
+
+    protected Expansion cartaDTOToExpansion(CartaDTO cartaDTO) {
+<span class="nc bnc" id="L107" title="All 2 branches missed.">        if ( cartaDTO == null ) {</span>
+<span class="nc" id="L108">            return null;</span>
+        }
+
+<span class="nc" id="L111">        Expansion expansion = new Expansion();</span>
+
+<span class="nc" id="L113">        expansion.setIdExpansion( cartaDTO.expansion() );</span>
+
+<span class="nc" id="L115">        return expansion;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

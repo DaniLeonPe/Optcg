@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CartaService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">optcg-main</a> &gt; <a href="index.source.html" class="el_package">es.system.danileonpe.springboot.service.rest</a> &gt; <span class="el_source">CartaService.java</span></div><h1>CartaService.java</h1><pre class="source lang-java linenums">package es.system.danileonpe.springboot.service.rest;
+
+
+import java.util.List;
+
+import es.system.danileonpe.springboot.model.Carta;
+import es.system.danileonpe.springboot.repository.CartaRepository;
+import es.system.danileonpe.springboot.service.interfaces.IService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+
+
+/**
+ * Servicio para la gestión de Cartas.
+ * Proporciona métodos para realizar operaciones CRUD sobre la entidad Carta.
+ */
+@Component
+<span class="nc" id="L20">public class CartaService implements IService&lt;Carta&gt;{</span>
+
+    @Autowired
+    CartaRepository repository;
+
+    
+    /** 
+     * @param t
+     * @return boolean
+     */
+    @Override
+    public boolean add(Carta t) {
+<span class="nc bnc" id="L32" title="All 2 branches missed.">        if(t == null){</span>
+<span class="nc" id="L33">            return false;</span>
+        }
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        if(repository.existsById(t.getIdCarta())){</span>
+<span class="nc" id="L36">            return false;</span>
+        }
+<span class="nc" id="L38">        repository.save(t);</span>
+<span class="nc" id="L39">        return true;</span>
+    }
+
+    
+    /** 
+     * @param id
+     * @param t
+     * @return boolean
+     * @throws Exception
+     */
+    @Override
+    public boolean update(int id, Carta t) throws Exception {
+        try{
+<span class="nc" id="L52">            Carta cartaUpdate = repository.findById(id).orElse(null);</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            if(cartaUpdate != null){</span>
+<span class="nc" id="L54">                cartaUpdate.setNombre(t.getNombre());</span>
+<span class="nc" id="L55">                cartaUpdate.setTipo(t.getTipo());</span>
+<span class="nc" id="L56">                cartaUpdate.setRareza(t.getRareza());</span>
+<span class="nc" id="L57">                cartaUpdate.setCosto(t.getCosto());</span>
+<span class="nc" id="L58">                cartaUpdate.setDescripcion(t.getDescripcion());</span>
+<span class="nc" id="L59">                cartaUpdate.setExpansion(t.getExpansion());</span>
+<span class="nc" id="L60">                cartaUpdate.setImagenUrl(t.getImagenUrl());</span>
+<span class="nc" id="L61">                repository.save(cartaUpdate);</span>
+<span class="nc" id="L62">                return true;</span>
+            }else{
+<span class="nc" id="L64">                return false;</span>
+            }
+<span class="nc" id="L66">        }catch(RuntimeException e){</span>
+<span class="nc" id="L67">                return false;</span>
+            }
+        
+    
+}
+
+    
+    /** 
+     * @return List&lt;Carta&gt;
+     */
+    @Override
+    public List&lt;Carta&gt; getAll() {
+<span class="nc" id="L79">        return repository.findAll();</span>
+    }
+
+    
+    /** 
+     * @param id
+     * @return Carta
+     */
+    @Override
+    public Carta getById(int id) {
+<span class="nc" id="L89">        return repository.findById(id).orElse(null);</span>
+    }
+
+    
+    /** 
+     * @param id
+     * @return boolean
+     */
+    @Override
+    public boolean delete(int id) {
+<span class="nc" id="L99">        Carta carta = repository.findById(id).orElse(null);</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        if(carta != null){</span>
+<span class="nc" id="L101">            repository.delete(carta);</span>
+<span class="nc" id="L102">            return true;</span>
+        }else{
+<span class="nc" id="L104">            return false;</span>
+        }
+    }
+
+
+   
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

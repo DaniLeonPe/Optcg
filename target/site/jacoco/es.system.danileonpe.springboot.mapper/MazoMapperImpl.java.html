@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MazoMapperImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">optcg-main</a> &gt; <a href="index.source.html" class="el_package">es.system.danileonpe.springboot.mapper</a> &gt; <span class="el_source">MazoMapperImpl.java</span></div><h1>MazoMapperImpl.java</h1><pre class="source lang-java linenums">package es.system.danileonpe.springboot.mapper;
+
+import es.system.danileonpe.springboot.DTO.MazoDTO;
+import es.system.danileonpe.springboot.model.Mazo;
+import es.system.danileonpe.springboot.model.Usuario;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.processing.Generated;
+
+@Generated(
+    value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
+    date = &quot;2025-02-12T12:17:43+0000&quot;,
+    comments = &quot;version: 1.5.3.Final, compiler: javac, environment: Java 17.0.14 (Oracle Corporation)&quot;
+)
+<span class="nc" id="L16">public class MazoMapperImpl implements MazoMapper {</span>
+
+    @Override
+    public MazoDTO toDTO(Mazo mazo) {
+<span class="nc bnc" id="L20" title="All 2 branches missed.">        if ( mazo == null ) {</span>
+<span class="nc" id="L21">            return null;</span>
+        }
+
+<span class="nc" id="L24">        int idUsuario = 0;</span>
+<span class="nc" id="L25">        int idMazo = 0;</span>
+<span class="nc" id="L26">        String nombre = null;</span>
+<span class="nc" id="L27">        String descripcion = null;</span>
+<span class="nc" id="L28">        Date fechaCreacion = null;</span>
+
+<span class="nc" id="L30">        Integer idUsuario1 = mazoUsuarioIdUsuario( mazo );</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        if ( idUsuario1 != null ) {</span>
+<span class="nc" id="L32">            idUsuario = idUsuario1;</span>
+        }
+<span class="nc" id="L34">        idMazo = mazo.getIdMazo();</span>
+<span class="nc" id="L35">        nombre = mazo.getNombre();</span>
+<span class="nc" id="L36">        descripcion = mazo.getDescripcion();</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        if ( mazo.getFechaCreacion() != null ) {</span>
+<span class="nc" id="L38">            fechaCreacion = new Date( mazo.getFechaCreacion().getTime() );</span>
+        }
+
+<span class="nc" id="L41">        MazoDTO mazoDTO = new MazoDTO( idMazo, idUsuario, nombre, descripcion, fechaCreacion );</span>
+
+<span class="nc" id="L43">        return mazoDTO;</span>
+    }
+
+    @Override
+    public Mazo toEntity(MazoDTO mazoDTO) {
+<span class="nc bnc" id="L48" title="All 2 branches missed.">        if ( mazoDTO == null ) {</span>
+<span class="nc" id="L49">            return null;</span>
+        }
+
+<span class="nc" id="L52">        Mazo mazo = new Mazo();</span>
+
+<span class="nc" id="L54">        mazo.setUsuario( mazoDTOToUsuario( mazoDTO ) );</span>
+<span class="nc" id="L55">        mazo.setIdMazo( mazoDTO.idMazo() );</span>
+<span class="nc" id="L56">        mazo.setNombre( mazoDTO.nombre() );</span>
+<span class="nc" id="L57">        mazo.setDescripcion( mazoDTO.descripcion() );</span>
+<span class="nc" id="L58">        mazo.setFechaCreacion( mazoDTO.fechaCreacion() );</span>
+
+<span class="nc" id="L60">        return mazo;</span>
+    }
+
+    @Override
+    public List&lt;MazoDTO&gt; toDTOList(List&lt;Mazo&gt; mazos) {
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        if ( mazos == null ) {</span>
+<span class="nc" id="L66">            return null;</span>
+        }
+
+<span class="nc" id="L69">        List&lt;MazoDTO&gt; list = new ArrayList&lt;MazoDTO&gt;( mazos.size() );</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        for ( Mazo mazo : mazos ) {</span>
+<span class="nc" id="L71">            list.add( toDTO( mazo ) );</span>
+<span class="nc" id="L72">        }</span>
+
+<span class="nc" id="L74">        return list;</span>
+    }
+
+    @Override
+    public List&lt;Mazo&gt; toEntityList(List&lt;MazoDTO&gt; mazoDTOs) {
+<span class="nc bnc" id="L79" title="All 2 branches missed.">        if ( mazoDTOs == null ) {</span>
+<span class="nc" id="L80">            return null;</span>
+        }
+
+<span class="nc" id="L83">        List&lt;Mazo&gt; list = new ArrayList&lt;Mazo&gt;( mazoDTOs.size() );</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        for ( MazoDTO mazoDTO : mazoDTOs ) {</span>
+<span class="nc" id="L85">            list.add( toEntity( mazoDTO ) );</span>
+<span class="nc" id="L86">        }</span>
+
+<span class="nc" id="L88">        return list;</span>
+    }
+
+    private Integer mazoUsuarioIdUsuario(Mazo mazo) {
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        if ( mazo == null ) {</span>
+<span class="nc" id="L93">            return null;</span>
+        }
+<span class="nc" id="L95">        Usuario usuario = mazo.getUsuario();</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">        if ( usuario == null ) {</span>
+<span class="nc" id="L97">            return null;</span>
+        }
+<span class="nc" id="L99">        Integer idUsuario = usuario.getIdUsuario();</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        if ( idUsuario == null ) {</span>
+<span class="nc" id="L101">            return null;</span>
+        }
+<span class="nc" id="L103">        return idUsuario;</span>
+    }
+
+    protected Usuario mazoDTOToUsuario(MazoDTO mazoDTO) {
+<span class="nc bnc" id="L107" title="All 2 branches missed.">        if ( mazoDTO == null ) {</span>
+<span class="nc" id="L108">            return null;</span>
+        }
+
+<span class="nc" id="L111">        Usuario usuario = new Usuario();</span>
+
+<span class="nc" id="L113">        usuario.setIdUsuario( mazoDTO.idUsuario() );</span>
+
+<span class="nc" id="L115">        return usuario;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

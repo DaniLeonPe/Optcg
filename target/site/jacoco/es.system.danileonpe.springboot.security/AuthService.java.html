@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuthService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">optcg-main</a> &gt; <a href="index.source.html" class="el_package">es.system.danileonpe.springboot.security</a> &gt; <span class="el_source">AuthService.java</span></div><h1>AuthService.java</h1><pre class="source lang-java linenums">package es.system.danileonpe.springboot.security;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import es.system.danileonpe.springboot.model.Rol;
+import es.system.danileonpe.springboot.model.Usuario;
+import es.system.danileonpe.springboot.service.rest.RolService;
+import es.system.danileonpe.springboot.service.rest.UserService;
+
+@Service
+<span class="nc" id="L13">public class AuthService {</span>
+    /**
+     * Properties
+     */
+
+    private UserService service;
+
+    private RolService rolService;
+
+    private JwtService jwtService;
+
+
+    private PasswordEncoder passwordEncoder;
+
+    /**
+     * Setters of the user service
+     * @param service of the user
+     */
+    @Autowired
+    public void setService(UserService service) {
+<span class="nc" id="L33">        this.service = service;</span>
+<span class="nc" id="L34">    }</span>
+
+    /**
+     * Setters of the user service
+     * @param roleService of the role
+     */
+    @Autowired
+    public void setRoleService(RolService rolService) {
+<span class="nc" id="L42">        this.rolService = rolService;</span>
+<span class="nc" id="L43">    }</span>
+
+    /**
+     * Setters of the user service
+     * @param jwtService of the role
+     */
+    @Autowired
+    public void setJwtService(JwtService jwtService) {
+<span class="nc" id="L51">        this.jwtService = jwtService;</span>
+<span class="nc" id="L52">    }</span>
+
+    /**
+     * Setters of the user service
+     * @param passwordEncoder of the role
+     */
+    @Autowired
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+<span class="nc" id="L60">        this.passwordEncoder = passwordEncoder;</span>
+<span class="nc" id="L61">    }</span>
+
+    /**
+     * Function to register a new user
+     * @param username of the user
+     * @param password of the user
+     * @param email of the user
+     * @return the user if everything OK, null otherwise
+     */
+    public Usuario register(String username, String password, String email) {
+<span class="nc" id="L71">        Usuario user = new Usuario();</span>
+<span class="nc" id="L72">        user.setNombreUsuario(username);</span>
+<span class="nc" id="L73">        user.setContraseña(passwordEncoder.encode(password));</span>
+<span class="nc" id="L74">        user.setEmail(email);</span>
+<span class="nc" id="L75">        Rol role = rolService.getById(2);</span>
+<span class="nc" id="L76">        user.setRol(role);</span>
+<span class="nc" id="L77">        service.add(user);</span>
+
+<span class="nc" id="L79">        return service.getByName(username);</span>
+
+    }
+
+    /**
+     * Funcion para autenticar un User de cara al login
+     * @param username del User
+     * @param password del User
+     * @return token si la autenticacion fue exitosa, null si algo fue mal
+     */
+    public String authenticate(String username, String password)  {
+<span class="nc" id="L90">        String generateToken = null;</span>
+<span class="nc" id="L91">        Usuario user = service.getByName(username);</span>
+
+<span class="nc" id="L93">        System.out.println(user);</span>
+
+<span class="nc bnc" id="L95" title="All 2 branches missed.">        if (user != null) {</span>
+<span class="nc" id="L96">            System.out.println(password);</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">            if (passwordEncoder.matches(password, user.getContraseña())) {</span>
+<span class="nc" id="L98">                generateToken = jwtService.generateToken(user.getNombreUsuario(), user.getRol().getName());</span>
+            }
+        }
+
+<span class="nc" id="L102">        System.out.println(generateToken);</span>
+
+<span class="nc" id="L104">        return generateToken;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

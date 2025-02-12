@@ -2,13 +2,14 @@ package es.system.danileonpe.springboot.service.rest;
 
 import java.util.List;
 
+import es.system.danileonpe.springboot.model.Role;
 import es.system.danileonpe.springboot.repository.RolRepository;
 import es.system.danileonpe.springboot.service.interfaces.IService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import es.system.danileonpe.springboot.model.Rol;
+import es.system.danileonpe.springboot.model.Role;
 
 
 /**
@@ -17,7 +18,7 @@ import es.system.danileonpe.springboot.model.Rol;
  */
 @Component
 
-public class RolService implements IService<Rol> {
+public class RolService implements IService<Role> {
 
     @Autowired
     RolRepository repository;
@@ -27,7 +28,7 @@ public class RolService implements IService<Rol> {
      * @return boolean
      */
     @Override
-    public boolean add(Rol t) {
+    public boolean add(Role t) {
         if(t == null){
             return false;
         }
@@ -46,9 +47,9 @@ public class RolService implements IService<Rol> {
      * @throws Exception
      */
     @Override
-    public boolean update(int id, Rol t) throws Exception {
+    public boolean update(int id, Role t) throws Exception {
         try{
-            Rol update = repository.findById(id).orElse(null);
+            Role update = repository.findById(id).orElse(null);
             if(update != null){
                update.setName(t.getName());
                 repository.save(update);
@@ -68,7 +69,7 @@ public class RolService implements IService<Rol> {
      * @return List<Carta>
      */
     @Override
-    public List<Rol> getAll() {
+    public List<Role> getAll() {
         return repository.findAll();
     }
 
@@ -78,7 +79,7 @@ public class RolService implements IService<Rol> {
      * @return Carta
      */
     @Override
-    public Rol getById(int id) {
+    public Role getById(int id) {
         return repository.findById(id).orElse(null);
     }
 
@@ -89,7 +90,7 @@ public class RolService implements IService<Rol> {
      */
     @Override
     public boolean delete(int id) {
-        Rol rol = repository.findById(id).orElse(null);
+        Role rol = repository.findById(id).orElse(null);
         if(rol != null){
             repository.delete(rol);
             return true;

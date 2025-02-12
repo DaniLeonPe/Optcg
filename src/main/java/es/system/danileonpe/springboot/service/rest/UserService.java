@@ -30,7 +30,7 @@ public class UserService implements IService<Usuario>{
         if(t == null){
             return false;
         }
-        if(repository.existsById(t.getIdUsuario())){
+        if(repository.existsById(t.getId())){
             return false;
         }
         repository.save(t);
@@ -49,9 +49,9 @@ public class UserService implements IService<Usuario>{
         try{
             Usuario update = repository.findById(id).orElse(null);
             if(update != null){
-               update.setNombreUsuario(t.getNombreUsuario());
-               update.setContraseña(t.getContraseña());
-               update.setRol(t.getRol());
+               update.setName(t.getName());
+               update.setPassword(t.getPassword());
+               update.setRole(t.getRole());
                update.setEmail(t.getEmail());
                 repository.save(update);
                 return true;
@@ -103,7 +103,7 @@ public class UserService implements IService<Usuario>{
 
     
     public Usuario getByName(String name) {
-        return repository.findByNombreUsuario(name);
+        return repository.findByName(name);
     }
 
 

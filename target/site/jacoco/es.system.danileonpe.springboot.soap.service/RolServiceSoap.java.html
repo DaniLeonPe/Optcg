@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RolServiceSoap.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">optcg-main</a> &gt; <a href="index.source.html" class="el_package">es.system.danileonpe.springboot.soap.service</a> &gt; <span class="el_source">RolServiceSoap.java</span></div><h1>RolServiceSoap.java</h1><pre class="source lang-java linenums">package es.system.danileonpe.springboot.soap.service;
+
+import es.system.danileonpe.springboot.DTO.RolDTO;
+
+import es.system.danileonpe.springboot.mapper.RolMapper;
+import es.system.danileonpe.springboot.model.Rol;
+import es.system.danileonpe.springboot.service.interfaces.IService;
+import es.system.danileonpe.springboot.service.interfaces.IServiceSoap;
+import jakarta.jws.WebService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * Implementación SOAP para la gestión de roles.
+ */
+@Component
+@WebService(endpointInterface = &quot;es.system.danileonpe.springboot.service.interfaces.IServiceSoap&quot;)
+public class RolServiceSoap implements IServiceSoap&lt;RolDTO&gt; {
+
+    private final IService&lt;Rol&gt; service;
+    @Autowired
+<span class="nc" id="L25">    public RolServiceSoap(IService&lt;Rol&gt; service) {</span>
+<span class="nc" id="L26">        this.service = service;</span>
+<span class="nc" id="L27">    }</span>
+    
+      @Override
+    public boolean add(RolDTO t) {
+<span class="nc" id="L31">        return service.add(RolMapper.INSTANCE.toEntity(t));</span>
+    }
+
+    @Override
+    public boolean update(RolDTO t) throws Exception {
+<span class="nc" id="L36">       return service.update(t.id(), RolMapper.INSTANCE.toEntity(t));</span>
+    }
+
+    @Override
+    public List&lt;RolDTO&gt; getAll() {
+<span class="nc" id="L41">        return service.getAll().stream()</span>
+<span class="nc" id="L42">                .map(RolMapper.INSTANCE::toDTO).collect(Collectors.toList());</span>
+    }
+
+    @Override
+    public RolDTO getById(int id) {
+<span class="nc" id="L47">        return RolMapper.INSTANCE.toDTO(service.getById(id));</span>
+    }
+
+    @Override
+    public boolean delete(int id) {
+<span class="nc" id="L52">        return service.delete(id);</span>
+    }
+
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

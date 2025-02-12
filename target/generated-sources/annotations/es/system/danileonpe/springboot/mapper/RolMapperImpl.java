@@ -1,34 +1,34 @@
 package es.system.danileonpe.springboot.mapper;
 
 import es.system.danileonpe.springboot.DTO.RolDTO;
-import es.system.danileonpe.springboot.model.Rol;
+import es.system.danileonpe.springboot.model.Role;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-11T17:04:07+0000",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 21.0.2 (Private Build)"
+    date = "2025-02-12T13:24:04+0000",
+    comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
 )
 public class RolMapperImpl implements RolMapper {
 
     @Override
-    public Rol toEntity(RolDTO rolDto) {
+    public Role toEntity(RolDTO rolDto) {
         if ( rolDto == null ) {
             return null;
         }
 
-        Rol rol = new Rol();
+        Role role = new Role();
 
-        rol.setId( rolDto.id() );
-        rol.setName( rolDto.name() );
+        role.setId( rolDto.id() );
+        role.setName( rolDto.name() );
 
-        return rol;
+        return role;
     }
 
     @Override
-    public RolDTO toDTO(Rol rolEntity) {
+    public RolDTO toDTO(Role rolEntity) {
         if ( rolEntity == null ) {
             return null;
         }
@@ -45,12 +45,12 @@ public class RolMapperImpl implements RolMapper {
     }
 
     @Override
-    public List<Rol> toEntityList(List<RolDTO> rolDtos) {
+    public List<Role> toEntityList(List<RolDTO> rolDtos) {
         if ( rolDtos == null ) {
             return null;
         }
 
-        List<Rol> list = new ArrayList<Rol>( rolDtos.size() );
+        List<Role> list = new ArrayList<Role>( rolDtos.size() );
         for ( RolDTO rolDTO : rolDtos ) {
             list.add( toEntity( rolDTO ) );
         }
@@ -59,14 +59,14 @@ public class RolMapperImpl implements RolMapper {
     }
 
     @Override
-    public List<RolDTO> toDTOList(List<Rol> rolEntities) {
+    public List<RolDTO> toDTOList(List<Role> rolEntities) {
         if ( rolEntities == null ) {
             return null;
         }
 
         List<RolDTO> list = new ArrayList<RolDTO>( rolEntities.size() );
-        for ( Rol rol : rolEntities ) {
-            list.add( toDTO( rol ) );
+        for ( Role role : rolEntities ) {
+            list.add( toDTO( role ) );
         }
 
         return list;

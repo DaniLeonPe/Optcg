@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MazoController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">optcg-main</a> &gt; <a href="index.source.html" class="el_package">es.system.danileonpe.springboot.controller.v2</a> &gt; <span class="el_source">MazoController.java</span></div><h1>MazoController.java</h1><pre class="source lang-java linenums">package es.system.danileonpe.springboot.controller.v2;
+
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import es.system.danileonpe.springboot.DTO.MazoDTO;
+import es.system.danileonpe.springboot.mapper.MazoMapper;
+import es.system.danileonpe.springboot.service.rest.MazoService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+
+
+
+@RestController(&quot;MazoControllerV2&quot;)
+@RequestMapping(&quot;/api/v2/Mazos&quot;)
+@CrossOrigin
+@Tag(name = &quot;Mazos&quot;, description = &quot;API para gestionar Mazos&quot;)
+public class MazoController {
+
+
+    private MazoService service;
+
+<span class="nc" id="L34">    public MazoController(){</span>
+
+<span class="nc" id="L36">    }</span>
+
+    @Autowired
+<span class="nc" id="L39">    public MazoController(MazoService service){</span>
+<span class="nc" id="L40">        this.service = service;</span>
+<span class="nc" id="L41">    }</span>
+
+    @GetMapping
+    @Operation(summary = &quot;Get all Cards&quot;)
+    public ResponseEntity&lt;List&lt;?&gt;&gt; getAll() {
+<span class="nc" id="L46">        List&lt;MazoDTO&gt; filteredList = service.getAll().stream()</span>
+<span class="nc" id="L47">                .map(MazoMapper.INSTANCE::toDTO)</span>
+<span class="nc" id="L48">                .collect(Collectors.toList());</span>
+
+
+<span class="nc" id="L51">        return ResponseEntity.ok(filteredList);</span>
+    }
+
+    @GetMapping(&quot;/{id}&quot;)
+    @Operation(summary = &quot;Get Cards by ID&quot;)
+    public ResponseEntity&lt;MazoDTO&gt; getById(@PathVariable(value = &quot;id&quot;) int id) {
+
+<span class="nc" id="L58">        return ResponseEntity.ok(MazoMapper.INSTANCE.toDTO(service.getById(id)));</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -14,12 +14,12 @@ public interface UsuarioMapper {
     
     UsuarioMapper INSTANCE = Mappers.getMapper(UsuarioMapper.class);
 
-    @Mapping(source = "rol.id", target = "rol")
+    @Mapping(source = "role.id", target = "role")
     UsuarioDTO toDTO(Usuario usuario);
 
-    @Mapping(source = "rol", target = "rol.id")
-    @Mapping(target = "contraseña", ignore = true)  
-    @Mapping(target = "fechaRegistro", ignore = true)
+    @Mapping(source = "role", target = "role.id")
+    @Mapping(target = "password", ignore = true)
+
     Usuario toEntity(UsuarioDTO usuarioDTO);
 
     List<UsuarioDTO> toDTOList(List<Usuario> usuarios);

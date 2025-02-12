@@ -3,13 +3,13 @@ package es.system.danileonpe.springboot.controller.v3;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import es.system.danileonpe.springboot.DTO.UsuarioAddDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import es.system.danileonpe.springboot.DTO.UserAddDTO;
 import es.system.danileonpe.springboot.DTO.UsuarioDTO;
 import es.system.danileonpe.springboot.mapper.UsuarioMapper;
 import es.system.danileonpe.springboot.model.Usuario;
@@ -65,13 +65,13 @@ public class UsersController {
             @ApiResponse(responseCode = "200", description = "User created successfully"),
             @ApiResponse(responseCode = "400", description = "Bad request")
     })
-    public ResponseEntity <?>add(@RequestBody UserAddDTO dto) {
+    public ResponseEntity <?>add(@RequestBody UsuarioAddDTO dto) {
         if(dto == null){
             return ResponseEntity.badRequest()
                     .body("User can not be null");
         }
 
-        Usuario dbItemByName = service.getByName(dto.nombreUsuario());
+        Usuario dbItemByName = service.getByName(dto.name());
 
         if (dbItemByName != null) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
@@ -87,14 +87,14 @@ public class UsersController {
 
 
         Usuario aux = new Usuario();
-        aux.setNombreUsuario(dto.nombreUsuario());
+        aux.setName(dto.name());
         aux.setEmail(dto.email());
-        aux.setContraseña(dto.contraseña());
-        aux.setRol(roleService.getById(dto.rol()));
+        aux.setPassword(dto.password());
+        aux.setRole(roleService.getById(dto.role()));
 
         service.add(aux);
 
-        UsuarioDTO result = UsuarioMapper.INSTANCE.toDTO(service.getByName(dto.nombreUsuario()));
+        UsuarioDTO result = UsuarioMapper.INSTANCE.toDTO(service.getByName(dto.name()));
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body("Successfully created");

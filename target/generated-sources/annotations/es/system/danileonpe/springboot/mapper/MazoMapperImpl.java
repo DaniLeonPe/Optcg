@@ -10,8 +10,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-11T17:04:07+0000",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 21.0.2 (Private Build)"
+    date = "2025-02-12T13:24:04+0000",
+    comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
 )
 public class MazoMapperImpl implements MazoMapper {
 
@@ -27,10 +27,7 @@ public class MazoMapperImpl implements MazoMapper {
         String descripcion = null;
         Date fechaCreacion = null;
 
-        Integer idUsuario1 = mazoUsuarioIdUsuario( mazo );
-        if ( idUsuario1 != null ) {
-            idUsuario = idUsuario1;
-        }
+        idUsuario = mazoUsuarioId( mazo );
         idMazo = mazo.getIdMazo();
         nombre = mazo.getNombre();
         descripcion = mazo.getDescripcion();
@@ -88,19 +85,16 @@ public class MazoMapperImpl implements MazoMapper {
         return list;
     }
 
-    private Integer mazoUsuarioIdUsuario(Mazo mazo) {
+    private int mazoUsuarioId(Mazo mazo) {
         if ( mazo == null ) {
-            return null;
+            return 0;
         }
         Usuario usuario = mazo.getUsuario();
         if ( usuario == null ) {
-            return null;
+            return 0;
         }
-        Integer idUsuario = usuario.getIdUsuario();
-        if ( idUsuario == null ) {
-            return null;
-        }
-        return idUsuario;
+        int id = usuario.getId();
+        return id;
     }
 
     protected Usuario mazoDTOToUsuario(MazoDTO mazoDTO) {
@@ -110,7 +104,7 @@ public class MazoMapperImpl implements MazoMapper {
 
         Usuario usuario = new Usuario();
 
-        usuario.setIdUsuario( mazoDTO.idUsuario() );
+        usuario.setId( mazoDTO.idUsuario() );
 
         return usuario;
     }

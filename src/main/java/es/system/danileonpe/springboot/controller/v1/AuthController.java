@@ -2,24 +2,18 @@ package es.system.danileonpe.springboot.controller.v1;
 
 import java.util.Collection;
 
+import es.system.danileonpe.springboot.DTO.UsuarioLoginDTO;
+import es.system.danileonpe.springboot.DTO.UsuarioRegisterDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.web.bind.annotation.*;
 
 import es.system.danileonpe.springboot.DTO.UsuarioDTO;
 import es.system.danileonpe.springboot.model.Usuario;
 import es.system.danileonpe.springboot.security.AuthService;
 import es.system.danileonpe.springboot.security.JwtService;
-import es.system.danileonpe.springboot.service.rest.RolService;
 import es.system.danileonpe.springboot.service.rest.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
@@ -69,8 +63,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody UsuarioDTO loginDTO ) {
-        String token = authService.authenticate(loginDTO.username(), loginDTO.password());
+    public String login(@RequestBody UsuarioLoginDTO loginDTO ) {
+        String token = authService.authenticate(loginDTO.nombreUsuario(), loginDTO.contraseña());
 
         if (token == null) {
             throw new RuntimeException("Credenciales inválidas");
@@ -80,13 +74,13 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody UserRegisterDTO registerDTO ) {
-        Usuario register = authService.register(registerDTO.username(), registerDTO.password(), registerDTO.email());
+    public ResponseEntity<?> register(@RequestBody UsuarioRegisterDTO registerDTO ) {
+        Usuario register = authService.register(registerDTO.nombreUsuario(), registerDTO.contraseña(), registerDTO.email());
 
 
         if (register != null) {
 
-            UsuarioDTO dto = new UsuarioDTO(register.getName(), register.getEmail(), register.getRole().getId());
+            UsuarioDTO dto = new UsuarioDTO(register.getId(), register.getName(), register.getEmail(), register.getRole().getId());
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body("success");
         }

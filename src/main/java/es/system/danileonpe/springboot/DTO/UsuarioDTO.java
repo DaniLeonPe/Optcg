@@ -4,5 +4,5 @@ public record UsuarioDTO(
     int idUsuario,
     String nombreUsuario,
     String email,
-    int rol
+    int role
 ) {}

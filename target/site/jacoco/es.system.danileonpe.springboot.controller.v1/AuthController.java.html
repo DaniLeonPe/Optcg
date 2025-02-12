@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuthController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">optcg-main</a> &gt; <a href="index.source.html" class="el_package">es.system.danileonpe.springboot.controller.v1</a> &gt; <span class="el_source">AuthController.java</span></div><h1>AuthController.java</h1><pre class="source lang-java linenums">package es.system.danileonpe.springboot.controller.v1;
+
+import java.util.Collection;
+
+import es.system.danileonpe.springboot.DTO.UsuarioLoginDTO;
+import es.system.danileonpe.springboot.DTO.UsuarioRegisterDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
+
+import es.system.danileonpe.springboot.DTO.UsuarioDTO;
+import es.system.danileonpe.springboot.model.Usuario;
+import es.system.danileonpe.springboot.security.AuthService;
+import es.system.danileonpe.springboot.security.JwtService;
+import es.system.danileonpe.springboot.service.rest.RolService;
+import es.system.danileonpe.springboot.service.rest.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@RestController
+@RequestMapping(&quot;/api/v1/auth&quot;)
+@CrossOrigin
+@Tag(name=&quot;v1&quot;, description=&quot;The authentication&quot;)
+<span class="nc" id="L34">public class AuthController {</span>
+
+    /**
+     * Properties
+     */
+    private UserService service;
+
+    private JwtService jwtService;
+
+    private AuthService authService;
+
+    /**
+     * Setter of the user service
+     * @param service of the user
+     */
+    @Autowired
+    public void setService(UserService service) {
+<span class="nc" id="L51">        this.service = service;</span>
+<span class="nc" id="L52">    }</span>
+
+    /**
+     * Setter of the jwt service
+     * @param jwtService for the user
+     */
+    @Autowired
+    public void setJwtService(JwtService jwtService) {
+<span class="nc" id="L60">        this.jwtService = jwtService;</span>
+<span class="nc" id="L61">    }</span>
+
+
+    /**
+     * Setter of the jwt service
+     * @param authService for the user
+     */
+    @Autowired
+    public void setAuthService(AuthService authService) {
+<span class="nc" id="L70">        this.authService = authService;</span>
+<span class="nc" id="L71">    }</span>
+
+    @PostMapping(&quot;/login&quot;)
+    public String login(@RequestBody UsuarioLoginDTO loginDTO ) {
+<span class="nc" id="L75">        String token = authService.authenticate(loginDTO.nombreUsuario(), loginDTO.contraseña());</span>
+
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        if (token == null) {</span>
+<span class="nc" id="L78">            throw new RuntimeException(&quot;Credenciales inválidas&quot;);</span>
+        }
+
+<span class="nc" id="L81">        return token;</span>
+    }
+
+    @PostMapping(&quot;/register&quot;)
+    public ResponseEntity&lt;?&gt; register(@RequestBody UsuarioRegisterDTO registerDTO ) {
+<span class="nc" id="L86">        Usuario register = authService.register(registerDTO.nombreUsuario(), registerDTO.contraseña(), registerDTO.email());</span>
+
+
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        if (register != null) {</span>
+
+<span class="nc" id="L91">            UsuarioDTO dto = new UsuarioDTO(register.getIdUsuario(), register.getNombreUsuario(), register.getEmail(), register.getRol().getId());</span>
+<span class="nc" id="L92">            return ResponseEntity.status(HttpStatus.CREATED)</span>
+<span class="nc" id="L93">                    .body(&quot;success&quot;);</span>
+        }
+
+<span class="nc" id="L96">        return ResponseEntity.status(HttpStatus.BAD_REQUEST)</span>
+<span class="nc" id="L97">            .body(&quot;error&quot;);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

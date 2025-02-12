@@ -7,47 +7,57 @@ import java.util.Objects;
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
+	/**
+	 * Properties
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idUsuario;
+	private int id;
 
-	@Column(nullable = false, unique = true)
-	private String nombreUsuario;
+	private String name;
 
-	@Column(nullable = false, unique = true)
 	private String email;
+	private String password;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "role_id")
+	private Role role;
 
-	@Column(nullable = false)
-	private String contraseña;
-
-	@Column(name = "fechaRegistro", columnDefinition = "TIMESTAMP")
-	private LocalDateTime fechaRegistro = LocalDateTime.now();
-
-	@ManyToOne
-	@JoinColumn(name = "idRol", nullable = false)
-	private Rol rol;
-
+	/**
+	 * Default constructor of the class
+	 */
 	public Usuario() {
 	}
 
-	public Usuario(Integer idUsuario){
-		this.idUsuario = idUsuario;
+	/**
+	 * Constructor of the class with unique properties
+	 *
+	 * @param id    of the user
+	 * @param email of the user
+	 */
+	public Usuario(int id, String email) {
+		this.id = id;
+		this.email = email;
 	}
 
-	public Integer getIdUsuario() {
-		return idUsuario;
+	/**
+	 * Getters and setters
+	 *
+	 * @return
+	 */
+	public int getId() {
+		return id;
 	}
 
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getNombreUsuario() {
-		return nombreUsuario;
+	public String getName() {
+		return name;
 	}
 
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getEmail() {
@@ -58,55 +68,49 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public LocalDateTime getFechaRegistro() {
-		return fechaRegistro;
+	public Role getRole() {
+		return role;
 	}
 
-	public void setFechaRegistro(LocalDateTime fechaRegistro) {
-		this.fechaRegistro = fechaRegistro;
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
-	public Rol getRol() {
-		return rol;
+	/**
+	 * toString
+	 */
+	@Override
+	public String toString() {
+		return "User{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", email='" + email + '\'' +
+				", role=" + role.getName() + '\'' +
+				'}';
 	}
 
-	public void setRol(Rol rol) {
-		this.rol = rol;
-	}
+	/**
+	 * Equals and HashCode
+	 */
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		Usuario user = (Usuario) o;
-		return Objects.equals(idUsuario, user.idUsuario);
+		return id == user.id && Objects.equals(email, user.email);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hashCode(idUsuario);
+		return Objects.hash(id, email);
 	}
 
-	@Override
-	public String toString() {
-		return "Usuario{" +
-				"idUsuario=" + idUsuario +
-				", nombreUsuario='" + nombreUsuario + '\'' +
-				", email='" + email + '\'' +
-				", fechaRegistro=" + fechaRegistro +
-				", rol=" + (rol != null ? rol.getName() : "Sin rol") +
-				'}';
-	}
-
-	public Usuario orElseThrow(Object object) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'orElseThrow'");
-	}
 }

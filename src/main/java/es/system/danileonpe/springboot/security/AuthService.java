@@ -1,10 +1,11 @@
 package es.system.danileonpe.springboot.security;
 
+import es.system.danileonpe.springboot.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import es.system.danileonpe.springboot.model.Rol;
+
 import es.system.danileonpe.springboot.model.Usuario;
 import es.system.danileonpe.springboot.service.rest.RolService;
 import es.system.danileonpe.springboot.service.rest.UserService;
@@ -35,7 +36,7 @@ public class AuthService {
 
     /**
      * Setters of the user service
-     * @param roleService of the role
+     * @param rolService of the role
      */
     @Autowired
     public void setRoleService(RolService rolService) {
@@ -69,11 +70,11 @@ public class AuthService {
      */
     public Usuario register(String username, String password, String email) {
         Usuario user = new Usuario();
-        user.setNombreUsuario(username);
-        user.setContraseña(passwordEncoder.encode(password));
+        user.setName(username);
+        user.setPassword(passwordEncoder.encode(password));
         user.setEmail(email);
-        Rol role = rolService.getById(2);
-        user.setRol(role);
+        Role role = rolService.getById(2);
+        user.setRole(role);
         service.add(user);
 
         return service.getByName(username);
@@ -94,8 +95,8 @@ public class AuthService {
 
         if (user != null) {
             System.out.println(password);
-            if (passwordEncoder.matches(password, user.getContraseña())) {
-                generateToken = jwtService.generateToken(user.getNombreUsuario(), user.getRol().getName());
+            if (passwordEncoder.matches(password, user.getPassword())) {
+                generateToken = jwtService.generateToken(user.getName(), user.getRole().getName());
             }
         }
 
