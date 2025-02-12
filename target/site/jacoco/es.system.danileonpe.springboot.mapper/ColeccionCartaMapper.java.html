@@ -9,18 +9,19 @@ import org.mapstruct.factory.Mappers;
 import es.system.danileonpe.springboot.DTO.ColeccionCartaDTO;
 import es.system.danileonpe.springboot.model.ColeccionCarta;
 
-@Mapper
+@Mapper(componentModel = &quot;spring&quot;)
 public interface ColeccionCartaMapper {
     
 <span class="nc" id="L15">    ColeccionCartaMapper INSTANCE = Mappers.getMapper(ColeccionCartaMapper.class);</span>
-    
-    @Mapping(source = &quot;coleccion.idColeccion&quot;, target = &quot;idColeccion&quot;)
-    @Mapping(source = &quot;carta.idCarta&quot;, target = &quot;idCarta&quot;)
-    ColeccionCartaDTO toDTO(ColeccionCarta coleccionCarta);
 
-    @Mapping(source = &quot;idColeccion&quot;, target = &quot;coleccion.idColeccion&quot;)
-    @Mapping(source = &quot;idCarta&quot;, target = &quot;carta.idCarta&quot;)
+
+
+    @Mapping(target = &quot;carta&quot;, ignore = true)
+    @Mapping(target = &quot;coleccion&quot;, ignore = true)
     ColeccionCarta toEntity(ColeccionCartaDTO coleccionCartaDTO);
+
+
+    ColeccionCartaDTO toDTO(ColeccionCarta coleccionCarta);
 
     List&lt;ColeccionCartaDTO&gt; toDTOList(List&lt;ColeccionCarta&gt; coleccionCartas);
 

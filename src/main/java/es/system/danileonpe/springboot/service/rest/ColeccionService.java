@@ -30,7 +30,7 @@ public class ColeccionService implements IService<Coleccion>{
         if(t == null){
             return false;
         }
-        if(repository.existsById(t.getIdColeccion())){
+        if(repository.existsById(t.getId())){
             return false;
         }
         repository.save(t);

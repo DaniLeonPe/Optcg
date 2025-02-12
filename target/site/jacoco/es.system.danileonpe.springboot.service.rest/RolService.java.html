@@ -2,13 +2,13 @@
 
 import java.util.List;
 
+import es.system.danileonpe.springboot.model.Role;
 import es.system.danileonpe.springboot.repository.RolRepository;
 import es.system.danileonpe.springboot.service.interfaces.IService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import es.system.danileonpe.springboot.model.Rol;
 
 
 /**
@@ -17,7 +17,7 @@ import es.system.danileonpe.springboot.model.Rol;
  */
 @Component
 
-<span class="nc" id="L20">public class RolService implements IService&lt;Rol&gt; {</span>
+<span class="nc" id="L20">public class RolService implements IService&lt;Role&gt; {</span>
 
     @Autowired
     RolRepository repository;
@@ -27,7 +27,7 @@ import es.system.danileonpe.springboot.model.Rol;
      * @return boolean
      */
     @Override
-    public boolean add(Rol t) {
+    public boolean add(Role t) {
 <span class="nc bnc" id="L31" title="All 2 branches missed.">        if(t == null){</span>
 <span class="nc" id="L32">            return false;</span>
         }
@@ -46,9 +46,9 @@ import es.system.danileonpe.springboot.model.Rol;
      * @throws Exception
      */
     @Override
-    public boolean update(int id, Rol t) throws Exception {
+    public boolean update(int id, Role t) throws Exception {
         try{
-<span class="nc" id="L51">            Rol update = repository.findById(id).orElse(null);</span>
+<span class="nc" id="L51">            Role update = repository.findById(id).orElse(null);</span>
 <span class="nc bnc" id="L52" title="All 2 branches missed.">            if(update != null){</span>
 <span class="nc" id="L53">               update.setName(t.getName());</span>
 <span class="nc" id="L54">                repository.save(update);</span>
@@ -68,7 +68,7 @@ import es.system.danileonpe.springboot.model.Rol;
      * @return List&lt;Carta&gt;
      */
     @Override
-    public List&lt;Rol&gt; getAll() {
+    public List&lt;Role&gt; getAll() {
 <span class="nc" id="L72">        return repository.findAll();</span>
     }
 
@@ -78,7 +78,7 @@ import es.system.danileonpe.springboot.model.Rol;
      * @return Carta
      */
     @Override
-    public Rol getById(int id) {
+    public Role getById(int id) {
 <span class="nc" id="L82">        return repository.findById(id).orElse(null);</span>
     }
 
@@ -89,7 +89,7 @@ import es.system.danileonpe.springboot.model.Rol;
      */
     @Override
     public boolean delete(int id) {
-<span class="nc" id="L92">        Rol rol = repository.findById(id).orElse(null);</span>
+<span class="nc" id="L92">        Role rol = repository.findById(id).orElse(null);</span>
 <span class="nc bnc" id="L93" title="All 2 branches missed.">        if(rol != null){</span>
 <span class="nc" id="L94">            repository.delete(rol);</span>
 <span class="nc" id="L95">            return true;</span>

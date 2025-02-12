@@ -45,7 +45,7 @@ import jakarta.jws.WebService;
 <span class="nc" id="L45">        Coleccion coleccion = cartaService.coleccionRepository.findById(coleccionId).orElse(null);</span>
 <span class="nc" id="L46">        Carta carta = cartaService.cartaRepository.findById(cartaId).orElse(null);</span>
 <span class="nc" id="L47">        ColeccionCarta coleccionCarta = cartaService.addCarta(coleccion, carta, cantidad);</span>
-<span class="nc" id="L48">        return new ColeccionCartaDTO(coleccionCarta.getId(), coleccionCarta.getColeccion().getIdColeccion(), coleccionCarta.getCarta().getIdCarta(), coleccionCarta.getCantidad());</span>
+<span class="nc" id="L48">        return new ColeccionCartaDTO(coleccionCarta.getId(), coleccionCarta.getColeccion().getId(), coleccionCarta.getCarta().getId(), coleccionCarta.getCantidad());</span>
     }
 
     @WebMethod

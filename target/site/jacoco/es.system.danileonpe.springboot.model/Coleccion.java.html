@@ -9,25 +9,25 @@ import java.util.Objects;
 <span class="nc" id="L9">public class Coleccion {</span>
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idColeccion;
+    private int id;
 
     @ManyToOne
-    @JoinColumn(name = &quot;idUsuario&quot;, nullable = false)
+    @JoinColumn(name = &quot;id_usuario&quot;, nullable = false)
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name = &quot;idCarta&quot;, nullable = false)
+    @JoinColumn(name = &quot;id_carta&quot;, nullable = false)
     private Carta carta;
 
     @Column(nullable = false, columnDefinition = &quot;INT DEFAULT 1&quot;)
     private int cantidad;
 
-    public int getIdColeccion() {
-<span class="nc" id="L26">        return idColeccion;</span>
+    public int getId() {
+<span class="nc" id="L26">        return id;</span>
     }
 
-    public void setIdColeccion(int idColeccion) {
-<span class="nc" id="L30">        this.idColeccion = idColeccion;</span>
+    public void setId(int id) {
+<span class="nc" id="L30">        this.id = id;</span>
 <span class="nc" id="L31">    }</span>
 
     public Usuario getUsuario() {
@@ -59,17 +59,17 @@ import java.util.Objects;
 <span class="nc bnc" id="L59" title="All 2 branches missed.">        if (this == o) return true;</span>
 <span class="nc bnc" id="L60" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
 <span class="nc" id="L61">        Coleccion that = (Coleccion) o;</span>
-<span class="nc" id="L62">        return Objects.equals(idColeccion, that.idColeccion);</span>
+<span class="nc" id="L62">        return Objects.equals(id, that.id);</span>
     }
 
     @Override
     public int hashCode() {
-<span class="nc" id="L67">        return Objects.hash(idColeccion);</span>
+<span class="nc" id="L67">        return Objects.hash(id);</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L72">        return &quot;Coleccion [idColeccion=&quot; + idColeccion + &quot;, cantidad=&quot; + cantidad + &quot;]&quot;;</span>
+<span class="nc" id="L72">        return &quot;Coleccion [idColeccion=&quot; + id + &quot;, cantidad=&quot; + cantidad + &quot;]&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

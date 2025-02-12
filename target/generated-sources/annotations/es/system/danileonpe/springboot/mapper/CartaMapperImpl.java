@@ -9,8 +9,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-12T13:24:05+0000",
-    comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
+    date = "2025-02-12T15:42:27+0000",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.14 (Oracle Corporation)"
 )
 public class CartaMapperImpl implements CartaMapper {
 
@@ -21,7 +21,6 @@ public class CartaMapperImpl implements CartaMapper {
         }
 
         int expansion = 0;
-        int idCarta = 0;
         String nombre = null;
         String tipo = null;
         String rareza = null;
@@ -29,14 +28,15 @@ public class CartaMapperImpl implements CartaMapper {
         String descripcion = null;
         String imagenUrl = null;
 
-        expansion = cartaExpansionIdExpansion( carta );
-        idCarta = carta.getIdCarta();
+        expansion = cartaExpansionId( carta );
         nombre = carta.getNombre();
         tipo = carta.getTipo();
         rareza = carta.getRareza();
         costo = carta.getCosto();
         descripcion = carta.getDescripcion();
         imagenUrl = carta.getImagenUrl();
+
+        int idCarta = 0;
 
         CartaDTO cartaDTO = new CartaDTO( idCarta, nombre, tipo, rareza, costo, descripcion, expansion, imagenUrl );
 
@@ -52,7 +52,6 @@ public class CartaMapperImpl implements CartaMapper {
         Carta carta = new Carta();
 
         carta.setExpansion( cartaDTOToExpansion( cartaDTO ) );
-        carta.setIdCarta( cartaDTO.idCarta() );
         carta.setNombre( cartaDTO.nombre() );
         carta.setTipo( cartaDTO.tipo() );
         carta.setRareza( cartaDTO.rareza() );
@@ -91,7 +90,7 @@ public class CartaMapperImpl implements CartaMapper {
         return list;
     }
 
-    private int cartaExpansionIdExpansion(Carta carta) {
+    private int cartaExpansionId(Carta carta) {
         if ( carta == null ) {
             return 0;
         }
@@ -99,8 +98,8 @@ public class CartaMapperImpl implements CartaMapper {
         if ( expansion == null ) {
             return 0;
         }
-        int idExpansion = expansion.getIdExpansion();
-        return idExpansion;
+        int id = expansion.getId();
+        return id;
     }
 
     protected Expansion cartaDTOToExpansion(CartaDTO cartaDTO) {
@@ -110,7 +109,7 @@ public class CartaMapperImpl implements CartaMapper {
 
         Expansion expansion = new Expansion();
 
-        expansion.setIdExpansion( cartaDTO.expansion() );
+        expansion.setId( cartaDTO.expansion() );
 
         return expansion;
     }

@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Carta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idCarta;
+    private int id;
 
     @Column(nullable = false)
     private String nombre;
@@ -31,7 +31,7 @@ public class Carta {
     @ManyToOne
     @JsonIgnore
     @JoinColumn(
-            name = &quot;idExpansion&quot;, nullable = false)
+            name = &quot;id_expansion&quot;, nullable = false)
     private Expansion expansion;
 
 
@@ -39,17 +39,17 @@ public class Carta {
 
 <span class="nc" id="L40">    public Carta() {}</span>
 
-<span class="nc" id="L42">    public Carta(int idCarta){</span>
-<span class="nc" id="L43">        this.idCarta = idCarta;</span>
+<span class="nc" id="L42">    public Carta(int id){</span>
+<span class="nc" id="L43">        this.id = id;</span>
 <span class="nc" id="L44">    }</span>
   
 
-    public int getIdCarta() {
-<span class="nc" id="L48">        return idCarta;</span>
+    public int getId() {
+<span class="nc" id="L48">        return id;</span>
     }
 
-    public void setIdCarta(int idCarta) {
-<span class="nc" id="L52">        this.idCarta = idCarta;</span>
+    public void setId(int id) {
+<span class="nc" id="L52">        this.id = id;</span>
 <span class="nc" id="L53">    }</span>
 
     public String getNombre() {
@@ -108,8 +108,8 @@ public class Carta {
 <span class="nc" id="L108">    }</span>
 
 
-<span class="nc" id="L111">    public Carta(int idCarta, String nombre, String tipo, String rareza, int costo, String descripcion, Expansion expansion, String imagenUrl) {</span>
-<span class="nc" id="L112">        this.idCarta = idCarta;</span>
+<span class="nc" id="L111">    public Carta(int id, String nombre, String tipo, String rareza, int costo, String descripcion, Expansion expansion, String imagenUrl) {</span>
+<span class="nc" id="L112">        this.id = id;</span>
 <span class="nc" id="L113">        this.nombre = nombre;</span>
 <span class="nc" id="L114">        this.tipo = tipo;</span>
 <span class="nc" id="L115">        this.rareza = rareza;</span>
@@ -124,17 +124,17 @@ public class Carta {
 <span class="nc bnc" id="L124" title="All 2 branches missed.">        if (this == o) return true;</span>
 <span class="nc bnc" id="L125" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
 <span class="nc" id="L126">        Carta carta = (Carta) o;</span>
-<span class="nc" id="L127">        return Objects.equals(idCarta, carta.idCarta);</span>
+<span class="nc" id="L127">        return Objects.equals(id, carta.id);</span>
     }
 
     @Override
     public int hashCode() {
-<span class="nc" id="L132">        return Objects.hash(idCarta);</span>
+<span class="nc" id="L132">        return Objects.hash(id);</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L137">        return &quot;Carta [idCarta=&quot; + idCarta + &quot;, nombre=&quot; + nombre + &quot;, tipo=&quot; + tipo + &quot;]&quot;;</span>
+<span class="nc" id="L137">        return &quot;Carta [idCarta=&quot; + id + &quot;, nombre=&quot; + nombre + &quot;, tipo=&quot; + tipo + &quot;]&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

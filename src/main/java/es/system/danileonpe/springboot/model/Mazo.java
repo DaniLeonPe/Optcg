@@ -4,19 +4,19 @@ import jakarta.persistence.*;
 
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "mazos")
 public class Mazo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idMazo;
+    private int id;
 
     @ManyToOne
-    @JoinColumn(name = "idUsuario", nullable = false)
+    @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 
     @Column(nullable = false)
@@ -24,20 +24,19 @@ public class Mazo {
 
     private String descripcion;
 
-    @Column(name = "fechaCreacion", columnDefinition = "TIMESTAMP")
+    @Column(name = "fecha_creacion", columnDefinition = "DATE")
     private Date fechaCreacion = new Date();
 
 
-    @ManyToOne
-    @JoinColumn(name = "id_mazo_carta", nullable = false)
-    @JsonIgnore
-    private MazoCarta mazoCarta;
-    public int getIdMazo() {
-        return idMazo;
+    @OneToMany(mappedBy = "mazo")
+    private List<MazoCarta> mazoCartas;
+    
+    public int getId() {
+        return id;
     }
 
-    public void setIdMazo(int idMazo) {
-        this.idMazo = idMazo;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Usuario getUsuario() {
@@ -77,16 +76,16 @@ public class Mazo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Mazo mazo = (Mazo) o;
-        return Objects.equals(idMazo, mazo.idMazo);
+        return Objects.equals(id, mazo.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idMazo);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
-        return "Mazo [idMazo=" + idMazo + ", nombre=" + nombre + "]";
+        return "Mazo [idMazo=" + id + ", nombre=" + nombre + "]";
     }
 }

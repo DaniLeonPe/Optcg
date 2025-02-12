@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-12T13:24:04+0000",
-    comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
+    date = "2025-02-12T15:42:27+0000",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.14 (Oracle Corporation)"
 )
 @Component
 public class ColeccionMapperImpl implements ColeccionMapper {
@@ -25,13 +25,13 @@ public class ColeccionMapperImpl implements ColeccionMapper {
 
         int usuario = 0;
         int carta = 0;
-        int idColeccion = 0;
         int cantidad = 0;
 
         usuario = coleccionUsuarioId( coleccion );
-        carta = coleccionCartaIdCarta( coleccion );
-        idColeccion = coleccion.getIdColeccion();
+        carta = coleccionCartaId( coleccion );
         cantidad = coleccion.getCantidad();
+
+        int idColeccion = 0;
 
         ColeccionDTO coleccionDTO = new ColeccionDTO( idColeccion, usuario, carta, cantidad );
 
@@ -46,7 +46,6 @@ public class ColeccionMapperImpl implements ColeccionMapper {
 
         Coleccion coleccion = new Coleccion();
 
-        coleccion.setIdColeccion( coleccionDTO.idColeccion() );
         coleccion.setCantidad( coleccionDTO.cantidad() );
 
         coleccion.setUsuario( mapUsuario(coleccionDTO.usuario()) );
@@ -95,7 +94,7 @@ public class ColeccionMapperImpl implements ColeccionMapper {
         return id;
     }
 
-    private int coleccionCartaIdCarta(Coleccion coleccion) {
+    private int coleccionCartaId(Coleccion coleccion) {
         if ( coleccion == null ) {
             return 0;
         }
@@ -103,7 +102,7 @@ public class ColeccionMapperImpl implements ColeccionMapper {
         if ( carta == null ) {
             return 0;
         }
-        int idCarta = carta.getIdCarta();
-        return idCarta;
+        int id = carta.getId();
+        return id;
     }
 }

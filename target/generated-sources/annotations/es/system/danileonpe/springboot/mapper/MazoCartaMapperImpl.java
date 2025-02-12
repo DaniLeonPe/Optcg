@@ -10,8 +10,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-12T13:24:05+0000",
-    comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
+    date = "2025-02-12T15:42:27+0000",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.14 (Oracle Corporation)"
 )
 public class MazoCartaMapperImpl implements MazoCartaMapper {
 
@@ -26,8 +26,8 @@ public class MazoCartaMapperImpl implements MazoCartaMapper {
         int id = 0;
         int cantidad = 0;
 
-        idMazo = mazoCartaMazoIdMazo( mazoCarta );
-        idCarta = mazoCartaCartaIdCarta( mazoCarta );
+        idMazo = mazoCartaMazoId( mazoCarta );
+        idCarta = mazoCartaCartaId( mazoCarta );
         id = mazoCarta.getId();
         cantidad = mazoCarta.getCantidad();
 
@@ -80,7 +80,7 @@ public class MazoCartaMapperImpl implements MazoCartaMapper {
         return list;
     }
 
-    private int mazoCartaMazoIdMazo(MazoCarta mazoCarta) {
+    private int mazoCartaMazoId(MazoCarta mazoCarta) {
         if ( mazoCarta == null ) {
             return 0;
         }
@@ -88,11 +88,11 @@ public class MazoCartaMapperImpl implements MazoCartaMapper {
         if ( mazo == null ) {
             return 0;
         }
-        int idMazo = mazo.getIdMazo();
-        return idMazo;
+        int id = mazo.getId();
+        return id;
     }
 
-    private int mazoCartaCartaIdCarta(MazoCarta mazoCarta) {
+    private int mazoCartaCartaId(MazoCarta mazoCarta) {
         if ( mazoCarta == null ) {
             return 0;
         }
@@ -100,8 +100,8 @@ public class MazoCartaMapperImpl implements MazoCartaMapper {
         if ( carta == null ) {
             return 0;
         }
-        int idCarta = carta.getIdCarta();
-        return idCarta;
+        int id = carta.getId();
+        return id;
     }
 
     protected Mazo mazoCartaDTOToMazo(MazoCartaDTO mazoCartaDTO) {
@@ -111,7 +111,7 @@ public class MazoCartaMapperImpl implements MazoCartaMapper {
 
         Mazo mazo = new Mazo();
 
-        mazo.setIdMazo( mazoCartaDTO.idMazo() );
+        mazo.setId( mazoCartaDTO.idMazo() );
 
         return mazo;
     }
@@ -123,7 +123,7 @@ public class MazoCartaMapperImpl implements MazoCartaMapper {
 
         Carta carta = new Carta();
 
-        carta.setIdCarta( mazoCartaDTO.idCarta() );
+        carta.setId( mazoCartaDTO.idCarta() );
 
         return carta;
     }

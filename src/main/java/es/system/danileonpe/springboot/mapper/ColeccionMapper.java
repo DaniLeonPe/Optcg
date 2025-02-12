@@ -17,7 +17,7 @@ public interface ColeccionMapper {
     ColeccionMapper INSTANCE = Mappers.getMapper(ColeccionMapper.class);
 
     @Mapping(source = "usuario.id", target = "usuario")  // Usa el ID para obtener el Usuario
-    @Mapping(source = "carta.idCarta", target = "carta")  // Usa el ID para obtener la Carta
+    @Mapping(source = "carta.id", target = "carta")  // Usa el ID para obtener la Carta
     ColeccionDTO toDTO(Coleccion coleccion);
 
     @Mapping(target = "usuario", expression = "java(mapUsuario(coleccionDTO.usuario()))")  // Mapea ID de Usuario
@@ -38,7 +38,7 @@ public interface ColeccionMapper {
     // Método para mapear el ID de Carta a Carta
     default Carta mapCarta(int id) {
         Carta carta = new Carta();
-        carta.setIdCarta(id);  // Solo seteamos el ID en este ejemplo
+        carta.setId(id);  // Solo seteamos el ID en este ejemplo
         return carta;
     }
 }

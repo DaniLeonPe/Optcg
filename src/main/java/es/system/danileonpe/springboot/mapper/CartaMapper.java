@@ -14,10 +14,10 @@ public interface CartaMapper {
 
     CartaMapper INSTANCE = Mappers.getMapper(CartaMapper.class);
     
-    @Mapping(source = "expansion.idExpansion", target = "expansion")
+    @Mapping(source = "expansion.id", target = "expansion")
     CartaDTO toDTO(Carta carta);
 
-    @Mapping(source = "expansion", target = "expansion.idExpansion")
+    @Mapping(source = "expansion", target = "expansion.id")
     Carta toEntity(CartaDTO cartaDTO);
 
     List<CartaDTO> toDTOList(List<Carta> cartas);

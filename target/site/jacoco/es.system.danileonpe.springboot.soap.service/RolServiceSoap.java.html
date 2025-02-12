@@ -3,7 +3,7 @@
 import es.system.danileonpe.springboot.DTO.RolDTO;
 
 import es.system.danileonpe.springboot.mapper.RolMapper;
-import es.system.danileonpe.springboot.model.Rol;
+import es.system.danileonpe.springboot.model.Role;
 import es.system.danileonpe.springboot.service.interfaces.IService;
 import es.system.danileonpe.springboot.service.interfaces.IServiceSoap;
 import jakarta.jws.WebService;
@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
 @WebService(endpointInterface = &quot;es.system.danileonpe.springboot.service.interfaces.IServiceSoap&quot;)
 public class RolServiceSoap implements IServiceSoap&lt;RolDTO&gt; {
 
-    private final IService&lt;Rol&gt; service;
+    private final IService&lt;Role&gt; service;
     @Autowired
-<span class="nc" id="L25">    public RolServiceSoap(IService&lt;Rol&gt; service) {</span>
+<span class="nc" id="L25">    public RolServiceSoap(IService&lt;Role&gt; service) {</span>
 <span class="nc" id="L26">        this.service = service;</span>
 <span class="nc" id="L27">    }</span>
     

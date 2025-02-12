@@ -9,7 +9,6 @@ import es.system.danileonpe.springboot.service.interfaces.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import es.system.danileonpe.springboot.model.Role;
 
 
 /**

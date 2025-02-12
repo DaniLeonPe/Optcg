@@ -10,7 +10,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-02-12T12:17:43+0000&quot;,
+    date = &quot;2025-02-12T15:42:27+0000&quot;,
     comments = &quot;version: 1.5.3.Final, compiler: javac, environment: Java 17.0.14 (Oracle Corporation)&quot;
 )
 <span class="nc" id="L16">public class MazoCartaMapperImpl implements MazoCartaMapper {</span>
@@ -26,8 +26,8 @@ import javax.annotation.processing.Generated;
 <span class="nc" id="L26">        int id = 0;</span>
 <span class="nc" id="L27">        int cantidad = 0;</span>
 
-<span class="nc" id="L29">        idMazo = mazoCartaMazoIdMazo( mazoCarta );</span>
-<span class="nc" id="L30">        idCarta = mazoCartaCartaIdCarta( mazoCarta );</span>
+<span class="nc" id="L29">        idMazo = mazoCartaMazoId( mazoCarta );</span>
+<span class="nc" id="L30">        idCarta = mazoCartaCartaId( mazoCarta );</span>
 <span class="nc" id="L31">        id = mazoCarta.getId();</span>
 <span class="nc" id="L32">        cantidad = mazoCarta.getCantidad();</span>
 
@@ -80,7 +80,7 @@ import javax.annotation.processing.Generated;
 <span class="nc" id="L80">        return list;</span>
     }
 
-    private int mazoCartaMazoIdMazo(MazoCarta mazoCarta) {
+    private int mazoCartaMazoId(MazoCarta mazoCarta) {
 <span class="nc bnc" id="L84" title="All 2 branches missed.">        if ( mazoCarta == null ) {</span>
 <span class="nc" id="L85">            return 0;</span>
         }
@@ -88,11 +88,11 @@ import javax.annotation.processing.Generated;
 <span class="nc bnc" id="L88" title="All 2 branches missed.">        if ( mazo == null ) {</span>
 <span class="nc" id="L89">            return 0;</span>
         }
-<span class="nc" id="L91">        int idMazo = mazo.getIdMazo();</span>
-<span class="nc" id="L92">        return idMazo;</span>
+<span class="nc" id="L91">        int id = mazo.getId();</span>
+<span class="nc" id="L92">        return id;</span>
     }
 
-    private int mazoCartaCartaIdCarta(MazoCarta mazoCarta) {
+    private int mazoCartaCartaId(MazoCarta mazoCarta) {
 <span class="nc bnc" id="L96" title="All 2 branches missed.">        if ( mazoCarta == null ) {</span>
 <span class="nc" id="L97">            return 0;</span>
         }
@@ -100,8 +100,8 @@ import javax.annotation.processing.Generated;
 <span class="nc bnc" id="L100" title="All 2 branches missed.">        if ( carta == null ) {</span>
 <span class="nc" id="L101">            return 0;</span>
         }
-<span class="nc" id="L103">        int idCarta = carta.getIdCarta();</span>
-<span class="nc" id="L104">        return idCarta;</span>
+<span class="nc" id="L103">        int id = carta.getId();</span>
+<span class="nc" id="L104">        return id;</span>
     }
 
     protected Mazo mazoCartaDTOToMazo(MazoCartaDTO mazoCartaDTO) {
@@ -111,7 +111,7 @@ import javax.annotation.processing.Generated;
 
 <span class="nc" id="L112">        Mazo mazo = new Mazo();</span>
 
-<span class="nc" id="L114">        mazo.setIdMazo( mazoCartaDTO.idMazo() );</span>
+<span class="nc" id="L114">        mazo.setId( mazoCartaDTO.idMazo() );</span>
 
 <span class="nc" id="L116">        return mazo;</span>
     }
@@ -123,7 +123,7 @@ import javax.annotation.processing.Generated;
 
 <span class="nc" id="L124">        Carta carta = new Carta();</span>
 
-<span class="nc" id="L126">        carta.setIdCarta( mazoCartaDTO.idCarta() );</span>
+<span class="nc" id="L126">        carta.setId( mazoCartaDTO.idCarta() );</span>
 
 <span class="nc" id="L128">        return carta;</span>
     }

@@ -9,25 +9,25 @@ import java.util.Objects;
 public class Coleccion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idColeccion;
+    private int id;
 
     @ManyToOne
-    @JoinColumn(name = "idUsuario", nullable = false)
+    @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name = "idCarta", nullable = false)
+    @JoinColumn(name = "id_carta", nullable = false)
     private Carta carta;
 
     @Column(nullable = false, columnDefinition = "INT DEFAULT 1")
     private int cantidad;
 
-    public int getIdColeccion() {
-        return idColeccion;
+    public int getId() {
+        return id;
     }
 
-    public void setIdColeccion(int idColeccion) {
-        this.idColeccion = idColeccion;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Usuario getUsuario() {
@@ -59,16 +59,16 @@ public class Coleccion {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Coleccion that = (Coleccion) o;
-        return Objects.equals(idColeccion, that.idColeccion);
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idColeccion);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
-        return "Coleccion [idColeccion=" + idColeccion + ", cantidad=" + cantidad + "]";
+        return "Coleccion [idColeccion=" + id + ", cantidad=" + cantidad + "]";
     }
 }

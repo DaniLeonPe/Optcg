@@ -9,8 +9,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-12T13:24:04+0000",
-    comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
+    date = "2025-02-12T15:42:27+0000",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.14 (Oracle Corporation)"
 )
 public class UsuarioMapperImpl implements UsuarioMapper {
 
@@ -21,15 +21,16 @@ public class UsuarioMapperImpl implements UsuarioMapper {
         }
 
         int role = 0;
+        int id = 0;
+        String name = null;
         String email = null;
 
         role = usuarioRoleId( usuario );
+        id = usuario.getId();
+        name = usuario.getName();
         email = usuario.getEmail();
 
-        int idUsuario = 0;
-        String nombreUsuario = null;
-
-        UsuarioDTO usuarioDTO = new UsuarioDTO( idUsuario, nombreUsuario, email, role );
+        UsuarioDTO usuarioDTO = new UsuarioDTO( id, name, email, role );
 
         return usuarioDTO;
     }
@@ -43,6 +44,8 @@ public class UsuarioMapperImpl implements UsuarioMapper {
         Usuario usuario = new Usuario();
 
         usuario.setRole( usuarioDTOToRole( usuarioDTO ) );
+        usuario.setId( usuarioDTO.id() );
+        usuario.setName( usuarioDTO.name() );
         usuario.setEmail( usuarioDTO.email() );
 
         return usuario;

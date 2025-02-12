@@ -15,6 +15,9 @@ public interface ColeccionCartaMapper {
     ColeccionCartaMapper INSTANCE = Mappers.getMapper(ColeccionCartaMapper.class);
 
 
+
+    @Mapping(target = "carta", ignore = true)
+    @Mapping(target = "coleccion", ignore = true)
     ColeccionCarta toEntity(ColeccionCartaDTO coleccionCartaDTO);
 
 

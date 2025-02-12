@@ -71,7 +71,7 @@ public class UsersController {
 <span class="nc" id="L71">                    .body(&quot;User can not be null&quot;);</span>
         }
 
-<span class="nc" id="L74">        Usuario dbItemByName = service.getByName(dto.nombreUsuario());</span>
+<span class="nc" id="L74">        Usuario dbItemByName = service.getByName(dto.name());</span>
 
 <span class="nc bnc" id="L76" title="All 2 branches missed.">        if (dbItemByName != null) {</span>
 <span class="nc" id="L77">            return ResponseEntity.status(HttpStatus.CONFLICT)</span>
@@ -87,14 +87,14 @@ public class UsersController {
 
 
 <span class="nc" id="L89">        Usuario aux = new Usuario();</span>
-<span class="nc" id="L90">        aux.setNombreUsuario(dto.nombreUsuario());</span>
+<span class="nc" id="L90">        aux.setName(dto.name());</span>
 <span class="nc" id="L91">        aux.setEmail(dto.email());</span>
-<span class="nc" id="L92">        aux.setContraseña(dto.contraseña());</span>
-<span class="nc" id="L93">        aux.setRol(roleService.getById(dto.rol()));</span>
+<span class="nc" id="L92">        aux.setPassword(dto.password());</span>
+<span class="nc" id="L93">        aux.setRole(roleService.getById(dto.role()));</span>
 
 <span class="nc" id="L95">        service.add(aux);</span>
 
-<span class="nc" id="L97">        UsuarioDTO result = UsuarioMapper.INSTANCE.toDTO(service.getByName(dto.nombreUsuario()));</span>
+<span class="nc" id="L97">        UsuarioDTO result = UsuarioMapper.INSTANCE.toDTO(service.getByName(dto.name()));</span>
 
 <span class="nc" id="L99">        return ResponseEntity.status(HttpStatus.CREATED)</span>
 <span class="nc" id="L100">                .body(&quot;Successfully created&quot;);</span>

@@ -45,7 +45,7 @@ public class ColeccionCartaServiceSoap {
         Coleccion coleccion = cartaService.coleccionRepository.findById(coleccionId).orElse(null);
         Carta carta = cartaService.cartaRepository.findById(cartaId).orElse(null);
         ColeccionCarta coleccionCarta = cartaService.addCarta(coleccion, carta, cantidad);
-        return new ColeccionCartaDTO(coleccionCarta.getId(), coleccionCarta.getColeccion().getIdColeccion(), coleccionCarta.getCarta().getIdCarta(), coleccionCarta.getCantidad());
+        return new ColeccionCartaDTO(coleccionCarta.getId(), coleccionCarta.getColeccion().getId(), coleccionCarta.getCarta().getId(), coleccionCarta.getCantidad());
     }
 
     @WebMethod

@@ -64,10 +64,10 @@ public class AuthController {
 
     @PostMapping("/login")
     public String login(@RequestBody UsuarioLoginDTO loginDTO ) {
-        String token = authService.authenticate(loginDTO.nombreUsuario(), loginDTO.contraseña());
+        String token = authService.authenticate(loginDTO.name(), loginDTO.password());
 
         if (token == null) {
-            throw new RuntimeException("Credenciales inválidas");
+            throw new RuntimeException("Credenciales inválidas" + loginDTO.name() + " " + loginDTO.password());
         }
 
         return token;

@@ -3,14 +3,14 @@ package es.system.danileonpe.springboot.model;
 import jakarta.persistence.*;
 
 import java.util.Date;
-import java.util.Objects;
+import java.util.List;
 
 @Entity
 @Table(name = "expansiones")
 public class Expansion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idExpansion;
+    private int id;
 
     @Column(nullable = false)
     private String nombre;
@@ -18,12 +18,16 @@ public class Expansion {
     @Column(name = "fechaLanzamiento", columnDefinition = "DATE")
     private Date fechaLanzamiento;
 
-    public int getIdExpansion() {
-        return idExpansion;
+    @OneToMany(mappedBy = "expansion")
+    private List<Carta> cartas; // Relación con la clase Carta
+
+    // Getters y setters
+    public int getId() {
+        return id;
     }
 
-    public void setIdExpansion(int idExpansion) {
-        this.idExpansion = idExpansion;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -42,21 +46,11 @@ public class Expansion {
         this.fechaLanzamiento = fechaLanzamiento;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Expansion that = (Expansion) o;
-        return Objects.equals(idExpansion, that.idExpansion);
+    public List<Carta> getCartas() {
+        return cartas;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(idExpansion);
-    }
-
-    @Override
-    public String toString() {
-        return "Expansion [idExpansion=" + idExpansion + ", nombre=" + nombre + "]";
+    public void setCartas(List<Carta> cartas) {
+        this.cartas = cartas;
     }
 }

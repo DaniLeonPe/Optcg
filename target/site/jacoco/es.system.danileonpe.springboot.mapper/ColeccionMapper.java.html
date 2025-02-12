@@ -2,6 +2,8 @@
 
 import java.util.List;
 
+import es.system.danileonpe.springboot.model.Carta;
+import es.system.danileonpe.springboot.model.Usuario;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -9,22 +11,35 @@ import org.mapstruct.factory.Mappers;
 import es.system.danileonpe.springboot.DTO.ColeccionDTO;
 import es.system.danileonpe.springboot.model.Coleccion;
 
-@Mapper(componentModel = &quot;spring&quot;)
+@Mapper(componentModel = &quot;spring&quot;, uses = {UsuarioMapper.class, CartaMapper.class})
 public interface ColeccionMapper {
-    
-<span class="nc" id="L15">    ColeccionMapper INSTANCE = Mappers.getMapper(ColeccionMapper.class);</span>
 
-    @Mapping(source = &quot;usuario.idUsuario&quot;, target = &quot;usuario&quot;)
-    @Mapping(source = &quot;carta.idCarta&quot;, target = &quot;carta&quot;)
+<span class="nc" id="L17">    ColeccionMapper INSTANCE = Mappers.getMapper(ColeccionMapper.class);</span>
+
+    @Mapping(source = &quot;usuario.id&quot;, target = &quot;usuario&quot;)  // Usa el ID para obtener el Usuario
+    @Mapping(source = &quot;carta.id&quot;, target = &quot;carta&quot;)  // Usa el ID para obtener la Carta
     ColeccionDTO toDTO(Coleccion coleccion);
-    
-    @Mapping(target = &quot;usuario&quot;, expression = &quot;java(new Usuario(coleccionDTO.usuario()))&quot;)
-    @Mapping(target = &quot;carta&quot;, expression = &quot;java(new Carta(coleccionDTO.carta()))&quot;)
+
+    @Mapping(target = &quot;usuario&quot;, expression = &quot;java(mapUsuario(coleccionDTO.usuario()))&quot;)  // Mapea ID de Usuario
+    @Mapping(target = &quot;carta&quot;, expression = &quot;java(mapCarta(coleccionDTO.carta()))&quot;)  // Mapea ID de Carta
     Coleccion toEntity(ColeccionDTO coleccionDTO);
 
     List&lt;ColeccionDTO&gt; toDTOList(List&lt;Coleccion&gt; colecciones);
 
     List&lt;Coleccion&gt; toEntityList(List&lt;ColeccionDTO&gt; coleccionDTOs);
-    
+
+    // Método para mapear el ID de Usuario a Usuario
+    default Usuario mapUsuario(int id) {
+<span class="nc" id="L33">        Usuario usuario = new Usuario();</span>
+<span class="nc" id="L34">        usuario.setId(id);  // Solo seteamos el ID en este ejemplo</span>
+<span class="nc" id="L35">        return usuario;</span>
+    }
+
+    // Método para mapear el ID de Carta a Carta
+    default Carta mapCarta(int id) {
+<span class="nc" id="L40">        Carta carta = new Carta();</span>
+<span class="nc" id="L41">        carta.setId(id);  // Solo seteamos el ID en este ejemplo</span>
+<span class="nc" id="L42">        return carta;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

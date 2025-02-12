@@ -4,19 +4,19 @@ import jakarta.persistence.*;
 
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = &quot;mazos&quot;)
 <span class="nc" id="L13">public class Mazo {</span>
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idMazo;
+    private int id;
 
     @ManyToOne
-    @JoinColumn(name = &quot;idUsuario&quot;, nullable = false)
+    @JoinColumn(name = &quot;id_usuario&quot;, nullable = false)
     private Usuario usuario;
 
     @Column(nullable = false)
@@ -24,70 +24,69 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
     private String descripcion;
 
-<span class="nc" id="L27">    @Column(name = &quot;fechaCreacion&quot;, columnDefinition = &quot;TIMESTAMP&quot;)</span>
+<span class="nc" id="L27">    @Column(name = &quot;fecha_creacion&quot;, columnDefinition = &quot;DATE&quot;)</span>
     private Date fechaCreacion = new Date();
 
 
-    @ManyToOne
-    @JoinColumn(name = &quot;id_mazo_carta&quot;, nullable = false)
-    @JsonIgnore
-    private MazoCarta mazoCarta;
-    public int getIdMazo() {
-<span class="nc" id="L36">        return idMazo;</span>
+    @OneToMany(mappedBy = &quot;mazo&quot;)
+    private List&lt;MazoCarta&gt; mazoCartas;
+    
+    public int getId() {
+<span class="nc" id="L35">        return id;</span>
     }
 
-    public void setIdMazo(int idMazo) {
-<span class="nc" id="L40">        this.idMazo = idMazo;</span>
-<span class="nc" id="L41">    }</span>
+    public void setId(int id) {
+<span class="nc" id="L39">        this.id = id;</span>
+<span class="nc" id="L40">    }</span>
 
     public Usuario getUsuario() {
-<span class="nc" id="L44">        return usuario;</span>
+<span class="nc" id="L43">        return usuario;</span>
     }
 
     public void setUsuario(Usuario usuario) {
-<span class="nc" id="L48">        this.usuario = usuario;</span>
-<span class="nc" id="L49">    }</span>
+<span class="nc" id="L47">        this.usuario = usuario;</span>
+<span class="nc" id="L48">    }</span>
 
     public String getNombre() {
-<span class="nc" id="L52">        return nombre;</span>
+<span class="nc" id="L51">        return nombre;</span>
     }
 
     public void setNombre(String nombre) {
-<span class="nc" id="L56">        this.nombre = nombre;</span>
-<span class="nc" id="L57">    }</span>
+<span class="nc" id="L55">        this.nombre = nombre;</span>
+<span class="nc" id="L56">    }</span>
 
     public String getDescripcion() {
-<span class="nc" id="L60">        return descripcion;</span>
+<span class="nc" id="L59">        return descripcion;</span>
     }
 
     public void setDescripcion(String descripcion) {
-<span class="nc" id="L64">        this.descripcion = descripcion;</span>
-<span class="nc" id="L65">    }</span>
+<span class="nc" id="L63">        this.descripcion = descripcion;</span>
+<span class="nc" id="L64">    }</span>
 
     public Date getFechaCreacion() {
-<span class="nc" id="L68">        return fechaCreacion;</span>
+<span class="nc" id="L67">        return fechaCreacion;</span>
     }
 
     public void setFechaCreacion(Date fechaCreacion) {
-<span class="nc" id="L72">        this.fechaCreacion = fechaCreacion;</span>
-<span class="nc" id="L73">    }</span>
+<span class="nc" id="L71">        this.fechaCreacion = fechaCreacion;</span>
+<span class="nc" id="L72">    }</span>
 
     @Override
     public boolean equals(Object o) {
-<span class="nc bnc" id="L77" title="All 2 branches missed.">        if (this == o) return true;</span>
-<span class="nc bnc" id="L78" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
-<span class="nc" id="L79">        Mazo mazo = (Mazo) o;</span>
-<span class="nc" id="L80">        return Objects.equals(idMazo, mazo.idMazo);</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">        if (this == o) return true;</span>
+<span class="nc bnc" id="L77" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc" id="L78">        Mazo mazo = (Mazo) o;</span>
+<span class="nc" id="L79">        return Objects.equals(id, mazo.id);</span>
     }
 
     @Override
     public int hashCode() {
-<span class="nc" id="L85">        return Objects.hash(idMazo);</span>
+<span class="nc" id="L84">        return Objects.hash(id);</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L90">        return &quot;Mazo [idMazo=&quot; + idMazo + &quot;, nombre=&quot; + nombre + &quot;]&quot;;</span>
+<span class="nc" id="L89">        return &quot;Mazo [idMazo=&quot; + id + &quot;, nombre=&quot; + nombre + &quot;]&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

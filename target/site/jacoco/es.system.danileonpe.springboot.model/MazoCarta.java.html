@@ -13,76 +13,77 @@ public class MazoCarta {
 
     
     @ManyToOne
-    @JoinColumn(name = &quot;idMazo&quot;, nullable = false)
+    @JoinColumn(name = &quot;id_mazo&quot;, nullable = false)
     private Mazo mazo;
+
 
     
     @ManyToOne
-    @JoinColumn(name = &quot;idCarta&quot;, nullable = false)
+    @JoinColumn(name = &quot;id_carta&quot;, nullable = false)
     private Carta carta;
 
     @Column(nullable = false)
     private int cantidad;
 
     // Constructor vacío
-<span class="nc" id="L28">    public MazoCarta() {}</span>
+<span class="nc" id="L29">    public MazoCarta() {}</span>
 
     // Constructor con parámetros
-<span class="nc" id="L31">    public MazoCarta(Mazo mazo, Carta carta, int cantidad) {</span>
-<span class="nc" id="L32">        this.mazo = mazo;</span>
-<span class="nc" id="L33">        this.carta = carta;</span>
-<span class="nc" id="L34">        this.cantidad = cantidad;</span>
-<span class="nc" id="L35">    }</span>
+<span class="nc" id="L32">    public MazoCarta(Mazo mazo, Carta carta, int cantidad) {</span>
+<span class="nc" id="L33">        this.mazo = mazo;</span>
+<span class="nc" id="L34">        this.carta = carta;</span>
+<span class="nc" id="L35">        this.cantidad = cantidad;</span>
+<span class="nc" id="L36">    }</span>
 
     // Getters y Setters
     public int getId(){
-<span class="nc" id="L39">        return id;</span>
+<span class="nc" id="L40">        return id;</span>
     }
     public void setId(int id){
-<span class="nc" id="L42">        this.id = id;</span>
-<span class="nc" id="L43">    }</span>
+<span class="nc" id="L43">        this.id = id;</span>
+<span class="nc" id="L44">    }</span>
 
 
     public Mazo getMazo() {
-<span class="nc" id="L47">        return mazo;</span>
+<span class="nc" id="L48">        return mazo;</span>
     }
 
     public void setMazo(Mazo mazo) {
-<span class="nc" id="L51">        this.mazo = mazo;</span>
-<span class="nc" id="L52">    }</span>
+<span class="nc" id="L52">        this.mazo = mazo;</span>
+<span class="nc" id="L53">    }</span>
 
     public Carta getCarta() {
-<span class="nc" id="L55">        return carta;</span>
+<span class="nc" id="L56">        return carta;</span>
     }
 
     public void setCarta(Carta carta) {
-<span class="nc" id="L59">        this.carta = carta;</span>
-<span class="nc" id="L60">    }</span>
+<span class="nc" id="L60">        this.carta = carta;</span>
+<span class="nc" id="L61">    }</span>
 
     public int getCantidad() {
-<span class="nc" id="L63">        return cantidad;</span>
+<span class="nc" id="L64">        return cantidad;</span>
     }
 
     public void setCantidad(int cantidad) {
-<span class="nc" id="L67">        this.cantidad = cantidad;</span>
-<span class="nc" id="L68">    }</span>
+<span class="nc" id="L68">        this.cantidad = cantidad;</span>
+<span class="nc" id="L69">    }</span>
 
     @Override
     public boolean equals(Object o) {
-<span class="nc bnc" id="L72" title="All 2 branches missed.">        if (this == o) return true;</span>
-<span class="nc bnc" id="L73" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
-<span class="nc" id="L74">        MazoCarta mazoCarta = (MazoCarta) o;</span>
-<span class="nc bnc" id="L75" title="All 4 branches missed.">        return Objects.equals(mazo, mazoCarta.mazo) &amp;&amp; Objects.equals(carta, mazoCarta.carta);</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">        if (this == o) return true;</span>
+<span class="nc bnc" id="L74" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc" id="L75">        MazoCarta mazoCarta = (MazoCarta) o;</span>
+<span class="nc bnc" id="L76" title="All 4 branches missed.">        return Objects.equals(mazo, mazoCarta.mazo) &amp;&amp; Objects.equals(carta, mazoCarta.carta);</span>
     }
 
     @Override
     public int hashCode() {
-<span class="nc" id="L80">        return Objects.hash(mazo, carta);</span>
+<span class="nc" id="L81">        return Objects.hash(mazo, carta);</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L85">        return &quot;MazoCarta [mazo=&quot; + mazo + &quot;, carta=&quot; + carta + &quot;, cantidad=&quot; + cantidad + &quot;]&quot;;</span>
+<span class="nc" id="L86">        return &quot;MazoCarta [mazo=&quot; + mazo + &quot;, carta=&quot; + carta + &quot;, cantidad=&quot; + cantidad + &quot;]&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

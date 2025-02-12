@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Carta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idCarta;
+    private int id;
 
     @Column(nullable = false)
     private String nombre;
@@ -31,7 +31,7 @@ public class Carta {
     @ManyToOne
     @JsonIgnore
     @JoinColumn(
-            name = "idExpansion", nullable = false)
+            name = "id_expansion", nullable = false)
     private Expansion expansion;
 
 
@@ -39,17 +39,17 @@ public class Carta {
 
     public Carta() {}
 
-    public Carta(int idCarta){
-        this.idCarta = idCarta;
+    public Carta(int id){
+        this.id = id;
     }
   
 
-    public int getIdCarta() {
-        return idCarta;
+    public int getId() {
+        return id;
     }
 
-    public void setIdCarta(int idCarta) {
-        this.idCarta = idCarta;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -108,8 +108,8 @@ public class Carta {
     }
 
 
-    public Carta(int idCarta, String nombre, String tipo, String rareza, int costo, String descripcion, Expansion expansion, String imagenUrl) {
-        this.idCarta = idCarta;
+    public Carta(int id, String nombre, String tipo, String rareza, int costo, String descripcion, Expansion expansion, String imagenUrl) {
+        this.id = id;
         this.nombre = nombre;
         this.tipo = tipo;
         this.rareza = rareza;
@@ -124,16 +124,16 @@ public class Carta {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Carta carta = (Carta) o;
-        return Objects.equals(idCarta, carta.idCarta);
+        return Objects.equals(id, carta.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idCarta);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
-        return "Carta [idCarta=" + idCarta + ", nombre=" + nombre + ", tipo=" + tipo + "]";
+        return "Carta [idCarta=" + id + ", nombre=" + nombre + ", tipo=" + tipo + "]";
     }
 }

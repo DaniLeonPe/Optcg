@@ -32,7 +32,7 @@ import org.springframework.stereotype.Component;
 <span class="nc bnc" id="L32" title="All 2 branches missed.">        if(t == null){</span>
 <span class="nc" id="L33">            return false;</span>
         }
-<span class="nc bnc" id="L35" title="All 2 branches missed.">        if(repository.existsById(t.getIdMazo())){</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        if(repository.existsById(t.getId())){</span>
 <span class="nc" id="L36">            return false;</span>
         }
 <span class="nc" id="L38">        repository.save(t);</span>

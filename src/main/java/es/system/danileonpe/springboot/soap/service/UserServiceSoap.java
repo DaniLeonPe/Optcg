@@ -34,7 +34,7 @@ public class UserServiceSoap implements IServiceSoap<UsuarioDTO> {
 
     @Override
     public boolean update(UsuarioDTO t) throws Exception {
-       return service.update(t.idUsuario(), UsuarioMapper.INSTANCE.toEntity(t));
+       return service.update(t.id(), UsuarioMapper.INSTANCE.toEntity(t));
     }
 
     @Override

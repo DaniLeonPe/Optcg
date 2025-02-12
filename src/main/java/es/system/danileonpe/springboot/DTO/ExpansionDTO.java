@@ -1,6 +1,6 @@
 package es.system.danileonpe.springboot.DTO;
 
-import java.sql.Date;
+import java.util.Date;
 
 public record ExpansionDTO(
     int idExpansion,

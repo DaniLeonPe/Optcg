@@ -2,15 +2,15 @@ package es.system.danileonpe.springboot.mapper;
 
 import es.system.danileonpe.springboot.DTO.ExpansionDTO;
 import es.system.danileonpe.springboot.model.Expansion;
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-12T13:24:05+0000",
-    comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
+    date = "2025-02-12T15:42:27+0000",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.14 (Oracle Corporation)"
 )
 public class ExpansionMapperImpl implements ExpansionMapper {
 
@@ -20,15 +20,13 @@ public class ExpansionMapperImpl implements ExpansionMapper {
             return null;
         }
 
-        int idExpansion = 0;
         String nombre = null;
         Date fechaLanzamiento = null;
 
-        idExpansion = expansion.getIdExpansion();
         nombre = expansion.getNombre();
-        if ( expansion.getFechaLanzamiento() != null ) {
-            fechaLanzamiento = new Date( expansion.getFechaLanzamiento().getTime() );
-        }
+        fechaLanzamiento = expansion.getFechaLanzamiento();
+
+        int idExpansion = 0;
 
         ExpansionDTO expansionDTO = new ExpansionDTO( idExpansion, nombre, fechaLanzamiento );
 
@@ -43,7 +41,6 @@ public class ExpansionMapperImpl implements ExpansionMapper {
 
         Expansion expansion = new Expansion();
 
-        expansion.setIdExpansion( expansionDTO.idExpansion() );
         expansion.setNombre( expansionDTO.nombre() );
         expansion.setFechaLanzamiento( expansionDTO.fechaLanzamiento() );
 

@@ -14,13 +14,13 @@ public interface MazoCartaMapper {
     
     MazoCartaMapper INSTANCE = Mappers.getMapper(MazoCartaMapper.class);
 
-    @Mapping(source = "mazo.idMazo", target = "idMazo")
-    @Mapping(source = "carta.idCarta", target = "idCarta")
+    @Mapping(source = "mazo.id", target = "idMazo")
+    @Mapping(source = "carta.id", target = "idCarta")
     MazoCartaDTO toDTO(MazoCarta mazoCarta);
 
 
-    @Mapping(source = "idMazo", target = "mazo.idMazo")
-    @Mapping(source = "idCarta", target = "carta.idCarta")
+    @Mapping(source = "idMazo", target = "mazo.id")
+    @Mapping(source = "idCarta", target = "carta.id")
     MazoCarta toEntity(MazoCartaDTO mazoCartaDTO);
 
     List<MazoCartaDTO> toDTOList(List<MazoCarta> mazoCartas);

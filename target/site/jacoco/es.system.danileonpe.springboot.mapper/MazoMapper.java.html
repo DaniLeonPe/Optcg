@@ -14,10 +14,10 @@ public interface MazoMapper {
     
 <span class="nc" id="L15">    MazoMapper INSTANCE = Mappers.getMapper(MazoMapper.class); </span>
 
-    @Mapping(source = &quot;usuario.idUsuario&quot;, target = &quot;idUsuario&quot;)
+    @Mapping(source = &quot;usuario.id&quot;, target = &quot;idUsuario&quot;)
     MazoDTO toDTO(Mazo mazo);
 
-    @Mapping(source = &quot;idUsuario&quot;, target = &quot;usuario.idUsuario&quot;) 
+    @Mapping(source = &quot;idUsuario&quot;, target = &quot;usuario.id&quot;)
     Mazo toEntity(MazoDTO mazoDTO);
 
     List&lt;MazoDTO&gt; toDTOList(List&lt;Mazo&gt; mazos);

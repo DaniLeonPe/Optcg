@@ -3,15 +3,15 @@ package es.system.danileonpe.springboot.mapper;
 import es.system.danileonpe.springboot.DTO.MazoDTO;
 import es.system.danileonpe.springboot.model.Mazo;
 import es.system.danileonpe.springboot.model.Usuario;
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-12T13:24:04+0000",
-    comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
+    date = "2025-02-12T15:42:27+0000",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.14 (Oracle Corporation)"
 )
 public class MazoMapperImpl implements MazoMapper {
 
@@ -22,18 +22,16 @@ public class MazoMapperImpl implements MazoMapper {
         }
 
         int idUsuario = 0;
-        int idMazo = 0;
         String nombre = null;
         String descripcion = null;
         Date fechaCreacion = null;
 
         idUsuario = mazoUsuarioId( mazo );
-        idMazo = mazo.getIdMazo();
         nombre = mazo.getNombre();
         descripcion = mazo.getDescripcion();
-        if ( mazo.getFechaCreacion() != null ) {
-            fechaCreacion = new Date( mazo.getFechaCreacion().getTime() );
-        }
+        fechaCreacion = mazo.getFechaCreacion();
+
+        int idMazo = 0;
 
         MazoDTO mazoDTO = new MazoDTO( idMazo, idUsuario, nombre, descripcion, fechaCreacion );
 
@@ -49,7 +47,6 @@ public class MazoMapperImpl implements MazoMapper {
         Mazo mazo = new Mazo();
 
         mazo.setUsuario( mazoDTOToUsuario( mazoDTO ) );
-        mazo.setIdMazo( mazoDTO.idMazo() );
         mazo.setNombre( mazoDTO.nombre() );
         mazo.setDescripcion( mazoDTO.descripcion() );
         mazo.setFechaCreacion( mazoDTO.fechaCreacion() );

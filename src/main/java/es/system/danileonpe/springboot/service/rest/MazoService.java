@@ -32,7 +32,7 @@ public class MazoService implements IService<Mazo>{
         if(t == null){
             return false;
         }
-        if(repository.existsById(t.getIdMazo())){
+        if(repository.existsById(t.getId())){
             return false;
         }
         repository.save(t);

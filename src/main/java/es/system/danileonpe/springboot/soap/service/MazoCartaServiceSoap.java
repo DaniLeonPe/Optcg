@@ -49,7 +49,7 @@ public class MazoCartaServiceSoap {
         Carta carta = mazoCartaService.cartaRepository.findById(cartaId).orElse(null);
         MazoCarta mazoCarta = mazoCartaService.addCartaToMazo(mazo, carta, cantidad);
         
-        return new MazoCartaDTO(mazoCarta.getId(), mazoCarta.getMazo().getIdMazo(), mazoCarta.getCarta().getIdCarta(), mazoCarta.getCantidad());
+        return new MazoCartaDTO(mazoCarta.getId(), mazoCarta.getMazo().getId(), mazoCarta.getCarta().getId(), mazoCarta.getCantidad());
     }
 
     @WebMethod

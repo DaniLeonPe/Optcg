@@ -32,7 +32,7 @@ public class ExpansionService implements IService<Expansion> {
         if(t == null){
             return false;
         }
-        if(repository.existsById(t.getIdExpansion())){
+        if(repository.existsById(t.getId())){
             return false;
         }
         repository.save(t);
@@ -52,7 +52,7 @@ public class ExpansionService implements IService<Expansion> {
             Expansion update = repository.findById(id).orElse(null);
             if(update != null){
                update.setNombre(t.getNombre());
-               update.setNombre(t.getNombre());
+               update.setFechaLanzamiento(t.getFechaLanzamiento());
                 repository.save(update);
                 return true;
             }else{

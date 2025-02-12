@@ -13,12 +13,13 @@ public class MazoCarta {
 
     
     @ManyToOne
-    @JoinColumn(name = "idMazo", nullable = false)
+    @JoinColumn(name = "id_mazo", nullable = false)
     private Mazo mazo;
+
 
     
     @ManyToOne
-    @JoinColumn(name = "idCarta", nullable = false)
+    @JoinColumn(name = "id_carta", nullable = false)
     private Carta carta;
 
     @Column(nullable = false)

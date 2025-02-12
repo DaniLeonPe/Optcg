@@ -3,14 +3,14 @@
 import jakarta.persistence.*;
 
 import java.util.Date;
-import java.util.Objects;
+import java.util.List;
 
 @Entity
 @Table(name = &quot;expansiones&quot;)
 <span class="nc" id="L10">public class Expansion {</span>
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idExpansion;
+    private int id;
 
     @Column(nullable = false)
     private String nombre;
@@ -18,46 +18,40 @@ import java.util.Objects;
     @Column(name = &quot;fechaLanzamiento&quot;, columnDefinition = &quot;DATE&quot;)
     private Date fechaLanzamiento;
 
-    public int getIdExpansion() {
-<span class="nc" id="L22">        return idExpansion;</span>
+    @OneToMany(mappedBy = &quot;expansion&quot;)
+    private List&lt;Carta&gt; cartas; // Relación con la clase Carta
+
+    // Getters y setters
+    public int getId() {
+<span class="nc" id="L26">        return id;</span>
     }
 
-    public void setIdExpansion(int idExpansion) {
-<span class="nc" id="L26">        this.idExpansion = idExpansion;</span>
-<span class="nc" id="L27">    }</span>
+    public void setId(int id) {
+<span class="nc" id="L30">        this.id = id;</span>
+<span class="nc" id="L31">    }</span>
 
     public String getNombre() {
-<span class="nc" id="L30">        return nombre;</span>
+<span class="nc" id="L34">        return nombre;</span>
     }
 
     public void setNombre(String nombre) {
-<span class="nc" id="L34">        this.nombre = nombre;</span>
-<span class="nc" id="L35">    }</span>
+<span class="nc" id="L38">        this.nombre = nombre;</span>
+<span class="nc" id="L39">    }</span>
 
     public Date getFechaLanzamiento() {
-<span class="nc" id="L38">        return fechaLanzamiento;</span>
+<span class="nc" id="L42">        return fechaLanzamiento;</span>
     }
 
     public void setFechaLanzamiento(Date fechaLanzamiento) {
-<span class="nc" id="L42">        this.fechaLanzamiento = fechaLanzamiento;</span>
-<span class="nc" id="L43">    }</span>
+<span class="nc" id="L46">        this.fechaLanzamiento = fechaLanzamiento;</span>
+<span class="nc" id="L47">    }</span>
 
-    @Override
-    public boolean equals(Object o) {
-<span class="nc bnc" id="L47" title="All 2 branches missed.">        if (this == o) return true;</span>
-<span class="nc bnc" id="L48" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
-<span class="nc" id="L49">        Expansion that = (Expansion) o;</span>
-<span class="nc" id="L50">        return Objects.equals(idExpansion, that.idExpansion);</span>
+    public List&lt;Carta&gt; getCartas() {
+<span class="nc" id="L50">        return cartas;</span>
     }
 
-    @Override
-    public int hashCode() {
-<span class="nc" id="L55">        return Objects.hash(idExpansion);</span>
-    }
-
-    @Override
-    public String toString() {
-<span class="nc" id="L60">        return &quot;Expansion [idExpansion=&quot; + idExpansion + &quot;, nombre=&quot; + nombre + &quot;]&quot;;</span>
-    }
+    public void setCartas(List&lt;Carta&gt; cartas) {
+<span class="nc" id="L54">        this.cartas = cartas;</span>
+<span class="nc" id="L55">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

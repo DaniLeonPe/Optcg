@@ -32,7 +32,7 @@ public class CartaService implements IService<Carta>{
         if(t == null){
             return false;
         }
-        if(repository.existsById(t.getIdCarta())){
+        if(repository.existsById(t.getId())){
             return false;
         }
         repository.save(t);
