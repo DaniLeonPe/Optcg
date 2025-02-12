@@ -5,9 +5,10 @@ import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+
 @Entity
 @Table(name = &quot;expansiones&quot;)
-<span class="nc" id="L10">public class Expansion {</span>
+<span class="nc" id="L11">public class Expansion {</span>
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -15,43 +16,44 @@ import java.util.List;
     @Column(nullable = false)
     private String nombre;
 
-    @Column(name = &quot;fechaLanzamiento&quot;, columnDefinition = &quot;DATE&quot;)
-    private Date fechaLanzamiento;
+    @Column(name = &quot;fecha_lanzamiento&quot;)
+    @Convert(converter = DateToLongConverter.class)
+	private Date fechaLanzamiento;
 
     @OneToMany(mappedBy = &quot;expansion&quot;)
-    private List&lt;Carta&gt; cartas; // Relación con la clase Carta
+    private List&lt;Carta&gt; cartas; 
 
     // Getters y setters
     public int getId() {
-<span class="nc" id="L26">        return id;</span>
+<span class="nc" id="L28">        return id;</span>
     }
 
     public void setId(int id) {
-<span class="nc" id="L30">        this.id = id;</span>
-<span class="nc" id="L31">    }</span>
+<span class="nc" id="L32">        this.id = id;</span>
+<span class="nc" id="L33">    }</span>
 
     public String getNombre() {
-<span class="nc" id="L34">        return nombre;</span>
+<span class="nc" id="L36">        return nombre;</span>
     }
 
     public void setNombre(String nombre) {
-<span class="nc" id="L38">        this.nombre = nombre;</span>
-<span class="nc" id="L39">    }</span>
+<span class="nc" id="L40">        this.nombre = nombre;</span>
+<span class="nc" id="L41">    }</span>
 
     public Date getFechaLanzamiento() {
-<span class="nc" id="L42">        return fechaLanzamiento;</span>
+<span class="nc" id="L44">        return fechaLanzamiento;</span>
     }
 
     public void setFechaLanzamiento(Date fechaLanzamiento) {
-<span class="nc" id="L46">        this.fechaLanzamiento = fechaLanzamiento;</span>
-<span class="nc" id="L47">    }</span>
+<span class="nc" id="L48">        this.fechaLanzamiento = fechaLanzamiento;</span>
+<span class="nc" id="L49">    }</span>
 
     public List&lt;Carta&gt; getCartas() {
-<span class="nc" id="L50">        return cartas;</span>
+<span class="nc" id="L52">        return cartas;</span>
     }
 
     public void setCartas(List&lt;Carta&gt; cartas) {
-<span class="nc" id="L54">        this.cartas = cartas;</span>
-<span class="nc" id="L55">    }</span>
+<span class="nc" id="L56">        this.cartas = cartas;</span>
+<span class="nc" id="L57">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

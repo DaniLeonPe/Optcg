@@ -54,6 +54,7 @@ public class ColeccionesController {
     @Operation(summary = "Insert collection")
     @PostMapping
     public ResponseEntity <?> add(@RequestBody ColeccionDTO dto) {
+        System.out.println("Received Coleccion: " + dto);
         service.add(ColeccionMapper.INSTANCE.toEntity(dto));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

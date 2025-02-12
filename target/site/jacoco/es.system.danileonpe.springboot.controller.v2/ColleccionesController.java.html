@@ -40,7 +40,7 @@ public class ColleccionesController {
 <span class="nc" id="L40">    }</span>
 
     @GetMapping
-    @Operation(summary = &quot;Get all Cards&quot;)
+    @Operation(summary = &quot;Get all Colecciones&quot;)
     public ResponseEntity&lt;List&lt;?&gt;&gt; getAll() {
 <span class="nc" id="L45">        List&lt;ColeccionDTO&gt; filteredList = service.getAll().stream()</span>
 <span class="nc" id="L46">                .map(ColeccionMapper.INSTANCE::toDTO)</span>
@@ -51,7 +51,7 @@ public class ColleccionesController {
     }
 
     @GetMapping(&quot;/{id}&quot;)
-    @Operation(summary = &quot;Get Cards by ID&quot;)
+    @Operation(summary = &quot;Get Colecciones by ID&quot;)
     public ResponseEntity&lt;ColeccionDTO&gt; getById(@PathVariable(value = &quot;id&quot;) int id) {
 
 <span class="nc" id="L57">        return ResponseEntity.ok(ColeccionMapper.INSTANCE.toDTO(service.getById(id)));</span>

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-12T15:42:27+0000",
+    date = "2025-02-12T19:36:25+0000",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.14 (Oracle Corporation)"
 )
 @Component
@@ -25,15 +25,15 @@ public class ColeccionMapperImpl implements ColeccionMapper {
 
         int usuario = 0;
         int carta = 0;
+        int id = 0;
         int cantidad = 0;
 
         usuario = coleccionUsuarioId( coleccion );
         carta = coleccionCartaId( coleccion );
+        id = coleccion.getId();
         cantidad = coleccion.getCantidad();
 
-        int idColeccion = 0;
-
-        ColeccionDTO coleccionDTO = new ColeccionDTO( idColeccion, usuario, carta, cantidad );
+        ColeccionDTO coleccionDTO = new ColeccionDTO( id, usuario, carta, cantidad );
 
         return coleccionDTO;
     }
@@ -46,6 +46,7 @@ public class ColeccionMapperImpl implements ColeccionMapper {
 
         Coleccion coleccion = new Coleccion();
 
+        coleccion.setId( coleccionDTO.id() );
         coleccion.setCantidad( coleccionDTO.cantidad() );
 
         coleccion.setUsuario( mapUsuario(coleccionDTO.usuario()) );

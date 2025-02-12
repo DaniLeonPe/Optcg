@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import es.system.danileonpe.springboot.DTO.RolDTO;
-import es.system.danileonpe.springboot.mapper.RolMapper;
-import es.system.danileonpe.springboot.service.rest.RolService;
+import es.system.danileonpe.springboot.DTO.RoleDTO;
+import es.system.danileonpe.springboot.mapper.IRoleMapper;
+import es.system.danileonpe.springboot.service.rest.RoleService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -24,22 +24,22 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 public class RolController {
 
 
-    private RolService service;
+    private RoleService service;
 
     public RolController(){
 
     }
 
     @Autowired
-    public RolController(RolService service){
+    public RolController(RoleService service){
         this.service = service;
     }
 
     @GetMapping
     @Operation(summary = "Get all rols")
     public ResponseEntity<List<?>> getAll() {
-        List<RolDTO> filteredList = service.getAll().stream()
-                .map(RolMapper.INSTANCE::toDTO)
+        List<RoleDTO> filteredList = service.getAll().stream()
+                .map(IRoleMapper.INSTANCE::toDTO)
                 .collect(Collectors.toList());
 
 
@@ -48,8 +48,8 @@ public class RolController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Get rols by ID")
-    public ResponseEntity<RolDTO> getById(@PathVariable(value = "id") int id) {
+    public ResponseEntity<RoleDTO> getById(@PathVariable(value = "id") int id) {
 
-        return ResponseEntity.ok(RolMapper.INSTANCE.toDTO(service.getById(id)));
+        return ResponseEntity.ok(IRoleMapper.INSTANCE.toDTO(service.getById(id)));
     }
 }

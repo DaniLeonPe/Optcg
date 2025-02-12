@@ -35,14 +35,14 @@ VALUES
 CREATE TABLE expansiones (
     id INTEGER PRIMARY KEY AUTOINCREMENT,  -- Renombrado a id_expansion
     nombre VARCHAR(100) NOT NULL,
-    fecha_lanzamiento DATE
+    fecha_lanzamiento BIGINT NOT NULL
 );
 
 -- Insertar expansiones
 INSERT INTO expansiones (nombre, fecha_lanzamiento)
 VALUES
-('Base Set', '2023-01-01'),
-('Expansion 1', '2023-06-01');
+('Base Set', 1672531200000),
+('Expansion 1', 1685577600000);
 
 -- Crear la tabla de cartas
 CREATE TABLE cartas (
@@ -89,14 +89,14 @@ CREATE TABLE mazos (
     id_usuario INT NOT NULL,  -- Renombrado a id_usuario
     nombre VARCHAR(100) NOT NULL,
     descripcion TEXT,
-    fecha_creacion DATE DEFAULT CURRENT_DATE,  -- Renombrado a fecha_creacion
+    fecha_creacion BIGINT NOT NULL,
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)  -- Relación con usuarios
 );
 
 -- Insertar mazos
-INSERT INTO mazos (id_usuario, nombre, descripcion)
+INSERT INTO mazos (id_usuario, nombre, descripcion, fecha_creacion) 
 VALUES
-(1, 'Sombreros de Paja', 'Un mazo con los personajes principales de la tripulación.');
+(1, 'Sombreros de Paja', 'Un mazo con los personajes principales de la tripulación.','2023-01-01 00:00:00');
 
 -- Crear la tabla de cartas en mazos
 CREATE TABLE mazos_cartas (

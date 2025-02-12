@@ -9,7 +9,7 @@ import org.mapstruct.factory.Mappers;
 import es.system.danileonpe.springboot.DTO.CartaDTO;
 import es.system.danileonpe.springboot.model.Carta;
 
-@Mapper
+@Mapper(componentModel = &quot;spring&quot;)
 public interface CartaMapper {
 
 <span class="nc" id="L15">    CartaMapper INSTANCE = Mappers.getMapper(CartaMapper.class);</span>

@@ -2,7 +2,6 @@
 
 import jakarta.persistence.*;
 
-
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -10,7 +9,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = &quot;mazos&quot;)
-<span class="nc" id="L13">public class Mazo {</span>
+<span class="nc" id="L12">public class Mazo {</span>
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -24,69 +23,69 @@ import java.util.Objects;
 
     private String descripcion;
 
-<span class="nc" id="L27">    @Column(name = &quot;fecha_creacion&quot;, columnDefinition = &quot;DATE&quot;)</span>
-    private Date fechaCreacion = new Date();
-
+    @Convert(converter = DateToLongConverter.class)
+    @Column(name = &quot;fecha_creacion&quot;)
+    private Date fechaCreacion;
 
     @OneToMany(mappedBy = &quot;mazo&quot;)
     private List&lt;MazoCarta&gt; mazoCartas;
     
     public int getId() {
-<span class="nc" id="L35">        return id;</span>
+<span class="nc" id="L34">        return id;</span>
     }
 
     public void setId(int id) {
-<span class="nc" id="L39">        this.id = id;</span>
-<span class="nc" id="L40">    }</span>
+<span class="nc" id="L38">        this.id = id;</span>
+<span class="nc" id="L39">    }</span>
 
     public Usuario getUsuario() {
-<span class="nc" id="L43">        return usuario;</span>
+<span class="nc" id="L42">        return usuario;</span>
     }
 
     public void setUsuario(Usuario usuario) {
-<span class="nc" id="L47">        this.usuario = usuario;</span>
-<span class="nc" id="L48">    }</span>
+<span class="nc" id="L46">        this.usuario = usuario;</span>
+<span class="nc" id="L47">    }</span>
 
     public String getNombre() {
-<span class="nc" id="L51">        return nombre;</span>
+<span class="nc" id="L50">        return nombre;</span>
     }
 
     public void setNombre(String nombre) {
-<span class="nc" id="L55">        this.nombre = nombre;</span>
-<span class="nc" id="L56">    }</span>
+<span class="nc" id="L54">        this.nombre = nombre;</span>
+<span class="nc" id="L55">    }</span>
 
     public String getDescripcion() {
-<span class="nc" id="L59">        return descripcion;</span>
+<span class="nc" id="L58">        return descripcion;</span>
     }
 
     public void setDescripcion(String descripcion) {
-<span class="nc" id="L63">        this.descripcion = descripcion;</span>
-<span class="nc" id="L64">    }</span>
+<span class="nc" id="L62">        this.descripcion = descripcion;</span>
+<span class="nc" id="L63">    }</span>
 
     public Date getFechaCreacion() {
-<span class="nc" id="L67">        return fechaCreacion;</span>
+<span class="nc" id="L66">        return fechaCreacion;</span>
     }
 
     public void setFechaCreacion(Date fechaCreacion) {
-<span class="nc" id="L71">        this.fechaCreacion = fechaCreacion;</span>
-<span class="nc" id="L72">    }</span>
+<span class="nc" id="L70">        this.fechaCreacion = fechaCreacion;</span>
+<span class="nc" id="L71">    }</span>
 
     @Override
     public boolean equals(Object o) {
-<span class="nc bnc" id="L76" title="All 2 branches missed.">        if (this == o) return true;</span>
-<span class="nc bnc" id="L77" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
-<span class="nc" id="L78">        Mazo mazo = (Mazo) o;</span>
-<span class="nc" id="L79">        return Objects.equals(id, mazo.id);</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">        if (this == o) return true;</span>
+<span class="nc bnc" id="L76" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc" id="L77">        Mazo mazo = (Mazo) o;</span>
+<span class="nc" id="L78">        return Objects.equals(id, mazo.id);</span>
     }
 
     @Override
     public int hashCode() {
-<span class="nc" id="L84">        return Objects.hash(id);</span>
+<span class="nc" id="L83">        return Objects.hash(id);</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L89">        return &quot;Mazo [idMazo=&quot; + id + &quot;, nombre=&quot; + nombre + &quot;]&quot;;</span>
+<span class="nc" id="L88">        return &quot;Mazo [idMazo=&quot; + id + &quot;, nombre=&quot; + nombre + &quot;]&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

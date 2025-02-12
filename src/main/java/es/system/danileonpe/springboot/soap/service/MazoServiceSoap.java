@@ -30,7 +30,7 @@ public class MazoServiceSoap implements IServiceSoap<MazoDTO> {
 
     @Override
     public boolean update(MazoDTO t) throws Exception {
-       return service.update(t.idMazo(), MazoMapper.INSTANCE.toEntity(t));
+       return service.update(t.id(), MazoMapper.INSTANCE.toEntity(t));
     }
 
     @Override

@@ -6,12 +6,14 @@ import es.system.danileonpe.springboot.model.Expansion;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-12T15:42:27+0000",
+    date = "2025-02-12T19:36:25+0000",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.14 (Oracle Corporation)"
 )
+@Component
 public class CartaMapperImpl implements CartaMapper {
 
     @Override
@@ -21,6 +23,7 @@ public class CartaMapperImpl implements CartaMapper {
         }
 
         int expansion = 0;
+        int id = 0;
         String nombre = null;
         String tipo = null;
         String rareza = null;
@@ -29,6 +32,7 @@ public class CartaMapperImpl implements CartaMapper {
         String imagenUrl = null;
 
         expansion = cartaExpansionId( carta );
+        id = carta.getId();
         nombre = carta.getNombre();
         tipo = carta.getTipo();
         rareza = carta.getRareza();
@@ -36,9 +40,7 @@ public class CartaMapperImpl implements CartaMapper {
         descripcion = carta.getDescripcion();
         imagenUrl = carta.getImagenUrl();
 
-        int idCarta = 0;
-
-        CartaDTO cartaDTO = new CartaDTO( idCarta, nombre, tipo, rareza, costo, descripcion, expansion, imagenUrl );
+        CartaDTO cartaDTO = new CartaDTO( id, nombre, tipo, rareza, costo, descripcion, expansion, imagenUrl );
 
         return cartaDTO;
     }
@@ -52,6 +54,7 @@ public class CartaMapperImpl implements CartaMapper {
         Carta carta = new Carta();
 
         carta.setExpansion( cartaDTOToExpansion( cartaDTO ) );
+        carta.setId( cartaDTO.id() );
         carta.setNombre( cartaDTO.nombre() );
         carta.setTipo( cartaDTO.tipo() );
         carta.setRareza( cartaDTO.rareza() );

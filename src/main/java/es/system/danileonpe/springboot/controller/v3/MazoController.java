@@ -54,6 +54,7 @@ public class MazoController {
     @Operation(summary = "Insert mazos")
     @PostMapping
     public ResponseEntity <?> add(@RequestBody MazoDTO dto) {
+        System.out.println("Received Mazo: " + dto);
         service.add(MazoMapper.INSTANCE.toEntity(dto));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

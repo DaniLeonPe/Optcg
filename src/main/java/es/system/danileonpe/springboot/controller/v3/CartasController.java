@@ -54,6 +54,7 @@ public class CartasController {
     @Operation(summary = "Insert Card")
     @PostMapping
     public ResponseEntity <?> add(@RequestBody CartaDTO cartaDTO) {
+        System.out.println("Received Card: " + cartaDTO);
         service.add(CartaMapper.INSTANCE.toEntity(cartaDTO));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

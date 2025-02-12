@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-02-12T15:42:27+0000&quot;,
+    date = &quot;2025-02-12T19:36:25+0000&quot;,
     comments = &quot;version: 1.5.3.Final, compiler: javac, environment: Java 17.0.14 (Oracle Corporation)&quot;
 )
 @Component
@@ -25,15 +25,15 @@ import org.springframework.stereotype.Component;
 
 <span class="nc" id="L26">        int usuario = 0;</span>
 <span class="nc" id="L27">        int carta = 0;</span>
-<span class="nc" id="L28">        int cantidad = 0;</span>
+<span class="nc" id="L28">        int id = 0;</span>
+<span class="nc" id="L29">        int cantidad = 0;</span>
 
-<span class="nc" id="L30">        usuario = coleccionUsuarioId( coleccion );</span>
-<span class="nc" id="L31">        carta = coleccionCartaId( coleccion );</span>
-<span class="nc" id="L32">        cantidad = coleccion.getCantidad();</span>
+<span class="nc" id="L31">        usuario = coleccionUsuarioId( coleccion );</span>
+<span class="nc" id="L32">        carta = coleccionCartaId( coleccion );</span>
+<span class="nc" id="L33">        id = coleccion.getId();</span>
+<span class="nc" id="L34">        cantidad = coleccion.getCantidad();</span>
 
-<span class="nc" id="L34">        int idColeccion = 0;</span>
-
-<span class="nc" id="L36">        ColeccionDTO coleccionDTO = new ColeccionDTO( idColeccion, usuario, carta, cantidad );</span>
+<span class="nc" id="L36">        ColeccionDTO coleccionDTO = new ColeccionDTO( id, usuario, carta, cantidad );</span>
 
 <span class="nc" id="L38">        return coleccionDTO;</span>
     }
@@ -46,64 +46,65 @@ import org.springframework.stereotype.Component;
 
 <span class="nc" id="L47">        Coleccion coleccion = new Coleccion();</span>
 
-<span class="nc" id="L49">        coleccion.setCantidad( coleccionDTO.cantidad() );</span>
+<span class="nc" id="L49">        coleccion.setId( coleccionDTO.id() );</span>
+<span class="nc" id="L50">        coleccion.setCantidad( coleccionDTO.cantidad() );</span>
 
-<span class="nc" id="L51">        coleccion.setUsuario( mapUsuario(coleccionDTO.usuario()) );</span>
-<span class="nc" id="L52">        coleccion.setCarta( mapCarta(coleccionDTO.carta()) );</span>
+<span class="nc" id="L52">        coleccion.setUsuario( mapUsuario(coleccionDTO.usuario()) );</span>
+<span class="nc" id="L53">        coleccion.setCarta( mapCarta(coleccionDTO.carta()) );</span>
 
-<span class="nc" id="L54">        return coleccion;</span>
+<span class="nc" id="L55">        return coleccion;</span>
     }
 
     @Override
     public List&lt;ColeccionDTO&gt; toDTOList(List&lt;Coleccion&gt; colecciones) {
-<span class="nc bnc" id="L59" title="All 2 branches missed.">        if ( colecciones == null ) {</span>
-<span class="nc" id="L60">            return null;</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        if ( colecciones == null ) {</span>
+<span class="nc" id="L61">            return null;</span>
         }
 
-<span class="nc" id="L63">        List&lt;ColeccionDTO&gt; list = new ArrayList&lt;ColeccionDTO&gt;( colecciones.size() );</span>
-<span class="nc bnc" id="L64" title="All 2 branches missed.">        for ( Coleccion coleccion : colecciones ) {</span>
-<span class="nc" id="L65">            list.add( toDTO( coleccion ) );</span>
-<span class="nc" id="L66">        }</span>
+<span class="nc" id="L64">        List&lt;ColeccionDTO&gt; list = new ArrayList&lt;ColeccionDTO&gt;( colecciones.size() );</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        for ( Coleccion coleccion : colecciones ) {</span>
+<span class="nc" id="L66">            list.add( toDTO( coleccion ) );</span>
+<span class="nc" id="L67">        }</span>
 
-<span class="nc" id="L68">        return list;</span>
+<span class="nc" id="L69">        return list;</span>
     }
 
     @Override
     public List&lt;Coleccion&gt; toEntityList(List&lt;ColeccionDTO&gt; coleccionDTOs) {
-<span class="nc bnc" id="L73" title="All 2 branches missed.">        if ( coleccionDTOs == null ) {</span>
-<span class="nc" id="L74">            return null;</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">        if ( coleccionDTOs == null ) {</span>
+<span class="nc" id="L75">            return null;</span>
         }
 
-<span class="nc" id="L77">        List&lt;Coleccion&gt; list = new ArrayList&lt;Coleccion&gt;( coleccionDTOs.size() );</span>
-<span class="nc bnc" id="L78" title="All 2 branches missed.">        for ( ColeccionDTO coleccionDTO : coleccionDTOs ) {</span>
-<span class="nc" id="L79">            list.add( toEntity( coleccionDTO ) );</span>
-<span class="nc" id="L80">        }</span>
+<span class="nc" id="L78">        List&lt;Coleccion&gt; list = new ArrayList&lt;Coleccion&gt;( coleccionDTOs.size() );</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">        for ( ColeccionDTO coleccionDTO : coleccionDTOs ) {</span>
+<span class="nc" id="L80">            list.add( toEntity( coleccionDTO ) );</span>
+<span class="nc" id="L81">        }</span>
 
-<span class="nc" id="L82">        return list;</span>
+<span class="nc" id="L83">        return list;</span>
     }
 
     private int coleccionUsuarioId(Coleccion coleccion) {
-<span class="nc bnc" id="L86" title="All 2 branches missed.">        if ( coleccion == null ) {</span>
-<span class="nc" id="L87">            return 0;</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        if ( coleccion == null ) {</span>
+<span class="nc" id="L88">            return 0;</span>
         }
-<span class="nc" id="L89">        Usuario usuario = coleccion.getUsuario();</span>
-<span class="nc bnc" id="L90" title="All 2 branches missed.">        if ( usuario == null ) {</span>
-<span class="nc" id="L91">            return 0;</span>
+<span class="nc" id="L90">        Usuario usuario = coleccion.getUsuario();</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">        if ( usuario == null ) {</span>
+<span class="nc" id="L92">            return 0;</span>
         }
-<span class="nc" id="L93">        int id = usuario.getId();</span>
-<span class="nc" id="L94">        return id;</span>
+<span class="nc" id="L94">        int id = usuario.getId();</span>
+<span class="nc" id="L95">        return id;</span>
     }
 
     private int coleccionCartaId(Coleccion coleccion) {
-<span class="nc bnc" id="L98" title="All 2 branches missed.">        if ( coleccion == null ) {</span>
-<span class="nc" id="L99">            return 0;</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        if ( coleccion == null ) {</span>
+<span class="nc" id="L100">            return 0;</span>
         }
-<span class="nc" id="L101">        Carta carta = coleccion.getCarta();</span>
-<span class="nc bnc" id="L102" title="All 2 branches missed.">        if ( carta == null ) {</span>
-<span class="nc" id="L103">            return 0;</span>
+<span class="nc" id="L102">        Carta carta = coleccion.getCarta();</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        if ( carta == null ) {</span>
+<span class="nc" id="L104">            return 0;</span>
         }
-<span class="nc" id="L105">        int id = carta.getId();</span>
-<span class="nc" id="L106">        return id;</span>
+<span class="nc" id="L106">        int id = carta.getId();</span>
+<span class="nc" id="L107">        return id;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

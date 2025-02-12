@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import es.system.danileonpe.springboot.DTO.UsuarioDTO;
 import es.system.danileonpe.springboot.mapper.UsuarioMapper;
 import es.system.danileonpe.springboot.model.Usuario;
-import es.system.danileonpe.springboot.service.rest.RolService;
+import es.system.danileonpe.springboot.service.rest.RoleService;
 import es.system.danileonpe.springboot.service.rest.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -33,7 +33,7 @@ public class UsersController {
      * Properties
      */
     private UserService service;
-    private RolService roleService;
+    private RoleService roleService;
 
     /**
      * Default constructor of the class
@@ -55,7 +55,7 @@ public class UsersController {
      * @param roleService  of the role
      */
     @Autowired
-    public void setRoleService(RolService roleService) {
+    public void setRoleService(RoleService roleService) {
         this.roleService = roleService;
     }
 

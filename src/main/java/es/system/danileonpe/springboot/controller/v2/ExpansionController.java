@@ -25,7 +25,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController("ExpansionControllerV2")
 @RequestMapping("/api/v2/Expansiones")
 @CrossOrigin
-@Tag(name = "Cartas", description = "API para gestionar cartas")
+@Tag(name = "Expansion", description = "API para gestionar Expansiones")
 public class ExpansionController {
 
 

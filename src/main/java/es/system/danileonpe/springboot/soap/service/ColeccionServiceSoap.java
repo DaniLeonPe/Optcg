@@ -30,7 +30,7 @@ public class ColeccionServiceSoap implements IServiceSoap<ColeccionDTO> {
 
     @Override
     public boolean update(ColeccionDTO t) throws Exception {
-       return service.update(t.idColeccion(), ColeccionMapper.INSTANCE.toEntity(t));
+       return service.update(t.id(), ColeccionMapper.INSTANCE.toEntity(t));
     }
 
     @Override

@@ -9,15 +9,16 @@ import org.mapstruct.factory.Mappers;
 import es.system.danileonpe.springboot.DTO.ExpansionDTO;
 import es.system.danileonpe.springboot.model.Expansion;
 
-@Mapper
+@Mapper(componentModel = &quot;spring&quot;) 
 public interface ExpansionMapper {
     
 <span class="nc" id="L15">    ExpansionMapper INSTANCE = Mappers.getMapper(ExpansionMapper.class);</span>
 
+
+    
+    
     ExpansionDTO toDTO(Expansion expansion);
 
-
-    @Mapping(target = &quot;cartas&quot;, ignore = true)
     Expansion toEntity(ExpansionDTO expansionDTO);
 
     List&lt;ExpansionDTO&gt; toDTOList(List&lt;Expansion&gt; expansions);

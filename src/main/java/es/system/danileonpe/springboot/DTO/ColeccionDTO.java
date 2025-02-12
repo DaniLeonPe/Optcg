@@ -1,7 +1,7 @@
 package es.system.danileonpe.springboot.DTO;
 
 public record ColeccionDTO(
-    int idColeccion,
+    int id,
     int usuario,
     int carta,
     int cantidad

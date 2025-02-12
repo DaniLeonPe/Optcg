@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+
 @Entity
 @Table(name = "expansiones")
 public class Expansion {
@@ -15,11 +16,12 @@ public class Expansion {
     @Column(nullable = false)
     private String nombre;
 
-    @Column(name = "fechaLanzamiento", columnDefinition = "DATE")
-    private Date fechaLanzamiento;
+    @Column(name = "fecha_lanzamiento")
+    @Convert(converter = DateToLongConverter.class)
+	private Date fechaLanzamiento;
 
     @OneToMany(mappedBy = "expansion")
-    private List<Carta> cartas; // Relación con la clase Carta
+    private List<Carta> cartas; 
 
     // Getters y setters
     public int getId() {

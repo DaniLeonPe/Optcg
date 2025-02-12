@@ -1,13 +1,13 @@
 package es.system.danileonpe.springboot.DTO;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public record MazoDTO(
-    int idMazo,
+    int id,
     int idUsuario,
     String nombre,
     String descripcion,
-    Date fechaCreacion
+    LocalDateTime fechaCreacion
 ) {
     
 }

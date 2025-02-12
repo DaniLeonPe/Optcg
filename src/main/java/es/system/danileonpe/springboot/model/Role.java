@@ -8,6 +8,7 @@ import java.util.Set;
 @Entity
 @Table(name = "roles")
 public class Role {
+
     /**
      * Properties
      */
@@ -81,6 +82,4 @@ public class Role {
     public int hashCode() {
         return Objects.hash(id, name);
     }
-
-    
 }

@@ -30,7 +30,7 @@ public class ExpansionServiceSoap implements IServiceSoap<ExpansionDTO> {
 
     @Override
     public boolean update(ExpansionDTO t) throws Exception {
-       return service.update(t.idExpansion(), ExpansionMapper.INSTANCE.toEntity(t));
+       return service.update(t.id(), ExpansionMapper.INSTANCE.toEntity(t));
     }
 
     @Override

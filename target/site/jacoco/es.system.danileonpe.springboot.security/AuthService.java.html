@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 
 import es.system.danileonpe.springboot.model.Usuario;
-import es.system.danileonpe.springboot.service.rest.RolService;
+import es.system.danileonpe.springboot.service.rest.RoleService;
 import es.system.danileonpe.springboot.service.rest.UserService;
 
 @Service
@@ -18,7 +18,7 @@ import es.system.danileonpe.springboot.service.rest.UserService;
 
     private UserService service;
 
-    private RolService rolService;
+    private RoleService rolService;
 
     private JwtService jwtService;
 
@@ -39,7 +39,7 @@ import es.system.danileonpe.springboot.service.rest.UserService;
      * @param rolService of the role
      */
     @Autowired
-    public void setRoleService(RolService rolService) {
+    public void setRoleService(RoleService rolService) {
 <span class="nc" id="L43">        this.rolService = rolService;</span>
 <span class="nc" id="L44">    }</span>
 

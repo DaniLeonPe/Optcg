@@ -2,7 +2,6 @@ package es.system.danileonpe.springboot.model;
 
 import jakarta.persistence.*;
 
-
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -24,9 +23,9 @@ public class Mazo {
 
     private String descripcion;
 
-    @Column(name = "fecha_creacion", columnDefinition = "DATE")
-    private Date fechaCreacion = new Date();
-
+    @Convert(converter = DateToLongConverter.class)
+    @Column(name = "fecha_creacion")
+    private Date fechaCreacion;
 
     @OneToMany(mappedBy = "mazo")
     private List<MazoCarta> mazoCartas;

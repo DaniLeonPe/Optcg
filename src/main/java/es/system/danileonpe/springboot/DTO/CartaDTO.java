@@ -2,7 +2,7 @@ package es.system.danileonpe.springboot.DTO;
 
 
 public record CartaDTO(
-    int idCarta,
+    int id,
     String nombre,
     String tipo,
     String rareza,

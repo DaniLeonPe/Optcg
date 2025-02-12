@@ -11,7 +11,7 @@ import org.mapstruct.factory.Mappers;
 import es.system.danileonpe.springboot.DTO.ColeccionDTO;
 import es.system.danileonpe.springboot.model.Coleccion;
 
-@Mapper(componentModel = "spring", uses = {UsuarioMapper.class, CartaMapper.class})
+@Mapper(componentModel = "spring")
 public interface ColeccionMapper {
 
     ColeccionMapper INSTANCE = Mappers.getMapper(ColeccionMapper.class);
@@ -31,14 +31,14 @@ public interface ColeccionMapper {
     // Método para mapear el ID de Usuario a Usuario
     default Usuario mapUsuario(int id) {
         Usuario usuario = new Usuario();
-        usuario.setId(id);  // Solo seteamos el ID en este ejemplo
+        usuario.setId(id); 
         return usuario;
     }
 
     // Método para mapear el ID de Carta a Carta
     default Carta mapCarta(int id) {
         Carta carta = new Carta();
-        carta.setId(id);  // Solo seteamos el ID en este ejemplo
+        carta.setId(id); 
         return carta;
     }
 }

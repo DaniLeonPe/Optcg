@@ -2,16 +2,20 @@ package es.system.danileonpe.springboot.mapper;
 
 import es.system.danileonpe.springboot.DTO.ExpansionDTO;
 import es.system.danileonpe.springboot.model.Expansion;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-12T15:42:27+0000",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.14 (Oracle Corporation)"
+    date = "2025-02-12T19:52:26+0000",
+    comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 3.41.0.z20250115-2156, environment: Java 21.0.5 (Eclipse Adoptium)"
 )
+@Component
 public class ExpansionMapperImpl implements ExpansionMapper {
 
     @Override
@@ -20,15 +24,13 @@ public class ExpansionMapperImpl implements ExpansionMapper {
             return null;
         }
 
-        String nombre = null;
-        Date fechaLanzamiento = null;
+        ExpansionDTO expansionDTO = new ExpansionDTO();
 
-        nombre = expansion.getNombre();
-        fechaLanzamiento = expansion.getFechaLanzamiento();
-
-        int idExpansion = 0;
-
-        ExpansionDTO expansionDTO = new ExpansionDTO( idExpansion, nombre, fechaLanzamiento );
+        if ( expansion.getFechaLanzamiento() != null ) {
+            expansionDTO.setFechaLanzamiento( LocalDateTime.ofInstant( expansion.getFechaLanzamiento().toInstant(), ZoneOffset.UTC ).toLocalDate() );
+        }
+        expansionDTO.setId( expansion.getId() );
+        expansionDTO.setNombre( expansion.getNombre() );
 
         return expansionDTO;
     }
@@ -41,8 +43,11 @@ public class ExpansionMapperImpl implements ExpansionMapper {
 
         Expansion expansion = new Expansion();
 
-        expansion.setNombre( expansionDTO.nombre() );
-        expansion.setFechaLanzamiento( expansionDTO.fechaLanzamiento() );
+        if ( expansionDTO.getFechaLanzamiento() != null ) {
+            expansion.setFechaLanzamiento( Date.from( expansionDTO.getFechaLanzamiento().atStartOfDay( ZoneOffset.UTC ).toInstant() ) );
+        }
+        expansion.setId( expansionDTO.getId() );
+        expansion.setNombre( expansionDTO.getNombre() );
 
         return expansion;
     }

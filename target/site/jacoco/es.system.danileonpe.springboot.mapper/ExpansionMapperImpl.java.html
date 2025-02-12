@@ -2,77 +2,87 @@
 
 import es.system.danileonpe.springboot.DTO.ExpansionDTO;
 import es.system.danileonpe.springboot.model.Expansion;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
 
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-02-12T15:42:27+0000&quot;,
+    date = &quot;2025-02-12T19:36:25+0000&quot;,
     comments = &quot;version: 1.5.3.Final, compiler: javac, environment: Java 17.0.14 (Oracle Corporation)&quot;
 )
-<span class="nc" id="L15">public class ExpansionMapperImpl implements ExpansionMapper {</span>
+@Component
+<span class="nc" id="L20">public class ExpansionMapperImpl implements ExpansionMapper {</span>
 
     @Override
     public ExpansionDTO toDTO(Expansion expansion) {
-<span class="nc bnc" id="L19" title="All 2 branches missed.">        if ( expansion == null ) {</span>
-<span class="nc" id="L20">            return null;</span>
+<span class="nc bnc" id="L24" title="All 2 branches missed.">        if ( expansion == null ) {</span>
+<span class="nc" id="L25">            return null;</span>
         }
 
-<span class="nc" id="L23">        String nombre = null;</span>
-<span class="nc" id="L24">        Date fechaLanzamiento = null;</span>
+<span class="nc" id="L28">        int id = 0;</span>
+<span class="nc" id="L29">        String nombre = null;</span>
+<span class="nc" id="L30">        LocalDate fechaLanzamiento = null;</span>
 
-<span class="nc" id="L26">        nombre = expansion.getNombre();</span>
-<span class="nc" id="L27">        fechaLanzamiento = expansion.getFechaLanzamiento();</span>
+<span class="nc" id="L32">        id = expansion.getId();</span>
+<span class="nc" id="L33">        nombre = expansion.getNombre();</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">        if ( expansion.getFechaLanzamiento() != null ) {</span>
+<span class="nc" id="L35">            fechaLanzamiento = LocalDateTime.ofInstant( expansion.getFechaLanzamiento().toInstant(), ZoneOffset.UTC ).toLocalDate();</span>
+        }
 
-<span class="nc" id="L29">        int idExpansion = 0;</span>
+<span class="nc" id="L38">        ExpansionDTO expansionDTO = new ExpansionDTO( id, nombre, fechaLanzamiento );</span>
 
-<span class="nc" id="L31">        ExpansionDTO expansionDTO = new ExpansionDTO( idExpansion, nombre, fechaLanzamiento );</span>
-
-<span class="nc" id="L33">        return expansionDTO;</span>
+<span class="nc" id="L40">        return expansionDTO;</span>
     }
 
     @Override
     public Expansion toEntity(ExpansionDTO expansionDTO) {
-<span class="nc bnc" id="L38" title="All 2 branches missed.">        if ( expansionDTO == null ) {</span>
-<span class="nc" id="L39">            return null;</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">        if ( expansionDTO == null ) {</span>
+<span class="nc" id="L46">            return null;</span>
         }
 
-<span class="nc" id="L42">        Expansion expansion = new Expansion();</span>
+<span class="nc" id="L49">        Expansion expansion = new Expansion();</span>
 
-<span class="nc" id="L44">        expansion.setNombre( expansionDTO.nombre() );</span>
-<span class="nc" id="L45">        expansion.setFechaLanzamiento( expansionDTO.fechaLanzamiento() );</span>
+<span class="nc" id="L51">        expansion.setId( expansionDTO.id() );</span>
+<span class="nc" id="L52">        expansion.setNombre( expansionDTO.nombre() );</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        if ( expansionDTO.fechaLanzamiento() != null ) {</span>
+<span class="nc" id="L54">            expansion.setFechaLanzamiento( Date.from( expansionDTO.fechaLanzamiento().atStartOfDay( ZoneOffset.UTC ).toInstant() ) );</span>
+        }
 
-<span class="nc" id="L47">        return expansion;</span>
+<span class="nc" id="L57">        return expansion;</span>
     }
 
     @Override
     public List&lt;ExpansionDTO&gt; toDTOList(List&lt;Expansion&gt; expansions) {
-<span class="nc bnc" id="L52" title="All 2 branches missed.">        if ( expansions == null ) {</span>
-<span class="nc" id="L53">            return null;</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        if ( expansions == null ) {</span>
+<span class="nc" id="L63">            return null;</span>
         }
 
-<span class="nc" id="L56">        List&lt;ExpansionDTO&gt; list = new ArrayList&lt;ExpansionDTO&gt;( expansions.size() );</span>
-<span class="nc bnc" id="L57" title="All 2 branches missed.">        for ( Expansion expansion : expansions ) {</span>
-<span class="nc" id="L58">            list.add( toDTO( expansion ) );</span>
-<span class="nc" id="L59">        }</span>
+<span class="nc" id="L66">        List&lt;ExpansionDTO&gt; list = new ArrayList&lt;ExpansionDTO&gt;( expansions.size() );</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">        for ( Expansion expansion : expansions ) {</span>
+<span class="nc" id="L68">            list.add( toDTO( expansion ) );</span>
+<span class="nc" id="L69">        }</span>
 
-<span class="nc" id="L61">        return list;</span>
+<span class="nc" id="L71">        return list;</span>
     }
 
     @Override
     public List&lt;Expansion&gt; toEntityList(List&lt;ExpansionDTO&gt; expansionDTOs) {
-<span class="nc bnc" id="L66" title="All 2 branches missed.">        if ( expansionDTOs == null ) {</span>
-<span class="nc" id="L67">            return null;</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">        if ( expansionDTOs == null ) {</span>
+<span class="nc" id="L77">            return null;</span>
         }
 
-<span class="nc" id="L70">        List&lt;Expansion&gt; list = new ArrayList&lt;Expansion&gt;( expansionDTOs.size() );</span>
-<span class="nc bnc" id="L71" title="All 2 branches missed.">        for ( ExpansionDTO expansionDTO : expansionDTOs ) {</span>
-<span class="nc" id="L72">            list.add( toEntity( expansionDTO ) );</span>
-<span class="nc" id="L73">        }</span>
+<span class="nc" id="L80">        List&lt;Expansion&gt; list = new ArrayList&lt;Expansion&gt;( expansionDTOs.size() );</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">        for ( ExpansionDTO expansionDTO : expansionDTOs ) {</span>
+<span class="nc" id="L82">            list.add( toEntity( expansionDTO ) );</span>
+<span class="nc" id="L83">        }</span>
 
-<span class="nc" id="L75">        return list;</span>
+<span class="nc" id="L85">        return list;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
