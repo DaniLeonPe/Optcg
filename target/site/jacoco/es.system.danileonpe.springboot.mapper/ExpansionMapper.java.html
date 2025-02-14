@@ -3,7 +3,6 @@
 import java.util.List;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import es.system.danileonpe.springboot.DTO.ExpansionDTO;
@@ -12,13 +11,14 @@ import es.system.danileonpe.springboot.model.Expansion;
 @Mapper(componentModel = &quot;spring&quot;) 
 public interface ExpansionMapper {
     
-<span class="nc" id="L15">    ExpansionMapper INSTANCE = Mappers.getMapper(ExpansionMapper.class);</span>
+<span class="nc" id="L14">    ExpansionMapper INSTANCE = Mappers.getMapper(ExpansionMapper.class);</span>
 
 
     
     
     ExpansionDTO toDTO(Expansion expansion);
 
+   
     Expansion toEntity(ExpansionDTO expansionDTO);
 
     List&lt;ExpansionDTO&gt; toDTOList(List&lt;Expansion&gt; expansions);

@@ -3,6 +3,7 @@
 import java.util.List;
 import java.util.stream.Collectors;
 
+import es.system.danileonpe.springboot.mapper.UsuarioMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,8 +39,8 @@ public class RoleController implements IController&lt;RoleDTO&gt; {
     /**
      * Default constructor of the class
      */
-<span class="nc" id="L41">    public RoleController() {</span>
-<span class="nc" id="L42">    }</span>
+<span class="nc" id="L42">    public RoleController() {</span>
+<span class="nc" id="L43">    }</span>
 
     /**
      * Setter of the service
@@ -47,15 +48,16 @@ public class RoleController implements IController&lt;RoleDTO&gt; {
      */
     @Autowired
     public void setRoleService(RoleService service) {
-<span class="nc" id="L50">        this.service = service;</span>
-<span class="nc" id="L51">    }</span>
+<span class="nc" id="L51">        this.service = service;</span>
+<span class="nc" id="L52">    }</span>
 
     @Override
     @PostMapping
     @Operation(summary = &quot;Insert role&quot;)
     public ResponseEntity &lt;?&gt;add(@RequestBody RoleDTO dto) {
-<span class="nc" id="L57">        service.add(IRoleMapper.INSTANCE.toEntity(dto));</span>
-<span class="nc" id="L58">        return ResponseEntity.status(HttpStatus.CREATED).build();</span>
+<span class="nc" id="L58">        System.out.println(&quot;Insert role: &quot; + dto);</span>
+<span class="nc" id="L59">        service.add(IRoleMapper.INSTANCE.toEntity(dto));</span>
+<span class="nc" id="L60">        return ResponseEntity.status(HttpStatus.CREATED).build();</span>
     }
 
     @PutMapping(&quot;/{id}&quot;)
@@ -63,35 +65,35 @@ public class RoleController implements IController&lt;RoleDTO&gt; {
     @Override
     public ResponseEntity &lt;?&gt;update(@PathVariable(value = &quot;id&quot;) int id, @RequestBody RoleDTO dto) {
         try {
-<span class="nc" id="L66">            service.update(id, IRoleMapper.INSTANCE.toEntity(dto));</span>
-<span class="nc" id="L67">            return ResponseEntity.ok().build();</span>
-<span class="nc" id="L68">        } catch (Exception e) {</span>
-<span class="nc" id="L69">            throw new RuntimeException(e);</span>
+<span class="nc" id="L68">            service.update(id, IRoleMapper.INSTANCE.toEntity(dto));</span>
+<span class="nc" id="L69">            return ResponseEntity.ok().build();</span>
+<span class="nc" id="L70">        } catch (Exception e) {</span>
+<span class="nc" id="L71">            throw new RuntimeException(e);</span>
         }
     }
     @GetMapping
     @Operation(summary = &quot;Get all roles&quot;)
     @Override
     public ResponseEntity&lt;List&lt;?&gt;&gt; getAll() {
-<span class="nc" id="L76">        List&lt;RoleDTO&gt; filteredList = service.getAll().stream()</span>
-<span class="nc" id="L77">                .map(item -&gt; new RoleDTO(item.getId(), item.getName()))</span>
-<span class="nc" id="L78">                .collect(Collectors.toList());</span>
-<span class="nc" id="L79">        return ResponseEntity.ok(filteredList);</span>
+<span class="nc" id="L78">        List&lt;RoleDTO&gt; filteredList = service.getAll().stream()</span>
+<span class="nc" id="L79">                .map(IRoleMapper.INSTANCE::toDTO)</span>
+<span class="nc" id="L80">                .collect(Collectors.toList());</span>
+<span class="nc" id="L81">        return ResponseEntity.ok(filteredList);</span>
     }
 
     @Override
     @GetMapping(&quot;/{id}&quot;)
     @Operation(summary = &quot;Get role by ID&quot;)
     public ResponseEntity&lt;RoleDTO&gt; getById(@PathVariable(value = &quot;id&quot;)int id) {
-<span class="nc" id="L86">        return ResponseEntity.ok(IRoleMapper.INSTANCE.toDTO(service.getById(id)));</span>
+<span class="nc" id="L88">        return ResponseEntity.ok(IRoleMapper.INSTANCE.toDTO(service.getById(id)));</span>
     }
 
     @Override
     @DeleteMapping(&quot;/{id}&quot;)
     @Operation(summary = &quot;Delete role&quot;)
     public ResponseEntity &lt;?&gt;delete(@PathVariable(value = &quot;id&quot;) int id) {
-<span class="nc" id="L93">        service.delete(id);</span>
-<span class="nc" id="L94">        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();</span>
+<span class="nc" id="L95">        service.delete(id);</span>
+<span class="nc" id="L96">        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();</span>
     }
 
 }

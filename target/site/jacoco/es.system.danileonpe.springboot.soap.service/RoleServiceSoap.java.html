@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Implementación SOAP para la gestión de roles.
  */
 @Component
-@WebService(endpointInterface = &quot;es.ies.puerto.mgs.project.service.interfaces.IServiceSoap&quot;)
+@WebService(endpointInterface = &quot;es.system.danileonpe.springboot.service.interfaces.IServiceSoap&quot;)
 public class RoleServiceSoap implements IServiceSoap&lt;RoleDTO&gt; {
     /**
      * Properties
@@ -52,14 +52,14 @@ public class RoleServiceSoap implements IServiceSoap&lt;RoleDTO&gt; {
 
     @Override
     public boolean update(RoleDTO roleDTO) throws Exception {
-<span class="nc" id="L55">        return service.update(roleDTO.getId(), IRoleMapper.INSTANCE.toEntity(roleDTO));</span>
+<span class="nc" id="L55">        return service.update(roleDTO.id(), IRoleMapper.INSTANCE.toEntity(roleDTO));</span>
     }
 
     @WebResult(name=&quot;role&quot;)
     @Override
     public List&lt;RoleDTO&gt; getAll() {
 <span class="nc" id="L61">        return service.getAll().stream()</span>
-<span class="nc" id="L62">                .map(item -&gt; new RoleDTO(item.getId(), item.getName()))</span>
+<span class="nc" id="L62">                .map(IRoleMapper.INSTANCE::toDTO)</span>
 <span class="nc" id="L63">                .collect(Collectors.toList());</span>
     }
 

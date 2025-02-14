@@ -1,4 +1,5 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+optcg-main,es.system.danileonpe.springboot.config,WebConfig,57,0,0,0,6,0,2,0,2,0
 optcg-main,es.system.danileonpe.springboot.config,SwaggerConfig,32,0,0,0,11,0,2,0,2,0
 optcg-main,es.system.danileonpe.springboot.security.interceptor,CxfAuthInterceptor,89,0,12,0,22,0,8,0,2,0
 optcg-main,es.system.danileonpe.springboot.DTO,UsuarioDTO,27,0,0,0,1,0,5,0,5,0
@@ -7,7 +8,7 @@ optcg-main,es.system.danileonpe.springboot.DTO,MazoCartaDTO,27,0,0,0,1,0,5,0,5,0
 optcg-main,es.system.danileonpe.springboot.DTO,CartaDTO,51,0,0,0,1,0,9,0,9,0
 optcg-main,es.system.danileonpe.springboot.DTO,ColeccionDTO,27,0,0,0,1,0,5,0,5,0
 optcg-main,es.system.danileonpe.springboot.DTO,ColeccionCartaDTO,27,0,0,0,1,0,5,0,5,0
-optcg-main,es.system.danileonpe.springboot.DTO,RoleDTO,79,0,10,0,17,0,14,0,9,0
+optcg-main,es.system.danileonpe.springboot.DTO,RoleDTO,15,0,0,0,1,0,3,0,3,0
 optcg-main,es.system.danileonpe.springboot.DTO,UsuarioRegisterDTO,21,0,0,0,1,0,4,0,4,0
 optcg-main,es.system.danileonpe.springboot.DTO,ExpansionDTO,21,0,0,0,1,0,4,0,4,0
 optcg-main,es.system.danileonpe.springboot.DTO,UsuarioLoginDTO,15,0,0,0,1,0,3,0,3,0
@@ -16,7 +17,7 @@ optcg-main,es.system.danileonpe.springboot.soap.service,ExpansionServiceSoap,49,
 optcg-main,es.system.danileonpe.springboot.soap.service,CartaServiceSoap,49,0,0,0,9,0,6,0,6,0
 optcg-main,es.system.danileonpe.springboot.soap.service,MazoCartaServiceSoap,104,0,0,0,16,0,5,0,5,0
 optcg-main,es.system.danileonpe.springboot.soap.service,UserServiceSoap,49,0,0,0,9,0,6,0,6,0
-optcg-main,es.system.danileonpe.springboot.soap.service,RoleServiceSoap,58,0,0,0,11,0,9,0,9,0
+optcg-main,es.system.danileonpe.springboot.soap.service,RoleServiceSoap,54,0,0,0,11,0,8,0,8,0
 optcg-main,es.system.danileonpe.springboot.soap.service,MazoServiceSoap,49,0,0,0,9,0,6,0,6,0
 optcg-main,es.system.danileonpe.springboot.soap.service,ColeccionServiceSoap,49,0,0,0,9,0,6,0,6,0
 optcg-main,es.system.danileonpe.springboot.soap.service,ColeccionCartaServiceSoap,104,0,0,0,16,0,5,0,5,0
@@ -36,8 +37,8 @@ optcg-main,es.system.danileonpe.springboot.security,AuthService,89,0,4,0,26,0,9,
 optcg-main,es.system.danileonpe.springboot.security,JwtService,61,0,0,0,16,0,3,0,3,0
 optcg-main,es.system.danileonpe.springboot.security,CustomUserDetails,28,0,0,0,9,0,4,0,4,0
 optcg-main,es.system.danileonpe.springboot.security,JwtFilter,139,0,8,0,25,0,6,0,2,0
-optcg-main,es.system.danileonpe.springboot.controller.v1,AuthController,71,0,4,0,18,0,8,0,6,0
-optcg-main,es.system.danileonpe.springboot.mapper,IRoleMapperImpl,39,0,4,0,13,0,5,0,3,0
+optcg-main,es.system.danileonpe.springboot.controller.v1,AuthController,73,0,4,0,18,0,8,0,6,0
+optcg-main,es.system.danileonpe.springboot.mapper,IRoleMapperImpl,43,0,4,0,15,0,5,0,3,0
 optcg-main,es.system.danileonpe.springboot.mapper,ColeccionCartaMapper,5,0,0,0,1,0,1,0,1,0
 optcg-main,es.system.danileonpe.springboot.mapper,ExpansionMapper,5,0,0,0,1,0,1,0,1,0
 optcg-main,es.system.danileonpe.springboot.mapper,ColeccionMapper,23,0,0,0,7,0,3,0,3,0
@@ -59,12 +60,12 @@ optcg-main,es.system.danileonpe.springboot.controller.v2,ColleccionesController,
 optcg-main,es.system.danileonpe.springboot.controller.v2,ExpansionController,34,0,0,0,10,0,4,0,4,0
 optcg-main,es.system.danileonpe.springboot.controller.v2,CartasController,34,0,0,0,10,0,4,0,4,0
 optcg-main,es.system.danileonpe.springboot.controller.v2,UsersController,34,0,0,0,10,0,4,0,4,0
-optcg-main,es.system.danileonpe.springboot.controller.v3,CartasController,69,0,0,0,17,0,7,0,7,0
+optcg-main,es.system.danileonpe.springboot.controller.v3,CartasController,74,0,0,0,18,0,7,0,7,0
 optcg-main,es.system.danileonpe.springboot.controller.v3,UsersController,135,0,6,0,37,0,11,0,8,0
-optcg-main,es.system.danileonpe.springboot.controller.v3,RoleController,73,0,0,0,17,0,8,0,8,0
+optcg-main,es.system.danileonpe.springboot.controller.v3,RoleController,74,0,0,0,18,0,7,0,7,0
 optcg-main,es.system.danileonpe.springboot.controller.v3,ExpansionController,69,0,0,0,17,0,7,0,7,0
-optcg-main,es.system.danileonpe.springboot.controller.v3,ColeccionesController,69,0,0,0,17,0,7,0,7,0
-optcg-main,es.system.danileonpe.springboot.controller.v3,MazoController,69,0,0,0,17,0,7,0,7,0
+optcg-main,es.system.danileonpe.springboot.controller.v3,ColeccionesController,74,0,0,0,18,0,7,0,7,0
+optcg-main,es.system.danileonpe.springboot.controller.v3,MazoController,74,0,0,0,18,0,7,0,7,0
 optcg-main,es.system.danileonpe.springboot.model,DateToLongConverter,21,0,4,0,3,0,5,0,3,0
 optcg-main,es.system.danileonpe.springboot.model,Carta,135,0,6,0,44,0,25,0,22,0
 optcg-main,es.system.danileonpe.springboot.model,ColeccionCarta,100,0,10,0,24,0,18,0,13,0

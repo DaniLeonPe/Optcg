@@ -82,7 +82,7 @@ import org.slf4j.LoggerFactory;
 
 <span class="nc" id="L83">            UsuarioDTO dto = new UsuarioDTO(register.getId(), register.getName(), register.getEmail(), register.getRole().getId());</span>
 <span class="nc" id="L84">            return ResponseEntity.status(HttpStatus.CREATED)</span>
-<span class="nc" id="L85">                    .body(&quot;success&quot;);</span>
+<span class="nc" id="L85">                    .body(&quot;success&quot; + &quot; &quot; + dto);</span>
         }
 
 <span class="nc" id="L88">        return ResponseEntity.status(HttpStatus.BAD_REQUEST)</span>

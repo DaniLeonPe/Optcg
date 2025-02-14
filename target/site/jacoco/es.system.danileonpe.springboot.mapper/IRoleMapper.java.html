@@ -8,12 +8,15 @@ import org.mapstruct.factory.Mappers;
 
 import es.system.danileonpe.springboot.DTO.RoleDTO;
 
+
 @Mapper
 public interface IRoleMapper {
-<span class="nc" id="L13">    IRoleMapper INSTANCE = Mappers.getMapper(IRoleMapper.class);</span>
+<span class="nc" id="L14">    IRoleMapper INSTANCE = Mappers.getMapper(IRoleMapper.class);</span>
 
     Role toEntity(RoleDTO roleDTO);
     RoleDTO toDTO(Role role);
+
+
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

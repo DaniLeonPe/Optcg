@@ -7,7 +7,7 @@ services:
       - "8082:8080"
     volumes:
       - ./target:/usr/local/tomcat/webapps/
-      - ./optcg.db:/optcg.db
+      - ./src/main/resources/optcg.db:/usr/local/tomcat/optcg.db
     networks:
       - optcg-network
 volumes:

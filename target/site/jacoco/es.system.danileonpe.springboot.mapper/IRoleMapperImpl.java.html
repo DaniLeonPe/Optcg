@@ -6,7 +6,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-02-12T19:36:25+0000&quot;,
+    date = &quot;2025-02-14T16:10:33+0000&quot;,
     comments = &quot;version: 1.5.3.Final, compiler: javac, environment: Java 17.0.14 (Oracle Corporation)&quot;
 )
 <span class="nc" id="L12">public class IRoleMapperImpl implements IRoleMapper {</span>
@@ -19,8 +19,8 @@ import javax.annotation.processing.Generated;
 
 <span class="nc" id="L20">        Role role = new Role();</span>
 
-<span class="nc" id="L22">        role.setId( roleDTO.getId() );</span>
-<span class="nc" id="L23">        role.setName( roleDTO.getName() );</span>
+<span class="nc" id="L22">        role.setId( roleDTO.id() );</span>
+<span class="nc" id="L23">        role.setName( roleDTO.name() );</span>
 
 <span class="nc" id="L25">        return role;</span>
     }
@@ -31,12 +31,15 @@ import javax.annotation.processing.Generated;
 <span class="nc" id="L31">            return null;</span>
         }
 
-<span class="nc" id="L34">        RoleDTO roleDTO = new RoleDTO();</span>
+<span class="nc" id="L34">        int id = 0;</span>
+<span class="nc" id="L35">        String name = null;</span>
 
-<span class="nc" id="L36">        roleDTO.setId( role.getId() );</span>
-<span class="nc" id="L37">        roleDTO.setName( role.getName() );</span>
+<span class="nc" id="L37">        id = role.getId();</span>
+<span class="nc" id="L38">        name = role.getName();</span>
 
-<span class="nc" id="L39">        return roleDTO;</span>
+<span class="nc" id="L40">        RoleDTO roleDTO = new RoleDTO( id, name );</span>
+
+<span class="nc" id="L42">        return roleDTO;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
