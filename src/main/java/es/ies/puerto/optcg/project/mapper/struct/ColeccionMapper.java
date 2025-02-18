@@ -23,8 +23,8 @@ public interface ColeccionMapper {
     @Mapping(source = "carta.id", target = "carta")  // Usa el ID para obtener la Carta
     ColeccionDTO toDTO(Coleccion coleccion);
 
-    @Mapping(target = "usuario", expression = "java(mapUsuario(coleccionDTO.usuario()))")  // Mapea ID de Usuario
-    @Mapping(target = "carta", expression = "java(mapCarta(coleccionDTO.carta()))")  // Mapea ID de Carta
+    @Mapping(target = "usuario", expression = "java(mapUsuario(coleccionDTO.getUsuario()))")  // Mapea ID de Usuario
+    @Mapping(target = "carta", expression = "java(mapCarta(coleccionDTO.getCarta()))")  // Mapea ID de Carta
     Coleccion toEntity(ColeccionDTO coleccionDTO);
 
     List<ColeccionDTO> toDTOList(List<Coleccion> colecciones);

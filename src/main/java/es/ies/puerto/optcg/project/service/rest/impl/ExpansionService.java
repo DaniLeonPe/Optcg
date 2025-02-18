@@ -22,9 +22,15 @@ import es.ies.puerto.optcg.project.service.interfaces.IService;
 public class ExpansionService implements IService<Expansion> {
 
 
-    @Autowired
-    ExpansionRepository repository;
 
+    private ExpansionRepository repository;
+
+    public ExpansionService(){}
+
+    @Autowired
+    public void setRepository(ExpansionRepository repository){
+        this.repository=repository;
+    }
      /** 
      * @param t
      * @return boolean

@@ -29,7 +29,10 @@ public class Mazo {
 
     @OneToMany(mappedBy = "mazo")
     private List<MazoCarta> mazoCartas;
-    
+
+    public Mazo() {
+    }
+
     public int getId() {
         return id;
     }

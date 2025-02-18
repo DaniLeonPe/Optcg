@@ -33,7 +33,7 @@ public class CartaServiceSoap implements IServiceSoap<CartaDTO> {
 
     @Override
     public boolean update(CartaDTO t) throws Exception {
-       return service.update(t.id(), CartaMapper.INSTANCE.toEntity(t));
+       return service.update(t.getId(), CartaMapper.INSTANCE.toEntity(t));
     }
 
     @Override

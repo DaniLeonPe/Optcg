@@ -20,7 +20,14 @@ public class Expansion {
     @Column(name = "fecha_lanzamiento")
 	private Date fechaLanzamiento;
 
-   
+    public Expansion() {
+    }
+
+    public Expansion(int id, String nombre, Date fechaLanzamiento) {
+        this.id = id;
+        this.nombre = nombre;
+        this.fechaLanzamiento = fechaLanzamiento;
+    }
 
     // Getters y setters
     public int getId() {
